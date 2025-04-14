@@ -1,4 +1,4 @@
-# CloudFarm.ai
+
 
 Site de coleta de dados de propriedades rurais para CloudFarm.ai.
 
