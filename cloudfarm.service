@@ -9,6 +9,7 @@ WorkingDirectory=/var/www/cloudfarm.ai
 ExecStart=/usr/bin/node server.js
 Restart=on-failure
 Environment=NODE_ENV=production
+Environment=TZ=America/Manaus
 
 [Install]
 WantedBy=multi-user.target

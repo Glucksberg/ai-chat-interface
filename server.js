@@ -21,17 +21,34 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-// Caminho para a planilha CSV
-const dataFilePath = path.join(__dirname, 'data', 'propriedades.csv');
-
 // Garantir que o diretório de dados exista
 const dataDir = path.join(__dirname, 'data');
 if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir);
+    console.log('Criando diretório de dados:', dataDir);
+    try {
+        fs.mkdirSync(dataDir, { recursive: true });
+        // Definir permissões (0755) para garantir acesso de escrita
+        fs.chmodSync(dataDir, 0o755);
+        console.log('Diretório de dados criado com permissões corretas');
+    } catch (error) {
+        console.error('Erro ao criar diretório de dados:', error);
+    }
+} else {
+    console.log('Diretório de dados já existe:', dataDir);
+    // Garantir permissões de escrita
+    try {
+        fs.chmodSync(dataDir, 0o755);
+    } catch (error) {
+        console.error('Erro ao atualizar permissões do diretório:', error);
+    }
 }
+
+// Caminho para a planilha CSV
+const dataFilePath = path.join(__dirname, 'data', 'propriedades.csv');
 
 // Verificar se o arquivo CSV existe, caso contrário, criá-lo com os cabeçalhos
 if (!fs.existsSync(dataFilePath)) {
+    console.log('Arquivo CSV não existe, criando:', dataFilePath);
     const csvWriter = createCsvWriter({
         path: dataFilePath,
         header: [
@@ -46,15 +63,53 @@ if (!fs.existsSync(dataFilePath)) {
     });
     
     csvWriter.writeRecords([])
-        .then(() => console.log('Arquivo CSV criado com sucesso'));
+        .then(() => {
+            console.log('Arquivo CSV criado com sucesso');
+            // Definir permissões do arquivo (0644)
+            try {
+                fs.chmodSync(dataFilePath, 0o644);
+                console.log('Permissões do arquivo CSV configuradas');
+            } catch (error) {
+                console.error('Erro ao configurar permissões do arquivo CSV:', error);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao criar arquivo CSV:', error);
+        });
+} else {
+    console.log('Arquivo CSV já existe:', dataFilePath);
+    // Garantir permissões de escrita
+    try {
+        fs.chmodSync(dataFilePath, 0o644);
+        console.log('Permissões do arquivo CSV atualizadas');
+    } catch (error) {
+        console.error('Erro ao atualizar permissões do arquivo CSV:', error);
+    }
 }
 
 // Rota para receber os dados do formulário
 app.post('/api/submit-form', (req, res) => {
+    console.log('Recebendo dados do formulário:', req.body);
+    
     const formData = req.body;
     
-    // Adicionar data de submissão
-    formData.data = new Date().toLocaleString('pt-BR');
+    // Adicionar data de submissão com GMT-4
+    const now = new Date();
+    // Ajusta para GMT-4 adicionando o offset correto (GMT-4 = UTC-4)
+    const localTime = new Date(now.getTime() - (4 * 60 * 60 * 1000));
+    formData.data = localTime.toLocaleString('pt-BR', { timeZone: 'America/Manaus' });
+    
+    console.log('Dados a serem salvos:', formData);
+    console.log('Caminho do arquivo CSV:', dataFilePath);
+    
+    // Verificar se o diretório existe e tem permissões de escrita
+    try {
+        fs.accessSync(dataDir, fs.constants.W_OK);
+        console.log('Diretório de dados existe e tem permissões de escrita');
+    } catch (error) {
+        console.error('Erro ao acessar diretório de dados:', error);
+        return res.status(500).json({ success: false, message: 'Erro ao acessar diretório de dados' });
+    }
     
     // Escrever no arquivo CSV
     const csvWriter = createCsvWriter({
@@ -73,11 +128,11 @@ app.post('/api/submit-form', (req, res) => {
     
     csvWriter.writeRecords([formData])
         .then(() => {
-            console.log('Novo cadastro adicionado');
+            console.log('Novo cadastro adicionado com sucesso');
             res.status(200).json({ success: true, message: 'Dados salvos com sucesso!' });
         })
         .catch(error => {
-            console.error('Erro ao salvar dados:', error);
+            console.error('Erro ao salvar dados no CSV:', error);
             res.status(500).json({ success: false, message: 'Erro ao processar o formulário' });
         });
 });
