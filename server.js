@@ -5,9 +5,16 @@ const csv = require('csv-parser');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const OpenAI = require('openai');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Configuração da API da OpenAI
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
 
 // Middleware
 app.use(cors());
@@ -73,6 +80,55 @@ app.post('/api/submit-form', (req, res) => {
             console.error('Erro ao salvar dados:', error);
             res.status(500).json({ success: false, message: 'Erro ao processar o formulário' });
         });
+});
+
+// Rota para o chat com a IA (OpenAI)
+app.post('/api/chat', async (req, res) => {
+    try {
+        console.log('Recebida solicitação para /api/chat');
+        
+        const { messages } = req.body;
+        
+        // Validar mensagens
+        if (!messages || !Array.isArray(messages)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Formato de mensagem inválido. Envie um array de mensagens.'
+            });
+        }
+        
+        // Adiciona contexto sobre agricultura como sistema
+        const systemContext = {
+            role: 'system',
+            content: 'Você é um assistente especialista em agricultura e pecuária brasileira. Você ajuda produtores rurais com informações sobre cultivo, solo, clima, tecnologias agrícolas, manejo de animais e estratégias para aumentar a produtividade de forma sustentável. Responda sempre em português.'
+        };
+        
+        const allMessages = [systemContext, ...messages];
+        
+        // Chamar a API da OpenAI com o modelo GPT-4o Mini
+        const completion = await openai.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages: allMessages,
+            temperature: 0.7,
+            max_tokens: 500
+        });
+        
+        // Enviar resposta
+        res.json({
+            success: true,
+            choices: [{
+                message: completion.choices[0].message
+            }]
+        });
+    } catch (error) {
+        console.error('Erro na API da OpenAI:', error.message);
+        
+        res.status(500).json({
+            success: false,
+            message: 'Erro ao processar a solicitação de IA',
+            error: error.message
+        });
+    }
 });
 
 // Iniciar o servidor
