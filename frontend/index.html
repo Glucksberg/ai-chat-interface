@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>CloudFarm.ai - Soluções Agrícolas Inteligentes</title>
+    <style>
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #264653;
+            --accent-color: #e9c46a;
+            --text-dark: #333;
+            --text-light: #fff;
+            --header-bg: rgba(38, 70, 83, 0.95);
+            --btn-primary: #2a9d8f;
+            --btn-secondary: #e9c46a;
+            --btn-highlight: #f4a261;
+            --btn-text: #264653;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--header-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-placeholder {
+            width: 150px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .login-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .login-btn {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--text-light);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .signup-btn {
+            background-color: var(--btn-primary);
+            color: var(--text-light);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .signup-btn:hover {
+            background-color: #238b7e;
+        }
+        
+        /* Main Content */
+        .farm-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75px; /* Espaço para o header fixo */
+            height: calc(100vh - 75px);
+            overflow: hidden;
+        }
+        
+        .farm-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        
+        /* Ajuste para telas desktop - exibe a imagem inteira */
+        @media (min-width: 992px) {
+            .farm-image {
+                object-fit: contain;
+                max-height: calc(100vh - 75px);
+            }
+            
+            .farm-container {
+                background-color: #f5f5f5; /* Cor de fundo suave para área ao redor da imagem */
+            }
+        }
+        
+        /* Farm Icons Area (preparação para o próximo passo) */
+        .farm-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Permitirá clicar através dessa camada */
+        }
+        
+        .farm-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            pointer-events: auto; /* Para que sejam clicáveis */
+            cursor: pointer;
+        }
+        
+        .farm-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .farm-icon i {
+            font-size: 24px;
+            color: var(--secondary-color);
+        }
+        
+        /* Overlay para exibir informações quando um ícone é clicado */
+        .icon-info {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .info-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-info {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-container {
+                padding: 15px 20px;
+            }
+            
+            .nav-menu {
+                gap: 10px;
+            }
+            
+            .nav-menu a {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--header-bg);
+                padding: 20px;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+            
+            .login-area {
+                gap: 10px;
+            }
+            
+            .login-btn, .signup-btn {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .farm-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .farm-icon i {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                padding: 10px 15px;
+            }
+            
+            .logo-placeholder {
+                width: 120px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .login-area {
+                gap: 5px;
+            }
+            
+            .info-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header com navegação e login similar à imagem de referência -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-placeholder">CloudFarm.ai</div>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="active">Sobre Nós</a>
+                <a href="planos.html">Planos</a>
+                <a href="contato.html">Contato</a>
+                <a href="conceito.html">Conceito</a>
+                <a href="assistente.html">Assistente</a>
+                <a href="https://t.me/CloudFarmBR_bot" target="_blank">Bot Oficial</a>
+                <a href="https://instagram.com/cloudfarmbr" target="_blank">Instagram</a>
+                <a href="https://t.me/cloudfarmnews" target="_blank">Canal no Telegram</a>
+            </nav>
+            
+            <div class="login-area">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Cadastre-se grátis</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Área principal com a imagem da fazenda -->
+    <main class="farm-container">
+        <img src="/Images/littlefarm.png" alt="Fazenda Virtual" class="farm-image">
+        
+        <!-- Camada para ícones (será preenchida no próximo passo) -->
+        <div class="farm-icons">
+            <!-- Os ícones serão posicionados aqui posteriormente -->
+        </div>
+    </main>
+    
+    <!-- Modal/Overlay para informações dos ícones -->
+    <div class="icon-info">
+        <div class="close-info">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="info-content">
+            <!-- Conteúdo dinâmico aqui -->
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Fechar menu ao clicar em um item no mobile
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Modal de login (será implementado posteriormente)
+            const loginBtn = document.querySelector('.login-btn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', () => {
+                    alert('Funcionalidade de login será implementada em breve!');
+                });
+            }
+            
+            // Botão de cadastro (será implementado posteriormente)
+            const signupBtn = document.querySelector('.signup-btn');
+            if (signupBtn) {
+                signupBtn.addEventListener('click', () => {
+                    alert('Funcionalidade de cadastro será implementada em breve!');
+                });
+            }
+            
+            // Controlador para modal de informações dos ícones
+            const iconInfo = document.querySelector('.icon-info');
+            const closeInfo = document.querySelector('.close-info');
+            
+            if (closeInfo) {
+                closeInfo.addEventListener('click', () => {
+                    iconInfo.style.display = 'none';
+                });
+            }
+            
+            // Função para mostrar informações quando um ícone é clicado
+            window.showIconInfo = function(module) {
+                const infoContent = document.querySelector('.info-content');
+                
+                // Conteúdo dinâmico baseado no módulo clicado
+                let content = '';
+                switch(module) {
+                    case 'oficina':
+                        content = '<h2>Oficina</h2><p>Gerenciamento de manutenção de equipamentos e veículos.</p>';
+                        break;
+                    case 'confinamento':
+                        content = '<h2>Confinamento</h2><p>Controle de gado e manejo animal.</p>';
+                        break;
+                    case 'armazem':
+                        content = '<h2>Armazém</h2><p>Gestão de estoque de produtos agrícolas.</p>';
+                        break;
+                    case 'estoque':
+                        content = '<h2>Estoque</h2><p>Controle de insumos e materiais.</p>';
+                        break;
+                    case 'combustivel':
+                        content = '<h2>Posto de Combustível</h2><p>Gerenciamento de abastecimento e consumo.</p>';
+                        break;
+                    default:
+                        content = '<h2>Módulo</h2><p>Informações sobre este módulo estarão disponíveis em breve.</p>';
+                }
+                
+                infoContent.innerHTML = content;
+                iconInfo.style.display = 'flex';
+            };
+            
+            // Adicionar listener para fechar modal ao clicar fora do conteúdo
+            iconInfo.addEventListener('click', (e) => {
+                if (e.target === iconInfo) {
+                    iconInfo.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
