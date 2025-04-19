@@ -63,16 +63,46 @@
             align-items: center;
         }
         
-        .logo-placeholder {
-            width: 150px;
-            height: 45px;
-            background-color: rgba(255, 255, 255, 0.2);
+        /* Estilo do botão Teste agora! no estilo ticket */
+        .cta-teste {
+            --cta-orange: #FF6723;
+            font: 700 0.92rem/1.2 "Segoe UI", sans-serif;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            background: var(--cta-orange);
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            position: relative;
             border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            font-weight: bold;
+            white-space: nowrap;
+            transition: filter .2s ease;
+            text-decoration: none;
+        }
+        
+        .cta-teste:hover {
+            filter: brightness(1.1);
+        }
+        
+        /* "mordidas" laterais para o formato de ticket */
+        .cta-teste::before,
+        .cta-teste::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background: var(--header-bg);
+            border-radius: 50%;
+        }
+        
+        .cta-teste::before {
+            left: -7px;
+        }
+        
+        .cta-teste::after {
+            right: -7px;
         }
         
         .nav-menu {
@@ -378,10 +408,23 @@
                 padding: 10px 15px;
             }
             
-            .logo-placeholder {
-                width: 120px;
-                height: 35px;
-                font-size: 0.9rem;
+            .cta-teste {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.7rem;
+            }
+            
+            .cta-teste::before,
+            .cta-teste::after {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .cta-teste::before {
+                left: -5px;
+            }
+            
+            .cta-teste::after {
+                right: -5px;
             }
             
             .login-area {
@@ -400,7 +443,7 @@
     <header>
         <div class="header-container">
             <div class="logo-area">
-                <div class="logo-placeholder">CloudFarm.ai</div>
+                <a href="/teste" class="cta-teste">Teste agora!</a>
             </div>
             
             <button class="mobile-menu-btn" aria-label="Menu de navegação">
