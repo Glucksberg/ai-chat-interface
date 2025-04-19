@@ -77,20 +77,34 @@
         
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
         
         .nav-menu a {
             color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 15px;
+            padding: 8px 12px;
             border-radius: 4px;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .nav-menu a i {
+            font-size: 1rem;
+            color: var(--accent-color);
         }
         
         .nav-menu a:hover, .nav-menu a.active {
             background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a.active i {
+            color: #fff;
         }
         
         .login-area {
@@ -233,6 +247,24 @@
             color: var(--text-light);
             font-size: 24px;
             cursor: pointer;
+            position: relative;
+            z-index: 1010;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-btn.active {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
         }
         
         /* Responsive Design */
@@ -251,26 +283,56 @@
             }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .mobile-menu-btn {
-                display: block;
+                display: flex;
             }
             
             .nav-menu {
                 position: fixed;
-                top: 75px;
-                left: 0;
-                width: 100%;
+                top: 0;
+                right: -280px; /* Menu escondido à direita */
+                width: 280px;
+                height: 100vh;
                 flex-direction: column;
-                background-color: var(--header-bg);
-                padding: 20px;
-                transform: translateY(-100%);
-                transition: transform 0.3s ease;
-                z-index: 999;
+                background-color: var(--secondary-color);
+                background-image: linear-gradient(rgba(38, 70, 83, 0.95), rgba(38, 70, 83, 0.98)), 
+                                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 10L90 90H10L50 10z" fill="%232a9d8f" opacity="0.1"/></svg>');
+                background-size: cover, 80px 80px;
+                padding: 85px 25px 30px;
+                transition: right 0.4s ease;
+                z-index: 1000;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+                align-items: flex-start;
+                overflow-y: auto;
+            }
+            
+            .nav-menu::before {
+                content: 'Menu';
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                color: var(--accent-color);
+                font-size: 1.2rem;
+                font-weight: bold;
+                letter-spacing: 1px;
             }
             
             .nav-menu.active {
-                transform: translateY(0);
+                right: 0;
+            }
+            
+            .nav-menu a {
+                padding: 12px 15px;
+                width: 100%;
+                border-radius: 6px;
+                border-left: 3px solid transparent;
+                font-size: 1rem;
+            }
+            
+            .nav-menu a.active, .nav-menu a:hover {
+                border-left-color: var(--accent-color);
+                background-color: rgba(255, 255, 255, 0.05);
             }
             
             .login-area {
@@ -289,6 +351,25 @@
             
             .farm-icon i {
                 font-size: 20px;
+            }
+            
+            /* Overlay para quando o menu estiver aberto */
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+            
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
             }
         }
         
@@ -322,20 +403,23 @@
                 <div class="logo-placeholder">CloudFarm.ai</div>
             </div>
             
-            <button class="mobile-menu-btn">
+            <button class="mobile-menu-btn" aria-label="Menu de navegação">
                 <i class="fas fa-bars"></i>
             </button>
             
             <nav class="nav-menu">
-                <a href="index.html" class="active">Sobre Nós</a>
-                <a href="planos.html">Planos</a>
-                <a href="contato.html">Contato</a>
-                <a href="conceito.html">Conceito</a>
-                <a href="assistente.html">Assistente</a>
-                <a href="https://t.me/CloudFarmBR_bot" target="_blank">Bot Oficial</a>
-                <a href="https://instagram.com/cloudfarmbr" target="_blank">Instagram</a>
-                <a href="https://t.me/cloudfarmnews" target="_blank">Canal no Telegram</a>
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Início</a>
+                <a href="planos.html"><i class="fas fa-leaf"></i> Planos</a>
+                <a href="contato.html"><i class="fas fa-envelope"></i> Contato</a>
+                <a href="conceito.html"><i class="fas fa-lightbulb"></i> Conceito</a>
+                <a href="assistente.html"><i class="fas fa-robot"></i> Assistente</a>
+                <a href="https://t.me/CloudFarmBR_bot" target="_blank"><i class="fab fa-telegram"></i> Bot Oficial</a>
+                <a href="https://instagram.com/cloudfarmbr" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://t.me/cloudfarmnews" target="_blank"><i class="fas fa-bullhorn"></i> Canal</a>
             </nav>
+            
+            <!-- Overlay para quando o menu mobile estiver aberto -->
+            <div class="menu-overlay"></div>
             
             <div class="login-area">
                 <button class="login-btn">Login</button>
@@ -366,13 +450,38 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile menu toggle
+            // Mobile menu toggle com overlay e animação do ícone
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navMenu = document.querySelector('.nav-menu');
+            const menuOverlay = document.querySelector('.menu-overlay');
             
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
                     navMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                    menuOverlay.classList.toggle('active');
+                    
+                    // Alternar ícone entre barras e X
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (navMenu.classList.contains('active')) {
+                        icon.className = 'fas fa-times';
+                    } else {
+                        icon.className = 'fas fa-bars';
+                    }
+                    
+                    // Prevenir scroll do corpo quando menu está aberto
+                    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Fechar menu ao clicar no overlay
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                    document.body.style.overflow = '';
                 });
             }
             
@@ -380,8 +489,12 @@
             const navLinks = document.querySelectorAll('.nav-menu a');
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    if (window.innerWidth <= 768) {
+                    if (window.innerWidth <= 992) {
                         navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                        document.body.style.overflow = '';
                     }
                 });
             });
