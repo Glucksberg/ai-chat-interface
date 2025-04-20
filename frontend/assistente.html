@@ -366,38 +366,28 @@
                     sendButton.disabled = true;
                     userInput.disabled = true;
                     
-                    // Criar um alerta de debug
                     console.log('Enviando mensagens:', messageHistory);
                     
-                    // Garantir que estamos enviando mensagens no formato correto
-                    // Limpar o histórico para um teste simples
-                    const simplifiedMessages = [
-                        { role: 'user', content: message }
-                    ];
-                    
-                    // Usar URL completa para evitar problemas de caminho relativo
-                    const response = await fetch(window.location.origin + '/api/chat', {
+                    // Enviar o histórico completo de mensagens para contexto
+                    const response = await fetch('/api/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            messages: simplifiedMessages
+                            messages: messageHistory
                         })
                     });
-                    
-                    const data = await response.json();
-                    console.log('Resposta recebida:', data);
                     
                     // Esconder indicador de digitação
                     typingIndicator.style.display = 'none';
                     
+                    const data = await response.json();
+                    
                     if (data.success) {
-                        // Adicionar resposta do assistente
-                        addMessage(data.choices[0].message.content, false);
+                        addMessage(data.message, false);
                     } else {
-                        // Mostrar mensagem de erro
-                        addMessage('Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.', false);
+                        addMessage('Desculpe, ocorreu um erro: ' + data.message, false);
                         console.error('Erro:', data.message);
                     }
                 } catch (error) {

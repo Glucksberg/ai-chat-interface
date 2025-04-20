@@ -13,13 +13,130 @@ const PORT = process.env.PORT || 3000;
 
 // Configuração da API da OpenAI
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: process.env.OPENAI_API_KEY,
+    dangerouslyAllowBrowser: false,
+    baseURL: "https://api.openai.com/v1"
 });
+
+// Verificar se a API key está configurada
+if (!process.env.OPENAI_API_KEY) {
+    console.error('AVISO: OPENAI_API_KEY não está configurada no arquivo .env');
+}
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'frontend')));
+
+// Endpoint para o assistente de IA
+app.post('/api/chat', async (req, res) => {
+    try {
+        const { messages } = req.body;
+        
+        console.log('Recebendo mensagens:', JSON.stringify(messages));
+        
+        if (!messages || !Array.isArray(messages)) {
+            console.error('Formato de mensagem inválido:', messages);
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Formato de mensagem inválido' 
+            });
+        }
+        
+        // Garantir que as mensagens estão no formato correto
+        const formattedMessages = messages.map(msg => ({
+            role: msg.role || 'user',
+            content: msg.content || ''
+        }));
+        
+        // Adicionar mensagem de sistema para melhor contexto
+        formattedMessages.unshift({
+            role: 'system',
+            content: 'Você é o Agrônomo Virtual Claudinho, um assistente especializado em agricultura e pecuária brasileira. Forneça respostas úteis, precisas e amigáveis sobre cultivos, solo, clima, tecnologias agrícolas e manejo de animais. Use um tom cordial e profissional.'
+        });
+        
+        console.log('API Key configurada:', !!process.env.OPENAI_API_KEY);
+        console.log('Mensagens formatadas:', JSON.stringify(formattedMessages));
+        
+        try {
+            // Verificar se a API key está configurada
+            if (!process.env.OPENAI_API_KEY) {
+                throw new Error('OPENAI_API_KEY não está configurada');
+            }
+
+            console.log('Tentando chamar a API OpenAI com a chave configurada');
+            
+            // Usar o modelo GPT-4o Mini Search Preview
+            let modelToUse = 'gpt-4o-mini-search-preview-2025-03-11';
+            
+            try {
+                const completion = await openai.chat.completions.create({
+                    model: modelToUse,
+                    messages: formattedMessages,
+                    temperature: 0.7,
+                    max_tokens: 500
+                });
+                
+                const assistantResponse = completion.choices[0].message.content;
+                console.log('Resposta recebida da OpenAI com sucesso');
+                
+                res.json({
+                    success: true,
+                    message: assistantResponse
+                });
+            } catch (modelError) {
+                console.error(`Erro com o modelo ${modelToUse}:`, modelError.message);
+                
+                // Tentar com um modelo alternativo mais avançado
+                modelToUse = 'o4-mini-2025-04-16';
+                console.log(`Tentando com modelo alternativo: ${modelToUse}`);
+                
+                const completion = await openai.chat.completions.create({
+                    model: modelToUse,
+                    messages: formattedMessages,
+                    temperature: 0.7,
+                    max_tokens: 500
+                });
+                
+                const assistantResponse = completion.choices[0].message.content;
+                console.log('Resposta recebida da OpenAI com modelo alternativo');
+                
+                res.json({
+                    success: true,
+                    message: assistantResponse
+                });
+            }
+        } catch (apiError) {
+            console.error('Erro específico da API OpenAI:', apiError.message);
+            console.error('Tipo de erro:', apiError.constructor.name);
+            console.error('Stack trace:', apiError.stack);
+            
+            // Tentar extrair detalhes mais específicos do erro
+            let errorDetails = 'Detalhes não disponíveis';
+            let statusCode = apiError.status || 500;
+            
+            if (apiError.response) {
+                errorDetails = JSON.stringify(apiError.response.data);
+            }
+            
+            console.error('Detalhes completos do erro:', errorDetails);
+            
+            res.status(statusCode).json({ 
+                success: false, 
+                message: 'Erro ao se comunicar com a API da OpenAI',
+                error: apiError.message,
+                details: errorDetails
+            });
+        }
+    } catch (error) {
+        console.error('Erro geral no endpoint:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Erro ao processar sua solicitação',
+            error: error.message 
+        });
+    }
+});
 
 // Garantir que o diretório de dados exista
 const dataDir = path.join(__dirname, 'data');
@@ -155,7 +272,7 @@ app.post('/api/chat', async (req, res) => {
         // Adiciona contexto sobre agricultura como sistema
         const systemContext = {
             role: 'system',
-            content: 'Você é um assistente especialista em agricultura e pecuária brasileira. Você ajuda produtores rurais com informações sobre cultivo, solo, clima, tecnologias agrícolas, manejo de animais e estratégias para aumentar a produtividade de forma sustentável. Responda sempre em português.'
+            content: 'Você é um assistente especialista em agronomia e agricultura e ajuda produtores rurais com informações sobre cultivo, solo, clima, tecnologias agrícolas, cálculos agronômicos, manejo de animais e estratégias para aumentar a produtividade de forma sustentável. Responda sempre em português.'
         };
         
         const allMessages = [systemContext, ...messages];
