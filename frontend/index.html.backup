@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>CloudFarm.ai - Soluções Agrícolas Inteligentes</title>
+    <style>
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #264653;
+            --accent-color: #e9c46a;
+            --text-dark: #333;
+            --text-light: #fff;
+            --header-bg: rgba(38, 70, 83, 0.95);
+            --btn-primary: #2a9d8f;
+            --btn-secondary: #e9c46a;
+            --btn-highlight: #f4a261;
+            --btn-text: #264653;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: var(--header-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Estilo do botão Teste agora! no estilo ticket */
+        .cta-teste {
+            --cta-orange: #FF6723;
+            font: 700 0.92rem/1.2 "Segoe UI", sans-serif;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            background: var(--cta-orange);
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            position: relative;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: filter .2s ease;
+            text-decoration: none;
+        }
+        
+        .cta-teste:hover {
+            filter: brightness(1.1);
+        }
+        
+        /* "mordidas" laterais para o formato de ticket */
+        .cta-teste::before,
+        .cta-teste::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background: var(--header-bg);
+            border-radius: 50%;
+        }
+        
+        .cta-teste::before {
+            left: -7px;
+        }
+        
+        .cta-teste::after {
+            right: -7px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .nav-menu a i {
+            font-size: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a.active i {
+            color: #fff;
+        }
+        
+        .login-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .login-btn {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--text-light);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .signup-btn {
+            background-color: var(--btn-primary);
+            color: var(--text-light);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .signup-btn:hover {
+            background-color: #238b7e;
+        }
+        
+        /* Main Content */
+        .farm-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75px; /* Espaço para o header fixo */
+            height: calc(100vh - 75px);
+            overflow: hidden;
+        }
+        
+        .farm-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        
+        /* Ajuste para telas desktop - exibe a imagem inteira */
+        @media (min-width: 992px) {
+            .farm-image {
+                object-fit: contain;
+                max-height: calc(100vh - 75px);
+            }
+            
+            .farm-container {
+                background-color: #f5f5f5; /* Cor de fundo suave para área ao redor da imagem */
+            }
+        }
+        
+        /* Farm Icons Area (preparação para o próximo passo) */
+        .farm-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Permitirá clicar através dessa camada */
+        }
+        
+        .farm-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+            pointer-events: auto; /* Para que sejam clicáveis */
+            cursor: pointer;
+            /* Tamanho reduzido para 70% por padrão */
+            transform: scale(0.6);
+        }
+        
+        .farm-icon:hover {
+            /* Aumenta 40% do tamanho normal quando hover */
+            transform: scale(1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .farm-icon .icon-label {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            white-space: nowrap;
+            font-weight: 500;
+            /* Garantir que o label seja visível mesmo com o ícone reduzido */
+            z-index: 20;
+        }
+        
+        .farm-icon:hover .icon-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-3px);
+        }
+        
+        /* Estilos específicos para o posto de combustível - posicionamento fixo para desktop */
+        .fuel-station {
+            position: absolute;
+            /* Posição para desktop - valores exatos */
+            top: 476.927px;
+            left: 1559.15px;
+            background-color: rgba(244, 162, 97, 0.9);
+            border: 2px solid #e76f51;
+            z-index: 10;
+            transform-origin: center;
+        }
+        
+        /* Posição para tablets */
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .fuel-station {
+                top: 73%;
+                left: 10%;
+            }
+        }
+        
+        /* Posição para celulares */
+        @media (max-width: 767px) {
+            .fuel-station {
+                /* Valores exatos para celular */
+                top: 319.203px;
+                left: 263.188px;
+            }
+        }
+        
+        /* Ajustes para dispositivos móveis em modo retrato */
+        @media (max-width: 767px) {
+            .farm-icon {
+                width: 40px; /* Tamanho base menor em dispositivos móveis */
+                height: 40px;
+                /* Manter a escala reduzida mesmo em celulares */
+                transform: scale(0.7);
+            }
+            
+            .farm-icon:hover {
+                /* Em celulares, ao tocar aumenta para o tamanho original do celular */
+                transform: scale(1);
+            }
+            
+            .farm-icon i {
+                font-size: 20px; /* Ícone um pouco menor em dispositivos móveis */
+            }
+            
+            /* Ajustes para celulares */
+            .fuel-station {
+                /* O posicionamento será definido pelo JavaScript */
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        .fuel-station i {
+            color: #e76f51;
+        }
+        
+        /* Estilos específicos para o armazém de grãos */
+        .grain-storage {
+            top: 55%;
+            left: 45%;
+            background-color: rgba(233, 196, 106, 0.9);
+            border: 2px solid #b38728;
+            z-index: 10;
+        }
+        
+        .grain-storage i {
+            color: #b38728;
+        }
+        
+        /* Popup de informações de combustível */
+        .fuel-info-popup, .grain-storage-popup {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .fuel-info-popup.active, .grain-storage-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .fuel-info-container, .grain-storage-container {
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        
+        .fuel-info-popup.active .fuel-info-container,
+        .grain-storage-popup.active .grain-storage-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .fuel-info-header, .grain-storage-header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        
+        .fuel-info-header {
+            background: linear-gradient(135deg, #e76f51, #f4a261);
+        }
+        
+        .grain-storage-header {
+            background: linear-gradient(135deg, #b38728, #e9c46a);
+        }
+        
+        .fuel-info-header h2, .grain-storage-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fuel-info-close, .grain-storage-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .fuel-info-close:hover, .grain-storage-close:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .fuel-info-content, .grain-storage-content {
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .fuel-info-tabs, .grain-storage-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .fuel-tab, .grain-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .fuel-tab:hover {
+            color: #e76f51;
+        }
+        
+        .grain-tab:hover {
+            color: #b38728;
+        }
+        
+        .fuel-tab.active {
+            border-bottom-color: #e76f51;
+            color: #e76f51;
+        }
+        
+        .grain-tab.active {
+            border-bottom-color: #b38728;
+            color: #b38728;
+        }
+        
+        .fuel-tab:hover:not(.active) {
+            background-color: #f5f5f5;
+        }
+        
+        .fuel-machines {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .machine-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .machine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .machine-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 12px;
+        }
+        
+        .machine-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f4a261;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .machine-name {
+            font-weight: 500;
+            color: #333;
+            margin: 0;
+        }
+        
+        .machine-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .stat-item {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .oil-change {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .oil-change.warning {
+            background-color: rgba(255, 193, 7, 0.2);
+            border-left: 3px solid #ffc107;
+        }
+        
+        .oil-change.danger {
+            background-color: rgba(220, 53, 69, 0.2);
+            border-left: 3px solid #dc3545;
+        }
+        
+        .oil-change.good {
+            background-color: rgba(40, 167, 69, 0.2);
+            border-left: 3px solid #28a745;
+        }
+        
+        .view-all-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #e76f51;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .view-all-btn:hover {
+            background-color: #e25c3d;
+        }
+        
+        .farm-icon i {
+            font-size: 24px;
+            color: var(--secondary-color);
+        }
+        
+        /* Overlay para exibir informações quando um ícone é clicado */
+        .icon-info {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .info-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-info {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1010;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-btn.active {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-container {
+                padding: 15px 20px;
+            }
+            
+            .nav-menu {
+                gap: 10px;
+            }
+            
+            .nav-menu a {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -280px; /* Menu escondido à direita */
+                width: 280px;
+                height: 100vh;
+                flex-direction: column;
+                background-color: var(--secondary-color);
+                background-image: linear-gradient(rgba(38, 70, 83, 0.95), rgba(38, 70, 83, 0.98)), 
+                                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 10L90 90H10L50 10z" fill="%232a9d8f" opacity="0.1"/></svg>');
+                background-size: cover, 80px 80px;
+                padding: 85px 25px 30px;
+                transition: right 0.4s ease;
+                z-index: 1000;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+                align-items: flex-start;
+                overflow-y: auto;
+            }
+            
+            .nav-menu::before {
+                content: 'Menu';
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                color: var(--accent-color);
+                font-size: 1.2rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu a {
+                padding: 12px 15px;
+                width: 100%;
+                border-radius: 6px;
+                border-left: 3px solid transparent;
+                font-size: 1rem;
+            }
+            
+            .nav-menu a.active, .nav-menu a:hover {
+                border-left-color: var(--accent-color);
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+            
+            .login-area {
+                gap: 10px;
+            }
+            
+            .login-btn, .signup-btn {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .farm-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .farm-icon i {
+                font-size: 20px;
+            }
+            
+            /* Overlay para quando o menu estiver aberto */
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+            
+            .menu-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                padding: 10px 15px;
+            }
+            
+            .cta-teste {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.7rem;
+            }
+            
+            .cta-teste::before,
+            .cta-teste::after {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .cta-teste::before {
+                left: -5px;
+            }
+            
+            .cta-teste::after {
+                right: -5px;
+            }
+            
+            .login-area {
+                gap: 5px;
+            }
+            
+            .info-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    /* Chat Overlay Styles */
+    .chat-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        backdrop-filter: blur(3px);
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    .chat-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .chat-container {
+        width: 70%;
+        height: 75%;
+        max-width: 800px;
+        background-color: rgba(255, 255, 255, 0.9); /* 10% transparency */
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: none;
+        transform: translateY(30px) scale(0.95);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .chat-overlay.active .chat-container {
+        transform: translateY(0) scale(1);
+    }
+    
+    .chat-header {
+        background: linear-gradient(135deg, #2a9d8f, #264653);
+        color: white;
+        padding: 18px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .chat-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        letter-spacing: 0.5px;
+    }
+    
+    .chat-header h2 i {
+        color: var(--accent-color);
+        font-size: 1.4rem;
+    }
+    
+    .close-chat {
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+    }
+    
+    .close-chat:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: rotate(90deg);
+    }
+    
+    .chat-messages {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: rgba(248, 247, 242, 0.7);
+    }
+    
+    .message {
+        max-width: 80%;
+        padding: 14px 18px;
+        border-radius: 18px;
+        line-height: 1.5;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 4px;
+        animation: messageAppear 0.3s ease-out forwards;
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    
+    @keyframes messageAppear {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .user-message {
+        align-self: flex-end;
+        background-color: var(--primary-color);
+        color: white;
+        border-bottom-right-radius: 4px;
+        margin-left: 40px;
+    }
+    
+    .ai-message {
+        align-self: flex-start;
+        background-color: #f0f2f5;
+        color: var(--secondary-color);
+        border-bottom-left-radius: 4px;
+        margin-right: 40px;
+        position: relative;
+    }
+    
+    .ai-message::before {
+        content: '';
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        background-color: var(--accent-color);
+        border-radius: 50%;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23264653"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>');
+        background-size: 16px 16px;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.8;
+    }
+    
+    .typing-indicator {
+        display: none;
+        padding: 12px 16px;
+        background-color: #e9ecef;
+        border-radius: 18px;
+        align-self: flex-start;
+        margin-bottom: 15px;
+    }
+    
+    .typing-indicator span {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: #aaa;
+        border-radius: 50%;
+        margin-right: 5px;
+        animation: typing 1s infinite ease-in-out;
+    }
+    
+    .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    
+    .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+        margin-right: 0;
+    }
+    
+    @keyframes typing {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    
+    .suggestion-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 15px 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .suggestion-chip {
+        background-color: white;
+        padding: 10px 18px;
+        border-radius: 24px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid rgba(42, 157, 143, 0.2);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+    
+    .suggestion-chip:hover {
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .chat-input {
+        display: flex;
+        padding: 18px 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        background-color: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+        position: relative;
+        z-index: 2;
+    }
+    
+    .chat-input input {
+        flex: 1;
+        padding: 14px 20px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) inset;
+        background-color: #f8f9fa;
+    }
+    
+    .chat-input input:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2), 0 2px 8px rgba(0, 0, 0, 0.05) inset;
+        background-color: white;
+    }
+    
+    .chat-input button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        margin-left: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 10px rgba(42, 157, 143, 0.3);
+    }
+    
+    .chat-input button:hover {
+        background-color: #238b7e;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+    }
+    
+    .chat-input button:active {
+        transform: translateY(0);
+    }
+    </style>
+</head>
+<body>
+    <!-- Header com navegação e login similar à imagem de referência -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <a href="/teste" class="cta-teste">Teste agora!</a>
+            </div>
+            
+            <button class="mobile-menu-btn" aria-label="Menu de navegação">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Início</a>
+                <a href="planos.html"><i class="fas fa-leaf"></i> Planos</a>
+                <a href="contato.html"><i class="fas fa-envelope"></i> Contato</a>
+                <a href="conceito.html"><i class="fas fa-lightbulb"></i> Conceito</a>
+                <a href="javascript:void(0);" id="assistente-btn"><i class="fas fa-robot"></i> Assistente</a>
+                <a href="https://t.me/CloudFarmBR_bot" target="_blank"><i class="fab fa-telegram"></i> Bot Oficial</a>
+                <a href="https://instagram.com/cloudfarmbr" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://t.me/cloudfarmnews" target="_blank"><i class="fas fa-bullhorn"></i> Canal</a>
+            </nav>
+            
+            <!-- Overlay para quando o menu mobile estiver aberto -->
+            <div class="menu-overlay"></div>
+            
+            <div class="login-area">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Cadastre-se grátis</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Área principal com a imagem da fazenda -->
+    <main class="farm-container">
+        <img src="/Images/littlefarm.png" alt="Fazenda Virtual" class="farm-image">
+        
+        <!-- Camada para ícones interativos da fazenda -->
+        <div class="farm-icons">
+            <!-- Posto de Combustível -->
+            <div class="farm-icon fuel-station" onclick="showFuelInfo()">
+                <i class="fas fa-gas-pump"></i>
+                <span class="icon-label">Posto</span>
+            </div>
+            
+            <!-- Armazém de Grãos -->
+            <div class="farm-icon grain-storage" onclick="showGrainStorageInfo()">
+                <i class="fas fa-warehouse"></i>
+                <span class="icon-label">Armazém</span>
+            </div>
+        </div>
+        
+        <!-- Chat overlay do Agrônomo Virtual Claudinho -->
+        <div class="chat-overlay" id="chat-overlay">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2><i class="fas fa-user-cowboy"></i> Agrônomo Virtual Claudinho</h2>
+                    <button class="close-chat" id="close-chat"><i class="fas fa-times"></i></button>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        Olá! Sou o Agrônomo Virtual Claudinho da CloudFarm.ai, especializado em agricultura e pecuária brasileira. Como posso ajudar você hoje? Você pode me perguntar sobre cultivos, solo, clima, tecnologias agrícolas ou manejo de animais.
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="suggestion-chips">
+                    <div class="suggestion-chip">Como melhorar a saúde do solo?</div>
+                    <div class="suggestion-chip">Culturas ideais para bioma cerrado?</div>
+                    <div class="suggestion-chip">Técnicas de irrigação eficientes</div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Digite sua mensagem aqui...">
+                    <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal/Overlay para informações dos ícones -->
+    <div class="icon-info">
+        <div class="close-info">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="info-content">
+            <!-- Conteúdo dinâmico aqui -->
+        </div>
+    </div>
+    
+    <!-- Popup de informações de combustível -->
+    <div class="fuel-info-popup" id="fuel-info-popup">
+        <div class="fuel-info-container">
+            <div class="fuel-info-header">
+                <h2><i class="fas fa-gas-pump"></i> Posto de Combustível</h2>
+                <button class="fuel-info-close" id="fuel-info-close"><i class="fas fa-times"></i></button>
+            </div>
+            
+    <!-- Popup de informações do armazém de grãos -->
+    <div class="grain-storage-popup" id="grain-storage-popup">
+        <div class="grain-storage-container">
+            <div class="grain-storage-header">
+                <h2><i class="fas fa-warehouse"></i> Armazém de Grãos</h2>
+                <button class="grain-storage-close" id="grain-storage-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="grain-storage-content">
+                <div class="grain-storage-tabs">
+                    <div class="grain-tab active" data-tab="inventory">Estoque</div>
+                    <div class="grain-tab" data-tab="movement">Movimentação</div>
+                    <div class="grain-tab" data-tab="reports">Relatórios</div>
+                </div>
+                
+                <div class="grain-inventory">
+                    <div class="storage-summary">
+                        <div class="storage-capacity">
+                            <div class="capacity-label">Capacidade Total</div>
+                            <div class="capacity-value">20.000 toneladas</div>
+                            <div class="capacity-bar">
+                                <div class="capacity-filled" style="width: 65%;"></div>
+                            </div>
+                            <div class="capacity-percentage">65% ocupado</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grain-types">
+                        <!-- Soja -->
+                        <div class="grain-card">
+                            <div class="grain-header">
+                                <div class="grain-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <h3 class="grain-name">Soja</h3>
+                            </div>
+                            <div class="grain-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Quantidade Atual</div>
+                                    <div class="stat-value">8.500 ton</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Umidade Média</div>
+                                    <div class="stat-value">13.2%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Impurezas</div>
+                                    <div class="stat-value">1.8%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Temperatura</div>
+                                    <div class="stat-value">24.5°C</div>
+                                </div>
+                            </div>
+                            <div class="grain-quality good">
+                                <div>
+                                    <div class="stat-label">Qualidade</div>
+                                    <div class="stat-value">Excelente</div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Milho -->
+                        <div class="grain-card">
+                            <div class="grain-header">
+                                <div class="grain-icon" style="background-color: #f9c74f;">
+                                    <i class="fas fa-wheat"></i>
+                                </div>
+                                <h3 class="grain-name">Milho</h3>
+                            </div>
+                            <div class="grain-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Quantidade Atual</div>
+                                    <div class="stat-value">4.200 ton</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Umidade Média</div>
+                                    <div class="stat-value">14.5%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Impurezas</div>
+                                    <div class="stat-value">2.1%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Temperatura</div>
+                                    <div class="stat-value">25.8°C</div>
+                                </div>
+                            </div>
+                            <div class="grain-quality warning">
+                                <div>
+                                    <div class="stat-label">Qualidade</div>
+                                    <div class="stat-value">Atenção: Umidade alta</div>
+                                </div>
+                                <i class="fas fa-exclamation-triangle" style="color: #ffc107;"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Algodão -->
+                        <div class="grain-card">
+                            <div class="grain-header">
+                                <div class="grain-icon" style="background-color: #f8f9fa;">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <h3 class="grain-name">Algodão</h3>
+                            </div>
+                            <div class="grain-stats">
+                                <div class="stat-item">
+                                    <div class="stat-label">Quantidade Atual</div>
+                                    <div class="stat-value">350 ton</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Umidade Média</div>
+                                    <div class="stat-value">8.2%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Impurezas</div>
+                                    <div class="stat-value">0.9%</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-label">Temperatura</div>
+                                    <div class="stat-value">22.3°C</div>
+                                </div>
+                            </div>
+                            <div class="grain-quality good">
+                                <div>
+                                    <div class="stat-label">Qualidade</div>
+                                    <div class="stat-value">Excelente</div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="view-all-btn">Ver Todos os Grãos</button>
+                </div>
+            </div>
+            <div class="fuel-info-content">
+                <div class="fuel-info-tabs">
+                    <div class="fuel-tab active" data-tab="consumption">Consumo</div>
+                    <div class="fuel-tab" data-tab="oil-change">Troca de Óleo</div>
+                    <div class="fuel-tab" data-tab="reports">Relatórios</div>
+                </div>
+                
+                <div class="fuel-machines">
+                    <!-- Trator 1 -->
+                    <div class="machine-card">
+                        <div class="machine-header">
+                            <div class="machine-icon">
+                                <i class="fas fa-tractor"></i>
+                            </div>
+                            <h3 class="machine-name">Trator John Deere 6110J</h3>
+                        </div>
+                        <div class="machine-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Consumo Médio</div>
+                                <div class="stat-value">12.5 L/h</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Último Abastecimento</div>
+                                <div class="stat-value">18/04/2025</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Horas Trabalhadas</div>
+                                <div class="stat-value">1,245 h</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Combustível Restante</div>
+                                <div class="stat-value">65%</div>
+                            </div>
+                        </div>
+                        <div class="oil-change warning">
+                            <div>
+                                <div class="stat-label">Próxima Troca de Óleo</div>
+                                <div class="stat-value">Em 25 horas</div>
+                            </div>
+                            <i class="fas fa-exclamation-triangle" style="color: #ffc107;"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Colheitadeira -->
+                    <div class="machine-card">
+                        <div class="machine-header">
+                            <div class="machine-icon">
+                                <i class="fas fa-truck-monster"></i>
+                            </div>
+                            <h3 class="machine-name">Colheitadeira Case IH 8250</h3>
+                        </div>
+                        <div class="machine-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Consumo Médio</div>
+                                <div class="stat-value">28.3 L/h</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Último Abastecimento</div>
+                                <div class="stat-value">19/04/2025</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Horas Trabalhadas</div>
+                                <div class="stat-value">890 h</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Combustível Restante</div>
+                                <div class="stat-value">42%</div>
+                            </div>
+                        </div>
+                        <div class="oil-change danger">
+                            <div>
+                                <div class="stat-label">Próxima Troca de Óleo</div>
+                                <div class="stat-value">Atrasada (10 horas)</div>
+                            </div>
+                            <i class="fas fa-exclamation-circle" style="color: #dc3545;"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Pulverizador -->
+                    <div class="machine-card">
+                        <div class="machine-header">
+                            <div class="machine-icon">
+                                <i class="fas fa-sprayer"></i>
+                            </div>
+                            <h3 class="machine-name">Pulverizador Jacto Uniport 3030</h3>
+                        </div>
+                        <div class="machine-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Consumo Médio</div>
+                                <div class="stat-value">15.7 L/h</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Último Abastecimento</div>
+                                <div class="stat-value">15/04/2025</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Horas Trabalhadas</div>
+                                <div class="stat-value">678 h</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Combustível Restante</div>
+                                <div class="stat-value">78%</div>
+                            </div>
+                        </div>
+                        <div class="oil-change good">
+                            <div>
+                                <div class="stat-label">Próxima Troca de Óleo</div>
+                                <div class="stat-value">Em 122 horas</div>
+                            </div>
+                            <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="view-all-btn">Ver Todas as Máquinas</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Controles diretos para o posto de combustível -->
+    <div style="position: fixed; top: 10px; left: 10px; background: rgba(231, 111, 81, 0.9); color: white; padding: 10px; border-radius: 5px; z-index: 9999;">
+        <div style="font-weight: bold; margin-bottom: 5px;">Ajustar Posto:</div>
+        <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+            <button onclick="document.querySelector('.fuel-station').style.top = (parseInt(getComputedStyle(document.querySelector('.fuel-station')).top) - 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">↑</button>
+            <button onclick="document.querySelector('.fuel-station').style.left = (parseInt(getComputedStyle(document.querySelector('.fuel-station')).left) - 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">←</button>
+            <button onclick="document.querySelector('.fuel-station').style.left = (parseInt(getComputedStyle(document.querySelector('.fuel-station')).left) + 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">→</button>
+            <button onclick="document.querySelector('.fuel-station').style.top = (parseInt(getComputedStyle(document.querySelector('.fuel-station')).top) + 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">↓</button>
+        </div>
+        <div id="fuel-position" style="font-size: 12px; margin-bottom: 5px;"></div>
+    </div>
+    
+    <!-- Controles diretos para o armazém de grãos -->
+    <div style="position: fixed; top: 10px; left: 200px; background: rgba(233, 196, 106, 0.9); color: white; padding: 10px; border-radius: 5px; z-index: 9999;">
+        <div style="font-weight: bold; margin-bottom: 5px;">Ajustar Armazém:</div>
+        <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+            <button onclick="document.querySelector('.grain-storage').style.top = (parseInt(getComputedStyle(document.querySelector('.grain-storage')).top) - 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">↑</button>
+            <button onclick="document.querySelector('.grain-storage').style.left = (parseInt(getComputedStyle(document.querySelector('.grain-storage')).left) - 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">←</button>
+            <button onclick="document.querySelector('.grain-storage').style.left = (parseInt(getComputedStyle(document.querySelector('.grain-storage')).left) + 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">→</button>
+            <button onclick="document.querySelector('.grain-storage').style.top = (parseInt(getComputedStyle(document.querySelector('.grain-storage')).top) + 10) + 'px'" style="width: 30px; height: 30px; background: #333; border: none; color: white; cursor: pointer;">↓</button>
+        </div>
+        <div id="grain-position" style="font-size: 12px; margin-bottom: 5px;"></div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Função para atualizar as informações de posição
+            function updatePositionInfo() {
+                // Posto de combustível
+                const fuelStation = document.querySelector('.fuel-station');
+                const fuelStyle = window.getComputedStyle(fuelStation);
+                const fuelTop = parseInt(fuelStyle.top) || 0;
+                const fuelLeft = parseInt(fuelStyle.left) || 0;
+                document.getElementById('fuel-position').innerHTML = `Posição: top: ${fuelTop}px, left: ${fuelLeft}px`;
+                
+                // Armazém de grãos
+                const grainStorage = document.querySelector('.grain-storage');
+                const grainStyle = window.getComputedStyle(grainStorage);
+                const grainTop = parseInt(grainStyle.top) || 0;
+                const grainLeft = parseInt(grainStyle.left) || 0;
+                document.getElementById('grain-position').innerHTML = `Posição: top: ${grainTop}px, left: ${grainLeft}px`;
+            }
+            
+            // Atualizar as informações de posição quando a página carrega
+            updatePositionInfo();
+            
+            // Atualizar as informações de posição quando os botões são clicados
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    setTimeout(updatePositionInfo, 100);
+                });
+            });
+            
+            // Atalho de teclado para mover os ícones
+            document.addEventListener('keydown', function(event) {
+                const fuelStation = document.querySelector('.fuel-station');
+                const grainStorage = document.querySelector('.grain-storage');
+                const step = 10;
+                
+                // Mover o posto de combustível com as teclas WASD
+                if (event.key.toLowerCase() === 'w') {
+                    const top = parseInt(getComputedStyle(fuelStation).top) - step;
+                    fuelStation.style.top = top + 'px';
+                }
+                if (event.key.toLowerCase() === 's') {
+                    const top = parseInt(getComputedStyle(fuelStation).top) + step;
+                    fuelStation.style.top = top + 'px';
+                }
+                if (event.key.toLowerCase() === 'a') {
+                    const left = parseInt(getComputedStyle(fuelStation).left) - step;
+                    fuelStation.style.left = left + 'px';
+                }
+                if (event.key.toLowerCase() === 'd') {
+                    const left = parseInt(getComputedStyle(fuelStation).left) + step;
+                    fuelStation.style.left = left + 'px';
+                }
+                
+                // Mover o armazém de grãos com as teclas de seta
+                if (event.key === 'ArrowUp') {
+                    const top = parseInt(getComputedStyle(grainStorage).top) - step;
+                    grainStorage.style.top = top + 'px';
+                }
+                if (event.key === 'ArrowDown') {
+                    const top = parseInt(getComputedStyle(grainStorage).top) + step;
+                    grainStorage.style.top = top + 'px';
+                }
+                if (event.key === 'ArrowLeft') {
+                    const left = parseInt(getComputedStyle(grainStorage).left) - step;
+                    grainStorage.style.left = left + 'px';
+                }
+                if (event.key === 'ArrowRight') {
+                    const left = parseInt(getComputedStyle(grainStorage).left) + step;
+                    grainStorage.style.left = left + 'px';
+                }
+                
+                updatePositionInfo();
+            });    
+            
+            // Variáveis para o chat
+            const chatOverlay = document.getElementById('chat-overlay');
+            const assistenteBtn = document.getElementById('assistente-btn');
+            const closeChat = document.getElementById('close-chat');
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            const typingIndicator = document.getElementById('typingIndicator');
+            const suggestionChips = document.querySelectorAll('.suggestion-chip');
+            
+            // Histórico de mensagens para enviar ao servidor
+            let messageHistory = [];
+            
+            // Abrir chat ao clicar no botão Assistente com efeito suave
+            if (assistenteBtn) {
+                assistenteBtn.addEventListener('click', () => {
+                    chatOverlay.classList.add('active');
+                    // Focar no input após abrir o chat
+                    setTimeout(() => {
+                        userInput.focus();
+                    }, 400);
+                });
+            }
+            
+            // Fechar chat ao clicar no botão de fechar ou fora da janela de chat
+            if (closeChat) {
+                closeChat.addEventListener('click', () => {
+                    chatOverlay.classList.remove('active');
+                });
+            }
+            
+            // Fechar chat ao clicar fora da janela
+            chatOverlay.addEventListener('click', (e) => {
+                if (e.target === chatOverlay) {
+                    chatOverlay.classList.remove('active');
+                }
+            });
+            
+            // Função para adicionar mensagem ao chat
+            function addMessage(content, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'ai-message');
+                messageDiv.textContent = content;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Atualizar histórico de mensagens
+                if (isUser) {
+                    messageHistory.push({ role: 'user', content });
+                } else {
+                    messageHistory.push({ role: 'assistant', content });
+                }
+            }
+            
+            // Função para enviar mensagem para a API
+            async function sendMessage(message) {
+                try {
+                    // Mostrar indicador de digitação
+                    typingIndicator.style.display = 'block';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    sendButton.disabled = true;
+                    userInput.disabled = true;
+                    
+                    console.log('Enviando mensagens:', messageHistory);
+                    
+                    // Verificar se há mensagens no histórico
+                    if (messageHistory.length === 0) {
+                        // Adicionar a primeira mensagem do usuário se o histórico estiver vazio
+                        messageHistory.push({ role: 'user', content: message });
+                    }
+                    
+                    console.log('Enviando histórico para API:', JSON.stringify(messageHistory));
+                    
+                    // Enviar o histórico completo de mensagens para contexto
+                    const response = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            messages: messageHistory
+                        })
+                    });
+                    
+                    // Esconder indicador de digitação
+                    typingIndicator.style.display = 'none';
+                    
+                    // Verificar se a resposta é válida
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('Erro na resposta do servidor:', response.status, errorText);
+                        addMessage(`Desculpe, ocorreu um erro no servidor (${response.status}). Por favor, tente novamente mais tarde.`, false);
+                        return;
+                    }
+                    
+                    const data = await response.json();
+                    console.log('Resposta recebida:', data);
+                    
+                    if (data.success) {
+                        addMessage(data.message, false);
+                    } else {
+                        const errorMsg = data.error || data.message || 'Erro desconhecido';
+                        addMessage(`Desculpe, ocorreu um erro: ${errorMsg}`, false);
+                        console.error('Detalhes do erro:', data);
+                    }
+                } catch (error) {
+                    // Esconder indicador de digitação
+                    typingIndicator.style.display = 'none';
+                    
+                    // Mostrar mensagem de erro
+                    addMessage('Desculpe, ocorreu um erro ao conectar ao servidor. Por favor, verifique sua conexão e tente novamente.', false);
+                    console.error('Erro:', error);
+                } finally {
+                    sendButton.disabled = false;
+                    userInput.disabled = false;
+                    userInput.focus();
+                }
+            }
+            
+            // Evento de clique no botão de enviar
+            if (sendButton) {
+                sendButton.addEventListener('click', () => {
+                    const message = userInput.value.trim();
+                    if (message) {
+                        addMessage(message, true);
+                        userInput.value = '';
+                        sendMessage(message);
+                    }
+                });
+            }
+            
+            // Evento de pressionar Enter no input
+            if (userInput) {
+                userInput.addEventListener('keypress', (event) => {
+                    if (event.key === 'Enter') {
+                        const message = userInput.value.trim();
+                        if (message) {
+                            addMessage(message, true);
+                            userInput.value = '';
+                            sendMessage(message);
+                        }
+                    }
+                });
+            }
+            
+            // Evento de clique nas sugestões
+            suggestionChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const message = chip.textContent;
+                    addMessage(message, true);
+                    sendMessage(message);
+                });
+            });
+            
+            // Mobile menu toggle com overlay e animação do ícone
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                    menuOverlay.classList.toggle('active');
+                    
+                    // Alternar ícone entre barras e X
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (navMenu.classList.contains('active')) {
+                        icon.className = 'fas fa-times';
+                    } else {
+                        icon.className = 'fas fa-bars';
+                    }
+                    
+                    // Prevenir scroll do corpo quando menu está aberto
+                    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Fechar menu ao clicar no overlay
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Fechar menu ao clicar em um item no mobile
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 992) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Modal de login (será implementado posteriormente)
+            const loginBtn = document.querySelector('.login-btn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', () => {
+                    alert('Funcionalidade de login será implementada em breve!');
+                });
+            }
+            
+            // Botão de cadastro (será implementado posteriormente)
+            const signupBtn = document.querySelector('.signup-btn');
+            if (signupBtn) {
+                signupBtn.addEventListener('click', () => {
+                    alert('Funcionalidade de cadastro será implementada em breve!');
+                });
+            }
+            
+            // Controlador para modal de informações dos ícones
+            const iconInfo = document.querySelector('.icon-info');
+            const closeInfo = document.querySelector('.close-info');
+            
+            if (closeInfo) {
+                closeInfo.addEventListener('click', () => {
+                    iconInfo.style.display = 'none';
+                });
+            }
+            
+            // Função para mostrar informações quando um ícone é clicado
+            window.showIconInfo = function(module) {
+                const infoContent = document.querySelector('.info-content');
+                
+                // Conteúdo dinâmico baseado no módulo clicado
+                let content = '';
+                switch(module) {
+                    case 'oficina':
+                        content = '<h2>Oficina</h2><p>Gerenciamento de manutenção de equipamentos e veículos.</p>';
+                        break;
+                    case 'confinamento':
+                        content = '<h2>Confinamento</h2><p>Controle de gado e manejo animal.</p>';
+                        break;
+                    case 'armazem':
+                        content = '<h2>Armazém</h2><p>Gestão de estoque de produtos agrícolas.</p>';
+                        break;
+                    case 'estoque':
+                        content = '<h2>Estoque</h2><p>Controle de insumos e materiais.</p>';
+                        break;
+                    case 'combustivel':
+                        content = '<h2>Posto de Combustível</h2><p>Gerenciamento de abastecimento e consumo.</p>';
+                        break;
+                    default:
+                        content = '<h2>Módulo</h2><p>Informações sobre este módulo estarão disponíveis em breve.</p>';
+                }
+                
+                infoContent.innerHTML = content;
+                iconInfo.style.display = 'flex';
+            };
+            
+            // Adicionar listener para fechar modal ao clicar fora do conteúdo
+            iconInfo.addEventListener('click', (e) => {
+                if (e.target === iconInfo) {
+                    iconInfo.style.display = 'none';
+                }
+            });
+            
+            // Função para mostrar informações de combustível
+            window.showFuelInfo = function() {
+                const fuelInfoPopup = document.getElementById('fuel-info-popup');
+                fuelInfoPopup.classList.add('active');
+            };
+            
+            // Função para mostrar informações do armazém de grãos
+            window.showGrainStorageInfo = function() {
+                const grainStoragePopup = document.getElementById('grain-storage-popup');
+                grainStoragePopup.classList.add('active');
+            };
+            
+            // Configurar fechamento do popup de combustível
+            const fuelInfoPopup = document.getElementById('fuel-info-popup');
+            const fuelInfoClose = document.getElementById('fuel-info-close');
+            
+            fuelInfoClose.addEventListener('click', () => {
+                fuelInfoPopup.classList.remove('active');
+            });
+            
+            fuelInfoPopup.addEventListener('click', (e) => {
+                if (e.target === fuelInfoPopup) {
+                    fuelInfoPopup.classList.remove('active');
+                }
+            });
+            
+            // Configurar fechamento do popup do armazém de grãos
+            const grainStoragePopup = document.getElementById('grain-storage-popup');
+            const grainStorageClose = document.getElementById('grain-storage-close');
+            
+            grainStorageClose.addEventListener('click', () => {
+                grainStoragePopup.classList.remove('active');
+            });
+            
+            grainStoragePopup.addEventListener('click', (e) => {
+                if (e.target === grainStoragePopup) {
+                    grainStoragePopup.classList.remove('active');
+                }
+            });
+            
+            // Configurar as abas do popup de combustível
+            const fuelTabs = document.querySelectorAll('.fuel-tab');
+            fuelTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remover a classe active de todas as abas
+                    fuelTabs.forEach(t => t.classList.remove('active'));
+                    // Adicionar a classe active na aba clicada
+                    tab.classList.add('active');
+                    
+                    // Esconder todos os conteúdos
+                    document.querySelectorAll('.fuel-consumption, .fuel-maintenance, .fuel-history').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Mostrar o conteúdo correspondente à aba clicada
+                    const tabName = tab.getAttribute('data-tab');
+                    document.querySelector(`.fuel-${tabName}`).classList.add('active');
+                });
+            });
+            
+            // Configurar as abas do popup do armazém de grãos
+            const grainTabs = document.querySelectorAll('.grain-tab');
+            grainTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remover a classe active de todas as abas
+                    grainTabs.forEach(t => t.classList.remove('active'));
+                    // Adicionar a classe active na aba clicada
+                    tab.classList.add('active');
+                    
+                    // Esconder todos os conteúdos
+                    document.querySelectorAll('.grain-inventory, .grain-movement, .grain-reports').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Mostrar o conteúdo correspondente à aba clicada
+                    const tabName = tab.getAttribute('data-tab');
+                    document.querySelector(`.grain-${tabName}`).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
