@@ -270,6 +270,123 @@
       .visor {
         animation: glow 4s infinite alternate ease-in-out;
       }
+      
+      /* Relatórios Tab Styles */
+      .report-item {
+        padding: 5px 0;
+      }
+      
+      .report-title {
+        font-weight: bold;
+        font-size: 1.05em;
+      }
+      
+      .report-date {
+        font-size: 0.85em;
+        opacity: 0.8;
+      }
+      
+      .download-btn {
+        background: rgba(0, 50, 0, 0.5);
+        color: var(--visor-fg);
+        border: 1px solid rgba(154, 255, 134, 0.5);
+        border-radius: 4px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s ease;
+      }
+      
+      .download-btn:hover {
+        background: rgba(0, 70, 0, 0.7);
+        box-shadow: 0 0 5px rgba(154, 255, 134, 0.5);
+      }
+      
+      .new-report-section {
+        margin-top: 15px;
+        border-top: 1px solid rgba(154, 255, 134, 0.3);
+        padding-top: 10px;
+      }
+      
+      .new-report-title {
+        font-size: 1.1em;
+        margin: 0 0 10px 0;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.9;
+      }
+      
+      .form-group {
+        margin-bottom: 10px;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 0.9em;
+        opacity: 0.9;
+      }
+      
+      .form-control {
+        width: 100%;
+        background: rgba(0, 20, 0, 0.5);
+        border: 1px solid rgba(154, 255, 134, 0.3);
+        color: var(--visor-fg);
+        padding: 5px 8px;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 0.95em;
+      }
+      
+      .date-range {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .date-select {
+        flex: 1;
+      }
+      
+      .date-separator {
+        opacity: 0.7;
+      }
+      
+      .format-options {
+        display: flex;
+        gap: 15px;
+      }
+      
+      .format-option {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+      }
+      
+      .generate-btn {
+        margin-top: 15px;
+        background: rgba(0, 70, 0, 0.7);
+        color: var(--visor-fg);
+        border: 1px solid rgba(154, 255, 134, 0.5);
+        border-radius: 4px;
+        padding: 8px 15px;
+        font-family: inherit;
+        font-size: 1em;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .generate-btn:hover {
+        background: rgba(0, 90, 0, 0.8);
+        box-shadow: 0 0 8px rgba(154, 255, 134, 0.5);
+      }
     </style>
   </head>
   <body>
@@ -277,27 +394,7 @@
       <i class="fas fa-arrow-left"></i>
     </button>
     
-    <!-- Botão para mostrar/esconder o painel de ajuste -->
-    <button class="toggle-adjust" onclick="toggleAdjustPanel()">
-      <i class="fas fa-arrows-alt"></i>
-    </button>
-    
-    <!-- Painel de ajuste do visor -->
-    <div class="adjust-panel" id="adjustPanel" style="display: none;">
-      <div class="adjust-panel-title">Ajuste do Visor</div>
-      <div class="adjust-controls">
-        <button class="adjust-btn" onclick="adjustVisor(-1, -1)"><i class="fas fa-arrow-up"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(0, -1)"><i class="fas fa-arrow-up"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(1, -1)"><i class="fas fa-arrow-up"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(-1, 0)"><i class="fas fa-arrow-left"></i></button>
-        <button class="adjust-btn center" onclick="resetVisor()"><i class="fas fa-dot-circle"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(1, 0)"><i class="fas fa-arrow-right"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(-1, 1)"><i class="fas fa-arrow-down"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(0, 1)"><i class="fas fa-arrow-down"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(1, 1)"><i class="fas fa-arrow-down"></i></button>
-      </div>
-      <div class="adjust-info" id="adjustInfo">Posição atual: 0, 0</div>
-    </div>
+    <!-- Ferramenta de ajuste removida -->
 
     <figure class="pump">
       <img src="/Images/FUEL2.png" alt="Bomba de combustível" />
@@ -307,6 +404,7 @@
         <div class="tabs">
           <div class="tab active" data-tab="consumo">Consumo</div>
           <div class="tab" data-tab="estoque">Estoque</div>
+          <div class="tab" data-tab="relatorios">Relatórios</div>
         </div>
 
         <!-- Consumo Tab -->
@@ -440,69 +538,126 @@
             </tbody>
           </table>
         </div>
+        
+        <!-- Relatórios Tab -->
+        <div class="tab-content" id="relatorios">
+          <table>
+            <thead>
+              <tr>
+                <th colspan="2">📊 Relatórios Mensais</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="report-item">
+                  <div class="report-title">Abastecimentos - Março 2025</div>
+                  <div class="report-date">Gerado em: 01/04/2025</div>
+                </td>
+                <td style="text-align: right;">
+                  <button class="download-btn"><i class="fas fa-download"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="report-item">
+                  <div class="report-title">Abastecimentos - Fevereiro 2025</div>
+                  <div class="report-date">Gerado em: 01/03/2025</div>
+                </td>
+                <td style="text-align: right;">
+                  <button class="download-btn"><i class="fas fa-download"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="new-report-section">
+            <h3 class="new-report-title">Gerar Novo Relatório</h3>
+            
+            <div class="form-group">
+              <label for="report-type">Tipo de Relatório</label>
+              <select id="report-type" class="form-control">
+                <option selected>Consumo de Combustível</option>
+                <option>Abastecimentos por Máquina</option>
+                <option>Custos de Combustível</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>Período</label>
+              <div class="date-range">
+                <select id="start-date" class="form-control date-select">
+                  <option selected>01/04/2025</option>
+                  <option>01/03/2025</option>
+                  <option>01/02/2025</option>
+                </select>
+                <span class="date-separator">até</span>
+                <select id="end-date" class="form-control date-select">
+                  <option selected>20/04/2025</option>
+                  <option>30/04/2025</option>
+                  <option>15/04/2025</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Formato</label>
+              <div class="format-options">
+                <label class="format-option">
+                  <input type="radio" name="format" checked>
+                  <span>PDF</span>
+                </label>
+                <label class="format-option">
+                  <input type="radio" name="format">
+                  <span>Excel</span>
+                </label>
+                <label class="format-option">
+                  <input type="radio" name="format">
+                  <span>CSV</span>
+                </label>
+              </div>
+            </div>
+            
+            <button class="generate-btn">Gerar Relatório</button>
+          </div>
+        </div>
       </div>
     </figure>
 
     <script>
-      // Variáveis para controlar a posição do visor
-      let visorTopOffset = 0;
-      let visorLeftOffset = 0;
-      const STEP_SIZE = 0.2; // Tamanho do passo em porcentagem (aumentado para ajuste mais rápido)
-      
       // Carregar posição salva do localStorage, se existir
       window.onload = function() {
+        // Aplicar a posição salva do visor
         if (localStorage.getItem('visorTopOffset') && localStorage.getItem('visorLeftOffset')) {
-          visorTopOffset = parseFloat(localStorage.getItem('visorTopOffset'));
-          visorLeftOffset = parseFloat(localStorage.getItem('visorLeftOffset'));
-          updateVisorPosition();
+          const visorTopOffset = parseFloat(localStorage.getItem('visorTopOffset'));
+          const visorLeftOffset = parseFloat(localStorage.getItem('visorLeftOffset'));
+          const visor = document.querySelector('.visor');
+          const baseTop = 12.5; // Posição base top em porcentagem
+          const baseLeft = 17.2; // Posição base left em porcentagem
+          
+          visor.style.top = `${baseTop + visorTopOffset}%`;
+          visor.style.left = `${baseLeft + visorLeftOffset}%`;
+        }
+        
+        // Configurar eventos para os botões de download
+        document.querySelectorAll('.download-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const reportTitle = this.closest('tr').querySelector('.report-title').textContent;
+            alert(`Baixando relatório: ${reportTitle}`);
+          });
+        });
+        
+        // Configurar evento para o botão de gerar relatório
+        const generateBtn = document.querySelector('.generate-btn');
+        if (generateBtn) {
+          generateBtn.addEventListener('click', function() {
+            const reportType = document.getElementById('report-type').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const format = document.querySelector('input[name="format"]:checked').nextElementSibling.textContent.trim();
+            
+            alert(`Gerando relatório de ${reportType} no período de ${startDate} até ${endDate} em formato ${format}`);
+          });
         }
       };
-      
-      // Função para mostrar/esconder o painel de ajuste
-      function toggleAdjustPanel() {
-        const panel = document.getElementById('adjustPanel');
-        if (panel.style.display === 'none') {
-          panel.style.display = 'flex';
-        } else {
-          panel.style.display = 'none';
-        }
-      }
-      
-      // Função para ajustar a posição do visor
-      function adjustVisor(x, y) {
-        visorLeftOffset += x * STEP_SIZE;
-        visorTopOffset += y * STEP_SIZE;
-        updateVisorPosition();
-        savePosition();
-      }
-      
-      // Função para resetar a posição do visor
-      function resetVisor() {
-        visorTopOffset = 0;
-        visorLeftOffset = 0;
-        updateVisorPosition();
-        savePosition();
-      }
-      
-      // Função para atualizar a posição do visor
-      function updateVisorPosition() {
-        const visor = document.querySelector('.visor');
-        const baseTop = 12.5; // Posição base top em porcentagem
-        const baseLeft = 17.2; // Posição base left em porcentagem
-        
-        visor.style.top = `${baseTop + visorTopOffset}%`;
-        visor.style.left = `${baseLeft + visorLeftOffset}%`;
-        
-        // Atualizar informações no painel
-        document.getElementById('adjustInfo').textContent = 
-          `Posição: ${(baseLeft + visorLeftOffset).toFixed(1)}%, ${(baseTop + visorTopOffset).toFixed(1)}%`;
-      }
-      
-      // Função para salvar a posição no localStorage
-      function savePosition() {
-        localStorage.setItem('visorTopOffset', visorTopOffset);
-        localStorage.setItem('visorLeftOffset', visorLeftOffset);
-      }
       
       // Tab switching functionality
       document.querySelectorAll('.tab').forEach(tab => {
