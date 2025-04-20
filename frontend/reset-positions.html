@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resetar Posições dos Ícones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resetar Posições dos Ícones</h1>
+    <p>Esta página irá limpar as posições armazenadas dos ícones no localStorage, restaurando-os para suas posições padrão.</p>
+    <p><strong>Atenção:</strong> Isso irá resetar as posições de todos os ícones na página principal.</p>
+    
+    <button id="resetBtn">Resetar Posições</button>
+    <div id="result" class="result"></div>
+
+    <script>
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            // Lista de chaves de localStorage para limpar
+            const keys = [
+                'fuelStationTop', 'fuelStationLeft',
+                'grainStorageTop', 'grainStorageLeft',
+                'officeTop', 'officeLeft',
+                'cattleTop', 'cattleLeft',
+                'inventoryTop', 'inventoryLeft',
+                'fieldsTop', 'fieldsLeft',
+                'machinesTop', 'machinesLeft',
+                'biologicalsTop', 'biologicalsLeft',
+                'rainfallTop', 'rainfallLeft',
+                'monitoringTop', 'monitoringLeft',
+                'officeIcon'
+            ];
+            
+            // Limpar cada chave
+            keys.forEach(key => {
+                localStorage.removeItem(key);
+            });
+            
+            // Mostrar mensagem de sucesso
+            const result = document.getElementById('result');
+            result.textContent = 'Posições dos ícones resetadas com sucesso! Volte para a página principal e recarregue-a para ver as mudanças.';
+            result.classList.add('success');
+            result.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

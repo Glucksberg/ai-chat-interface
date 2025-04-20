@@ -50,17 +50,14 @@
         position: absolute;
         top: 12.5%;
         left: 17.2%;
-        width: 63.5%;
-        height: 57%;
+        width: 65.5%;
+        height: 59%;
         background: var(--visor-bg);
         color: var(--visor-fg);
-        border-radius: 20px;
+        border-radius: 6px;
         padding: 14px 18px;
         box-sizing: border-box;
-        box-shadow: 
-          inset 0 0 15px rgba(0, 0, 0, 0.4),
-          0 0 8px rgba(154, 255, 134, 0.5);
-        border: 1px solid rgba(154, 255, 134, 0.3);
+        box-shadow: inset 0 0 10px #00000060;
         overflow-y: auto;
         line-height: 1.35;
         font-size: clamp(12px, 2.6vmin, 18px);
@@ -87,89 +84,6 @@
       }
 
       .back-btn:hover {
-        background: rgba(0, 50, 0, 0.9);
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-      }
-      
-      /* Painel de ajuste do visor */
-      .adjust-panel {
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
-        background: rgba(0, 0, 0, 0.7);
-        border: 1px solid var(--visor-fg);
-        border-radius: 5px;
-        padding: 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-        z-index: 100;
-      }
-      
-      .adjust-panel-title {
-        color: var(--visor-fg);
-        font-size: 12px;
-        margin-bottom: 5px;
-        text-align: center;
-      }
-      
-      .adjust-controls {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 5px;
-      }
-      
-      .adjust-btn {
-        width: 30px;
-        height: 30px;
-        background: rgba(0, 30, 0, 0.8);
-        color: var(--visor-fg);
-        border: 1px solid var(--visor-fg);
-        border-radius: 3px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-      
-      .adjust-btn:hover {
-        background: rgba(0, 50, 0, 0.9);
-        box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-      }
-      
-      .adjust-btn.center {
-        background: rgba(0, 40, 0, 0.9);
-      }
-      
-      .adjust-info {
-        color: var(--visor-fg);
-        font-size: 10px;
-        margin-top: 5px;
-        text-align: center;
-      }
-      
-      .toggle-adjust {
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
-        background: rgba(0, 0, 0, 0.7);
-        color: var(--visor-fg);
-        border: 1px solid var(--visor-fg);
-        border-radius: 5px;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-        transition: all 0.2s ease;
-        z-index: 99;
-      }
-      
-      .toggle-adjust:hover {
         background: rgba(0, 50, 0, 0.9);
         box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
       }
@@ -276,28 +190,6 @@
     <button class="back-btn" onclick="window.location.href='/'">
       <i class="fas fa-arrow-left"></i>
     </button>
-    
-    <!-- Botão para mostrar/esconder o painel de ajuste -->
-    <button class="toggle-adjust" onclick="toggleAdjustPanel()">
-      <i class="fas fa-arrows-alt"></i>
-    </button>
-    
-    <!-- Painel de ajuste do visor -->
-    <div class="adjust-panel" id="adjustPanel" style="display: none;">
-      <div class="adjust-panel-title">Ajuste do Visor</div>
-      <div class="adjust-controls">
-        <button class="adjust-btn" onclick="adjustVisor(-1, -1)"><i class="fas fa-arrow-up"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(0, -1)"><i class="fas fa-arrow-up"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(1, -1)"><i class="fas fa-arrow-up"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(-1, 0)"><i class="fas fa-arrow-left"></i></button>
-        <button class="adjust-btn center" onclick="resetVisor()"><i class="fas fa-dot-circle"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(1, 0)"><i class="fas fa-arrow-right"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(-1, 1)"><i class="fas fa-arrow-down"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(0, 1)"><i class="fas fa-arrow-down"></i></button>
-        <button class="adjust-btn" onclick="adjustVisor(1, 1)"><i class="fas fa-arrow-down"></i></button>
-      </div>
-      <div class="adjust-info" id="adjustInfo">Posição atual: 0, 0</div>
-    </div>
 
     <figure class="pump">
       <img src="/Images/FUEL2.png" alt="Bomba de combustível" />
@@ -444,66 +336,6 @@
     </figure>
 
     <script>
-      // Variáveis para controlar a posição do visor
-      let visorTopOffset = 0;
-      let visorLeftOffset = 0;
-      const STEP_SIZE = 0.2; // Tamanho do passo em porcentagem (aumentado para ajuste mais rápido)
-      
-      // Carregar posição salva do localStorage, se existir
-      window.onload = function() {
-        if (localStorage.getItem('visorTopOffset') && localStorage.getItem('visorLeftOffset')) {
-          visorTopOffset = parseFloat(localStorage.getItem('visorTopOffset'));
-          visorLeftOffset = parseFloat(localStorage.getItem('visorLeftOffset'));
-          updateVisorPosition();
-        }
-      };
-      
-      // Função para mostrar/esconder o painel de ajuste
-      function toggleAdjustPanel() {
-        const panel = document.getElementById('adjustPanel');
-        if (panel.style.display === 'none') {
-          panel.style.display = 'flex';
-        } else {
-          panel.style.display = 'none';
-        }
-      }
-      
-      // Função para ajustar a posição do visor
-      function adjustVisor(x, y) {
-        visorLeftOffset += x * STEP_SIZE;
-        visorTopOffset += y * STEP_SIZE;
-        updateVisorPosition();
-        savePosition();
-      }
-      
-      // Função para resetar a posição do visor
-      function resetVisor() {
-        visorTopOffset = 0;
-        visorLeftOffset = 0;
-        updateVisorPosition();
-        savePosition();
-      }
-      
-      // Função para atualizar a posição do visor
-      function updateVisorPosition() {
-        const visor = document.querySelector('.visor');
-        const baseTop = 12.5; // Posição base top em porcentagem
-        const baseLeft = 17.2; // Posição base left em porcentagem
-        
-        visor.style.top = `${baseTop + visorTopOffset}%`;
-        visor.style.left = `${baseLeft + visorLeftOffset}%`;
-        
-        // Atualizar informações no painel
-        document.getElementById('adjustInfo').textContent = 
-          `Posição: ${(baseLeft + visorLeftOffset).toFixed(1)}%, ${(baseTop + visorTopOffset).toFixed(1)}%`;
-      }
-      
-      // Função para salvar a posição no localStorage
-      function savePosition() {
-        localStorage.setItem('visorTopOffset', visorTopOffset);
-        localStorage.setItem('visorLeftOffset', visorLeftOffset);
-      }
-      
       // Tab switching functionality
       document.querySelectorAll('.tab').forEach(tab => {
         tab.addEventListener('click', () => {
