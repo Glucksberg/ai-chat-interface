@@ -1641,10 +1641,18 @@
             </div>
         </div>
         
+        <!-- Botão para mostrar/ocultar controles de posição -->
+        <div id="toggle-position-btn" style="position: fixed; bottom: 15px; left: 15px; background: rgba(0,0,0,0.7); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 1001; box-shadow: 0 2px 5px rgba(0,0,0,0.3);" onclick="document.getElementById('position-controls').style.display = document.getElementById('position-controls').style.display === 'none' ? 'block' : 'none';">
+            <i class="fas fa-wrench" style="font-size: 18px;"></i>
+        </div>
+        
         <!-- Controles de posição avançados -->
-        <div style="position: fixed; bottom: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 15px; border-radius: 8px; z-index: 1000; width: 320px; max-height: 80vh; overflow-y: auto;">
+        <div id="position-controls" style="position: fixed; bottom: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 15px; border-radius: 8px; z-index: 1000; width: 320px; max-height: 80vh; overflow-y: auto; display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <h3 style="margin: 0; font-size: 16px;">Ajustar Posição dos Ícones</h3>
+                <button onclick="document.getElementById('position-controls').style.display = 'none';" style="background: none; border: none; color: white; cursor: pointer; font-size: 16px;">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
             <!-- Posto de Combustível -->
