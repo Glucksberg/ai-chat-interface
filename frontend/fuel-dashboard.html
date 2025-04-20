@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloudFarm – Módulo de Abastecimento</title>
+
+    <!-- Google retro font -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+      :root {
+        /* visor colours */
+        --visor-bg: #002b00;
+        --visor-fg: #9aff86;
+        --visor-warn: #ffcc66;
+        --visor-low: #ff6666;
+        --visor-ok: #66ff66;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        background: #1c1c1c;
+        font-family: "VT323", monospace;
+      }
+
+      /* Pump wrapper */
+      .pump {
+        position: relative;
+        width: clamp(300px, 90vw, 600px);
+        aspect-ratio: 3 / 5;
+      }
+
+      .pump img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      /* Visor overlay */
+      .visor {
+        position: absolute;
+        top: 12.5%;
+        left: 17.2%;
+        width: 65.5%;
+        height: 59%;
+        background: var(--visor-bg);
+        color: var(--visor-fg);
+        border-radius: 6px;
+        padding: 14px 18px;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 10px #00000060;
+        overflow-y: auto;
+        line-height: 1.35;
+        font-size: clamp(12px, 2.6vmin, 18px);
+      }
+
+      /* Back button */
+      .back-btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: var(--visor-fg);
+        border: 1px solid var(--visor-fg);
+        border-radius: 5px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        transition: all 0.2s ease;
+        z-index: 100;
+      }
+
+      .back-btn:hover {
+        background: rgba(0, 50, 0, 0.9);
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        border-bottom: 2px solid var(--visor-fg);
+        margin-bottom: 15px;
+      }
+
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 5px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .tab.active {
+        border-bottom: 3px solid var(--visor-fg);
+        margin-bottom: -2px;
+      }
+
+      /* Tab content */
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      th, td {
+        padding: 4px 2px;
+      }
+      
+      th {
+        text-align: left;
+        font-size: 1.1em;
+        border-bottom: 1px solid var(--visor-fg);
+      }
+      
+      tbody tr:nth-child(odd) {
+        background: #013301;
+      }
+      
+      .warn {
+        color: var(--visor-warn);
+      }
+
+      .low {
+        color: var(--visor-low);
+      }
+
+      .ok {
+        color: var(--visor-ok);
+      }
+
+      /* Progress bars */
+      .progress-container {
+        width: 100%;
+        background: rgba(0, 50, 0, 0.5);
+        height: 10px;
+        margin-top: 3px;
+        border: 1px solid rgba(0, 255, 0, 0.3);
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: var(--visor-fg);
+      }
+
+      /* Flicker animation */
+      @keyframes glow {
+        0%, 100% { text-shadow: 0 0 2px #6f6; }
+        50%      { text-shadow: 0 0 5px #8f8; }
+      }
+      
+      .visor {
+        animation: glow 4s infinite alternate ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="back-btn" onclick="window.location.href='/'">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <figure class="pump">
+      <img src="/Images/FUEL2.png" alt="Bomba de combustível" />
+
+      <div class="visor">
+        <!-- Tabs -->
+        <div class="tabs">
+          <div class="tab active" data-tab="consumo">Consumo</div>
+          <div class="tab" data-tab="estoque">Estoque</div>
+        </div>
+
+        <!-- Consumo Tab -->
+        <div class="tab-content active" id="consumo">
+          <table>
+            <thead>
+              <tr>
+                <th colspan="2">📊 Média de Consumo por Máquina</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Trator John Deere 6110J</td>
+                <td align="right">12.5 L/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar" style="width: 65%"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Colheitadeira New Holland</td>
+                <td align="right">28.3 L/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar" style="width: 85%"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Pulverizador Jacto</td>
+                <td align="right">8.7 L/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar" style="width: 45%"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Caminhão Mercedes 2219</td>
+                <td align="right">15.2 L/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar" style="width: 70%"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Trator Massey 4275</td>
+                <td align="right">10.8 L/h</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar" style="width: 55%"></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Estoque Tab -->
+        <div class="tab-content" id="estoque">
+          <table>
+            <thead>
+              <tr>
+                <th colspan="2">🛢️ Estoque dos Tanques</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Diesel S10</td>
+                <td align="right" class="ok">15.000 / 20.000 L</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar ok" style="width: 75%"></div>
+                  </div>
+                </td>
+                <td align="right">75%</td>
+              </tr>
+              <tr>
+                <td>Diesel S500</td>
+                <td align="right" class="warn">9.000 / 20.000 L</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar warn" style="background: var(--visor-warn); width: 45%"></div>
+                  </div>
+                </td>
+                <td align="right" class="warn">45% ⚠️</td>
+              </tr>
+              <tr>
+                <td>Gasolina</td>
+                <td align="right">6.000 / 10.000 L</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="progress-container">
+                    <div class="progress-bar" style="width: 60%"></div>
+                  </div>
+                </td>
+                <td align="right">60%</td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: center; padding-top: 15px; border-top: 1px solid var(--visor-fg);">
+                  Próximo abastecimento:
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: center; font-weight: bold;">
+                  25/04/2025 - 10.000L Diesel S10
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </figure>
+
+    <script>
+      // Tab switching functionality
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs and content
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          
+          // Add active class to clicked tab
+          tab.classList.add('active');
+          
+          // Show corresponding content
+          const tabName = tab.getAttribute('data-tab');
+          document.getElementById(tabName).classList.add('active');
+        });
+      });
+    </script>
+  </body>
+</html>

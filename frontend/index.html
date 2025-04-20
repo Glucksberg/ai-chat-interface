@@ -1842,6 +1842,127 @@
         </div>
     </div>
     
+    <!-- Página completa do módulo de abastecimento -->
+    <div class="fuel-module-page" id="fuel-module-page" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 2000; overflow: auto;">
+        <div style="position: relative; width: 100%; height: 100%;">
+            <!-- Botão de voltar -->
+            <button id="fuel-module-back" style="position: absolute; top: 15px; left: 15px; z-index: 2100; background: rgba(0, 0, 0, 0.8); color: #00ff00; border: 1px solid #00ff00; border-radius: 5px; width: 40px; height: 40px; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.background='rgba(0, 50, 0, 0.9)'; this.style.boxShadow='0 0 15px rgba(0, 255, 0, 0.5)';" onmouseout="this.style.background='rgba(0, 0, 0, 0.8)'; this.style.boxShadow='0 0 10px rgba(0, 255, 0, 0.3)';">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            
+            <!-- Imagem da bomba de combustível como fundo -->
+            <div style="position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                <img src="/Images/FUEL2.png" alt="Bomba de Combustível" style="max-height: 90vh; max-width: 100%;" onerror="this.onerror=null; this.src='/Images/littlefarm.png'; alert('Imagem da bomba não encontrada. Usando imagem alternativa.');">
+                
+                <!-- Visor da bomba com dados -->
+                <div class="fuel-display" style="position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%); width: 70%; max-width: 350px; background: rgba(0, 0, 0, 0.8); border-radius: 5px; padding: 15px; backdrop-filter: blur(1px); box-shadow: 0 3px 6px rgba(0,0,0,0.3); border: 1px solid rgba(100, 100, 100, 0.5); color: #00ff00;">
+                    <!-- Abas para alternar entre consumo e estoque -->
+                    <div class="fuel-display-tabs" style="display: flex; border-bottom: 1px solid rgba(0, 255, 0, 0.5); margin-bottom: 15px;">
+                        <div class="fuel-display-tab active" data-tab="consumption" style="flex: 1; text-align: center; padding: 6px; cursor: pointer; font-weight: bold; color: #00ff00; border-bottom: 2px solid #00ff00; margin-bottom: -1px; font-family: 'VT323', 'Courier New', monospace; text-transform: uppercase; letter-spacing: 1px; font-size: 16px;">Consumo</div>
+                        <div class="fuel-display-tab" data-tab="inventory" style="flex: 1; text-align: center; padding: 6px; cursor: pointer; font-weight: bold; color: #00cc00; font-family: 'VT323', 'Courier New', monospace; text-transform: uppercase; letter-spacing: 1px; font-size: 16px;">Estoque</div>
+                    </div>
+                    
+                    <!-- Conteúdo da aba de consumo -->
+                    <div class="fuel-display-content active" id="fuel-consumption-display" style="font-family: 'VT323', 'Courier New', monospace;">
+                        <h3 style="text-align: center; margin-top: 0; margin-bottom: 12px; font-size: 16px; color: #00ff00; text-transform: uppercase; letter-spacing: 1px;">Média de Consumo por Máquina</h3>
+                        <div class="machine-consumption" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Trator John Deere 6110J</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">12.5 L/h</span>
+                            </div>
+                            <div class="progress-bar" style="height: 8px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 65%; height: 100%; background: #00ff00;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="machine-consumption" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Colheitadeira New Holland</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">28.3 L/h</span>
+                            </div>
+                            <div class="progress-bar" style="height: 8px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 85%; height: 100%; background: #00ff00;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="machine-consumption" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Pulverizador Jacto</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">8.7 L/h</span>
+                            </div>
+                            <div class="progress-bar" style="height: 8px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 45%; height: 100%; background: #00ff00;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="machine-consumption" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Caminhão Mercedes 2219</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">15.2 L/h</span>
+                            </div>
+                            <div class="progress-bar" style="height: 8px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 70%; height: 100%; background: #00ff00;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="machine-consumption" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Trator Massey 4275</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">10.8 L/h</span>
+                            </div>
+                            <div class="progress-bar" style="height: 8px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 55%; height: 100%; background: #00ff00;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo da aba de estoque -->
+                    <div class="fuel-display-content" id="fuel-inventory-display" style="display: none; font-family: 'VT323', 'Courier New', monospace;">
+                        <h3 style="text-align: center; margin-top: 0; margin-bottom: 12px; font-size: 16px; color: #00ff00; text-transform: uppercase; letter-spacing: 1px;">Estoque dos Tanques</h3>
+                        
+                        <div class="tank-level" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Diesel S10</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">15.000 / 20.000 L</span>
+                            </div>
+                            <div class="tank-visual" style="height: 20px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; position: relative; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 75%; height: 100%; background: #00ff00;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 12px; text-shadow: 0 0 2px #00ff00;">75%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tank-level" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Diesel S500</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">9.000 / 20.000 L</span>
+                            </div>
+                            <div class="tank-visual" style="height: 20px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; position: relative; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 45%; height: 100%; background: #ffcc00;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 12px; text-shadow: 0 0 2px #ffcc00;">45%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tank-level" style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 14px; color: #00ff00;">Gasolina</span>
+                                <span style="font-size: 14px; font-weight: bold; color: #00ff00;">6.000 / 10.000 L</span>
+                            </div>
+                            <div class="tank-visual" style="height: 20px; background: rgba(0, 50, 0, 0.5); border-radius: 0; overflow: hidden; position: relative; border: 1px solid rgba(0, 255, 0, 0.3);">
+                                <div style="width: 60%; height: 100%; background: #00ccff;"></div>
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 12px; text-shadow: 0 0 2px #00ccff;">60%</div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 15px; border-top: 1px solid rgba(0, 255, 0, 0.3); padding-top: 8px;">
+                            <div style="font-size: 12px; color: #00ff00;">PRÓXIMO ABASTECIMENTO:</div>
+                            <div style="font-size: 14px; font-weight: bold; color: #00ff00;">25/04/2025 - 10.000L DIESEL S10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Popup de informações de combustível -->
     <div class="fuel-info-popup" id="fuel-info-popup">
         <div class="fuel-info-container">
@@ -3005,22 +3126,40 @@
                 }
             });
             
-            // Função para mostrar informações do posto de combustível
+            // Função para mostrar a página completa do módulo de abastecimento
             window.showFuelInfo = function() {
-                const fuelInfoPopup = document.getElementById('fuel-info-popup');
-                fuelInfoPopup.classList.add('active');
-                
-                // Garantir que a primeira aba esteja ativa por padrão
-                document.querySelectorAll('.fuel-tab').forEach(tab => {
-                    tab.classList.remove('active');
-                });
-                document.querySelectorAll('.fuel-tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                document.querySelector('.fuel-tab[data-tab="inventory"]').classList.add('active');
-                document.getElementById('fuel-inventory').classList.add('active');
+                // Redirecionar para a nova página do módulo de abastecimento
+                window.location.href = '/fuel-dashboard.html';
             };
+            
+            // Configurar o botão de voltar do módulo de abastecimento
+            document.getElementById('fuel-module-back').addEventListener('click', function() {
+                document.getElementById('fuel-module-page').style.display = 'none';
+            });
+            
+            // Configurar as abas do visor da bomba de combustível
+            document.querySelectorAll('.fuel-display-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remover classe ativa de todas as abas
+                    document.querySelectorAll('.fuel-display-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    
+                    // Adicionar classe ativa à aba clicada
+                    this.classList.add('active');
+                    
+                    // Obter o ID da aba
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Esconder todos os conteúdos
+                    document.querySelectorAll('.fuel-display-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Mostrar o conteúdo correspondente
+                    document.getElementById('fuel-' + tabId + '-display').style.display = 'block';
+                });
+            });
             
             // Função para mostrar informações do armazém de grãos
             window.showGrainStorageInfo = function() {
