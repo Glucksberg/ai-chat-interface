@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <title>Assistente de Agricultura - CloudFarm.ai</title>
+    <style>
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #264653;
+            --accent-color: #e9c46a;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --success-color: #4caf50;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            background-color: var(--primary-color);
+        }
+        
+        .main {
+            flex: 1;
+            padding: 40px 0;
+        }
+        
+        .chat-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+        }
+        
+        .chat-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary-color);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .ai-message {
+            align-self: flex-start;
+            background-color: #e9ecef;
+            color: var(--text-color);
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .chat-input input:focus {
+            border-color: var(--primary-color);
+        }
+        
+        .chat-input button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .chat-input button:hover {
+            background-color: #238b7e;
+        }
+        
+        .chat-input button:disabled {
+            background-color: #b2d8d2;
+            cursor: not-allowed;
+        }
+        
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background-color: #e9ecef;
+            color: var(--text-color);
+            padding: 12px 16px;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #888;
+            border-radius: 50%;
+            animation: typing 1s infinite;
+            margin-right: 3px;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+            margin-right: 0;
+        }
+        
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .suggestion-chip {
+            background-color: #f0f0f0;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 1px solid #ddd;
+        }
+        
+        .suggestion-chip:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .chat-container {
+                height: calc(100vh - 240px);
+                margin: 0 10px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .nav-links a {
+                margin-bottom: 5px;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">CloudFarm.ai</div>
+            <div class="tagline">Soluções Agrícolas Inteligentes para o Agronegócio Brasileiro</div>
+            <nav class="nav-links">
+                <a href="index.html">Página Inicial</a>
+                <a href="assistente.html" class="active">Assistente de Agricultura</a>
+                <a href="https://t.me/CloudFarmBR_bot" target="_blank">Acesse o nosso bot Oficial</a>
+                <a href="https://t.me/Cloudf4rmBot" target="_blank">Acesse o bot de testes</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main">
+        <div class="container">
+            <div class="suggestions">
+                <div class="suggestion-chip">Como melhorar a saúde do solo?</div>
+                <div class="suggestion-chip">Culturas ideais para bioma cerrado?</div>
+                <div class="suggestion-chip">Técnicas de irrigação eficientes</div>
+                <div class="suggestion-chip">Manejo integrado de pragas</div>
+                <div class="suggestion-chip">Cultivo em áreas com déficit hídrico</div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2>Assistente de Agricultura - CloudFarm.ai</h2>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai-message">
+                        Olá! Sou o assistente virtual da CloudFarm.ai especializado em agricultura e pecuária brasileira. Como posso ajudar você hoje? Você pode me perguntar sobre cultivos, solo, clima, tecnologias agrícolas ou manejo de animais.
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Digite sua mensagem aqui...">
+                    <button id="sendButton">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CloudFarm.ai - Todos os direitos reservados</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            const typingIndicator = document.getElementById('typingIndicator');
+            const suggestionChips = document.querySelectorAll('.suggestion-chip');
+            
+            // Histórico de mensagens para enviar ao servidor
+            let messageHistory = [];
+            
+            // Função para adicionar mensagem ao chat
+            function addMessage(content, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'ai-message');
+                messageDiv.textContent = content;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Atualizar histórico de mensagens
+                if (isUser) {
+                    messageHistory.push({ role: 'user', content });
+                } else {
+                    messageHistory.push({ role: 'assistant', content });
+                }
+            }
+            
+            // Função para enviar mensagem para a API
+            async function sendMessage(message) {
+                try {
+                    // Mostrar indicador de digitação
+                    typingIndicator.style.display = 'block';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    sendButton.disabled = true;
+                    userInput.disabled = true;
+                    
+                    // Criar um alerta de debug
+                    console.log('Enviando mensagens:', messageHistory);
+                    
+                    // Garantir que estamos enviando mensagens no formato correto
+                    // Limpar o histórico para um teste simples
+                    const simplifiedMessages = [
+                        { role: 'user', content: message }
+                    ];
+                    
+                    // Usar URL completa para evitar problemas de caminho relativo
+                    const response = await fetch(window.location.origin + '/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            messages: simplifiedMessages
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    console.log('Resposta recebida:', data);
+                    
+                    // Esconder indicador de digitação
+                    typingIndicator.style.display = 'none';
+                    
+                    if (data.success) {
+                        // Adicionar resposta do assistente
+                        addMessage(data.choices[0].message.content, false);
+                    } else {
+                        // Mostrar mensagem de erro
+                        addMessage('Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.', false);
+                        console.error('Erro:', data.message);
+                    }
+                } catch (error) {
+                    // Esconder indicador de digitação
+                    typingIndicator.style.display = 'none';
+                    
+                    // Mostrar mensagem de erro
+                    addMessage('Desculpe, ocorreu um erro ao conectar ao servidor. Por favor, verifique sua conexão e tente novamente.', false);
+                    console.error('Erro:', error);
+                } finally {
+                    sendButton.disabled = false;
+                    userInput.disabled = false;
+                    userInput.focus();
+                }
+            }
+            
+            // Evento de clique no botão de enviar
+            sendButton.addEventListener('click', () => {
+                const message = userInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    userInput.value = '';
+                    sendMessage(message);
+                }
+            });
+            
+            // Evento de pressionar Enter no input
+            userInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    const message = userInput.value.trim();
+                    if (message) {
+                        addMessage(message, true);
+                        userInput.value = '';
+                        sendMessage(message);
+                    }
+                }
+            });
+            
+            // Evento de clique nas sugestões
+            suggestionChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const message = chip.textContent;
+                    addMessage(message, true);
+                    sendMessage(message);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

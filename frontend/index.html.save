@@ -1,0 +1,320 @@
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <title>CloudFarm.ai - Soluções Agrícolas Inteligentes</title>
+    <style>
+        :root {
+            --primary-color: #2a9d8f;
+            --secondary-color: #264653;
+            --accent-color: #e9c46a;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --success-color: #4caf50;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            background-color: var(--primary-color);
+        }
+        
+        .main {
+            padding: 50px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+        }
+        
+        .form-title {
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #238b7e;
+        }
+        
+        .success-message {
+            display: none;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success-color);
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                margin-bottom: 5px;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">CloudFarm.ai</div>
+            <div class="tagline">Soluções Agrícolas Inteligentes para o Agronegócio Brasileiro</div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Página Inicial</a>
+                <a href="assistente.html">Assistente de Agricultura</a>
+                <a href="https://t.me/CloudFarmBR_bot" target="_blank">Acesse o nosso bot Oficial</a>
+                <a href="https://t.me/Cloudf4rmBot" target="_blank">Acesse o bot de testes</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">Cadastre sua Propriedade Rural</h2>
+                <form id="farmForm">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo*</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefone">Telefone (WhatsApp)*</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail*</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="propriedade">Nome da Propriedade*</label>
+                        <input type="text" id="propriedade" name="propriedade" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cidade">Cidade/Estado*</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Cidade/UF" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="area">Tamanho da Área (hectares)*</label>
+                        <input type="number" id="area" name="area" min="1" required>
+                    </div>
+                    
+                    <button type="submit">Enviar Cadastro</button>
+                </form>
+                
+                <div id="successMessage" class="success-message">
+                    <h3>Cadastro realizado com sucesso!</h3>
+                    <p>Agradecemos pelo seu interesse. Nossa equipe entrará em contato em breve.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CloudFarm.ai - Todos os direitos reservados</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('farmForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Formatação para o campo de telefone
+            const telefoneInput = document.getElementById('telefone');
+            telefoneInput.addEventListener('input', function (e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                
+                if (value.length > 2) {
+                    value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                }
+                if (value.length > 10) {
+                    value = `${value.slice(0, 10)}-${value.slice(10)}`;
+                }
+                
+                e.target.value = value;
+            });
+            
+            // Envio do formulário
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const formDataObject = {};
+                
+                formData.forEach((value, key) => {
+                    formDataObject[key] = value;
+                });
+                
+                try {
+                    // Usar URL completa incluindo protocolo para evitar problemas em HTTPS
+                    const baseUrl = window.location.origin;
+                    const response = await fetch(`${baseUrl}/api/submit-form`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formDataObject)
+                    });
+                    
+                    if (response.ok) {
+                        form.style.display = 'none';
+                        successMessage.style.display = 'block';
+                    } else {
+                        alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+                    }
+                } catch (error) {
+                    console.error('Erro:', error);
+                    alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

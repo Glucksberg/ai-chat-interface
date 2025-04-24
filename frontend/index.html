@@ -287,6 +287,137 @@
             }
         }
         
+        /* Posições fixas para desktop */
+        @media (min-width: 768px) {
+            .farm-icon {
+                position: absolute;
+            }
+            
+            .fuel-station {
+                top: 486px;
+                left: 1559px;
+            }
+            
+            .grain-storage {
+                top: 394px;
+                left: 1330px;
+            }
+            
+            .office {
+                top: 695px;
+                left: 1511px;
+            }
+            
+            .cattle {
+                top: 631px;
+                left: 1596px;
+            }
+            
+            .inventory {
+                top: 336px;
+                left: 1523px;
+            }
+            
+            .fields {
+                top: 541px;
+                left: 1197px;
+            }
+            
+            .machines {
+                top: 386px;
+                left: 1572px;
+            }
+            
+            .biologicals {
+                top: 433px;
+                left: 1458px;
+            }
+            
+            .rainfall {
+                top: 218px;
+                left: 1204px;
+            }
+            
+            .monitoring {
+                top: 264px;
+                left: 1555px;
+            }
+        }
+        
+        /* Posição para celulares */
+        @media (max-width: 767px) {
+            .fuel-station {
+                /* Valores exatos para celular */
+                top: 319.203px;
+                left: 263.188px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .grain-storage {
+                top: 200px;
+                left: 150px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .office {
+                top: 250px;
+                left: 300px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .cattle {
+                top: 150px;
+                left: 100px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .inventory {
+                top: 100px;
+                left: 200px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .fields {
+                top: 300px;
+                left: 50px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .machines {
+                top: 350px;
+                left: 150px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .biologicals {
+                top: 400px;
+                left: 250px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .rainfall {
+                top: 450px;
+                left: 100px;
+                position: absolute;
+                z-index: 100;
+            }
+            
+            .monitoring {
+                top: 500px;
+                left: 200px;
+                position: absolute;
+                z-index: 100;
+            }
+        }
+        
         /* Ajustes para dispositivos móveis em modo retrato */
         @media (max-width: 767px) {
             .farm-icon {
@@ -304,10 +435,11 @@
             .farm-icon i {
                 font-size: 20px; /* Ícone um pouco menor em dispositivos móveis */
             }
-            
-            /* Ajustes para celulares */
-            .fuel-station {
-                /* O posicionamento será definido pelo JavaScript */
+        }
+        
+        /* Ajustes específicos para ícones em celulares */
+        @media (max-width: 767px) {
+            .fuel-station, .grain-storage, .office, .cattle, .inventory, .fields, .machines, .biologicals, .rainfall, .monitoring {
                 width: 40px;
                 height: 40px;
             }
@@ -1653,6 +1785,16 @@
                 <button onclick="document.getElementById('position-controls').style.display = 'none';" style="background: none; border: none; color: white; cursor: pointer; font-size: 16px;">
                     <i class="fas fa-times"></i>
                 </button>
+            </div>
+            
+            <!-- Botão para resetar posições -->
+            <div style="margin-bottom: 15px;">
+                <button onclick="window.resetIconPositions();" style="width: 100%; background: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                    <i class="fas fa-undo-alt"></i> Resetar Posições dos Ícones
+                </button>
+                <div style="font-size: 12px; color: #aaa; margin-top: 5px; text-align: center;">
+                    Restaura todos os ícones para suas posições originais
+                </div>
             </div>
             
             <!-- Posto de Combustível -->
@@ -3125,6 +3267,64 @@
                     iconInfo.style.display = 'none';
                 }
             });
+            
+            // Função para resetar as posições dos ícones
+            window.resetIconPositions = function() {
+                // Limpar todas as posições salvas
+                const keys = [
+                    'fuelStationTop', 'fuelStationLeft',
+                    'grainStorageTop', 'grainStorageLeft',
+                    'officeTop', 'officeLeft',
+                    'cattleTop', 'cattleLeft',
+                    'inventoryTop', 'inventoryLeft',
+                    'fieldsTop', 'fieldsLeft',
+                    'machinesTop', 'machinesLeft',
+                    'biologicalsTop', 'biologicalsLeft',
+                    'rainfallTop', 'rainfallLeft',
+                    'monitoringTop', 'monitoringLeft',
+                    'officeIcon'
+                ];
+                
+                // Remover todos os itens do localStorage
+                keys.forEach(key => {
+                    localStorage.removeItem(key);
+                });
+                
+                // Obter todos os ícones
+                const fuelStation = document.querySelector('.fuel-station');
+                const grainStorage = document.querySelector('.grain-storage');
+                const office = document.querySelector('.office');
+                const cattle = document.querySelector('.cattle');
+                const inventory = document.querySelector('.inventory');
+                const fields = document.querySelector('.fields');
+                const machines = document.querySelector('.machines');
+                const biologicals = document.querySelector('.biologicals');
+                const rainfall = document.querySelector('.rainfall');
+                const monitoring = document.querySelector('.monitoring');
+                
+                // Remover estilos inline
+                fuelStation.removeAttribute('style');
+                grainStorage.removeAttribute('style');
+                office.removeAttribute('style');
+                cattle.removeAttribute('style');
+                inventory.removeAttribute('style');
+                fields.removeAttribute('style');
+                machines.removeAttribute('style');
+                biologicals.removeAttribute('style');
+                rainfall.removeAttribute('style');
+                monitoring.removeAttribute('style');
+                
+                // Fechar o painel de controle se estiver aberto
+                if (document.getElementById('positionControlPanel')) {
+                    document.getElementById('positionControlPanel').style.display = 'none';
+                }
+                
+                // Recarregar a página para aplicar o CSS padrão
+                window.location.reload();
+                
+                // Exibir mensagem de sucesso
+                alert('Posições dos ícones restauradas com sucesso! As posições atuais foram salvas como padrão.');
+            };
             
             // Função para mostrar a página completa do módulo de abastecimento
             window.showFuelInfo = function() {
