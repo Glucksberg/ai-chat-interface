@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog – CloudFarm</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- Tipografia retrô com elegância -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+      :root {
+        --paper: #e2c99a;
+        --paper-deep: #c9a867;
+        --ink: #3b2d1c;
+        --header-bg: rgba(38, 70, 83, 0.95);
+        --text-light: #fff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: linear-gradient(#b6893f, #d4b06a);
+        font-family: 'Crimson Text', serif;
+        color: var(--ink);
+        line-height: 1.65;
+        min-height: 100vh;
+      }
+
+      /* Header e navegação */
+      header {
+        background-color: var(--header-bg);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo-area a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 15px;
+      }
+
+      .nav-menu a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.95rem;
+      }
+
+      .nav-menu a i {
+        font-size: 1rem;
+        color: #e9c46a;
+      }
+
+      .nav-menu a:hover, .nav-menu a.active {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-menu a.active i {
+        color: #fff;
+      }
+
+      /* Hero como topo com imagem */
+      .hero {
+        width: 100%;
+        height: min(45vh, 300px);
+        background: url("/Images/littlefarm.png") center/cover no-repeat;
+        border-bottom: 4px solid var(--paper-deep);
+        filter: sepia(0.55) brightness(0.95) contrast(0.9);
+        position: relative;
+        margin-top: 75px; /* Espaço para o header fixo */
+      }
+
+      /* Botão histórico no canto superior direito */
+      .hero a {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: var(--paper);
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 1.8rem;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 2px solid var(--paper-deep);
+        box-shadow: 0 2px 4px #00000040;
+      }
+      .hero a:hover {
+        background: #f2d9a0;
+      }
+
+      /* Área dos posts */
+      main {
+        padding: 2rem 1rem;
+        max-width: 42rem;
+        margin: 0 auto;
+      }
+
+      .post {
+        background: var(--paper);
+        border-left: 1px solid var(--paper-deep);
+        border-right: 1px solid var(--paper-deep);
+        padding: 2rem 1.4rem;
+        position: relative;
+        margin-bottom: 3rem;
+      }
+
+      .post::before,
+      .post::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0;
+        height: 14px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--paper-deep) 0 4px,
+          transparent 4px 8px
+        );
+      }
+      .post::before { top: -14px; }
+      .post::after  { bottom: -14px; transform: scaleY(-1); }
+
+      h1 {
+        font-family: 'DM Serif Display', serif;
+        font-size: 1.85rem;
+        margin-bottom: 0.8rem;
+      }
+
+      p {
+        text-align: justify;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      /* Botão de voltar para a página inicial */
+      .back-home {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--paper);
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 10px 15px;
+        border-radius: 6px;
+        border: 2px solid var(--paper-deep);
+        box-shadow: 0 2px 4px #00000040;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .back-home:hover {
+        background: #f2d9a0;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .header-container {
+          padding: 10px 15px;
+        }
+        
+        .nav-menu {
+          display: none;
+        }
+        
+        .hero {
+          height: 200px;
+        }
+        
+        main {
+          padding: 1.5rem 0.8rem;
+        }
+        
+        .post {
+          padding: 1.5rem 1rem;
+        }
+        
+        h1 {
+          font-size: 1.5rem;
+        }
+        
+        p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header com navegação -->
+    <header>
+      <div class="header-container">
+        <div class="logo-area">
+          <a href="/">
+            <i class="fas fa-cloud" style="color: #e9c46a; margin-right: 8px;"></i>
+            CloudFarm.ai
+          </a>
+        </div>
+        
+        <nav class="nav-menu">
+          <a href="/"><i class="fas fa-home"></i> Início</a>
+          <a href="/planos.html"><i class="fas fa-leaf"></i> Planos</a>
+          <a href="/contato.html"><i class="fas fa-envelope"></i> Contato</a>
+          <a href="/conceito.html"><i class="fas fa-lightbulb"></i> Conceito</a>
+          <a href="/blog" class="active"><i class="fas fa-book"></i> Blog</a>
+          <a href="javascript:void(0);" id="assistente-btn"><i class="fas fa-robot"></i> Assistente</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero com botão histórico -->
+    <div class="hero">
+      <a href="#" title="Ver histórico de posts"><i class="fas fa-clock"></i></a>
+    </div>
+
+    <main>
+      <article class="post">
+        <h1>Agricultura de Precisão: O Futuro do Agronegócio</h1>
+        <p>A agricultura de precisão está revolucionando o setor agrícola brasileiro, permitindo que produtores rurais otimizem o uso de insumos, reduzam custos e aumentem a produtividade de suas lavouras. Com o uso de tecnologias como GPS, drones, sensores e softwares especializados, é possível mapear variabilidades do solo, monitorar o desenvolvimento das plantas e aplicar insumos de forma localizada.</p>
+        <p>Estudos recentes mostram que propriedades que adotam técnicas de agricultura de precisão conseguem reduzir em até 30% o uso de fertilizantes e defensivos, mantendo ou até mesmo aumentando a produtividade. Além disso, a agricultura de precisão contribui para a sustentabilidade, minimizando o impacto ambiental da atividade agrícola.</p>
+        <p>A CloudFarm.ai está na vanguarda dessa revolução, oferecendo soluções integradas que permitem ao produtor rural tomar decisões baseadas em dados precisos e em tempo real.</p>
+      </article>
+
+      <article class="post">
+        <h1>Manejo Integrado de Pragas: Estratégias Eficientes</h1>
+        <p>O manejo integrado de pragas (MIP) é uma abordagem que combina diferentes métodos de controle para manter as populações de pragas abaixo do nível de dano econômico, minimizando os impactos negativos ao meio ambiente e à saúde humana. Essa estratégia envolve monitoramento constante, uso racional de defensivos, controle biológico e práticas culturais adequadas.</p>
+        <p>Produtores que implementam o MIP relatam redução significativa no número de aplicações de defensivos e, consequentemente, nos custos de produção. Além disso, o manejo integrado contribui para a preservação de inimigos naturais e para o equilíbrio do ecossistema agrícola.</p>
+        <p>Neste artigo, apresentamos as principais técnicas de MIP e como implementá-las em diferentes culturas, com base em experiências bem-sucedidas de produtores parceiros da CloudFarm.ai.</p>
+      </article>
+
+      <article class="post">
+        <h1>Sistemas de Irrigação Inteligente: Economia de Água e Energia</h1>
+        <p>A gestão eficiente da água é um dos maiores desafios da agricultura moderna. Sistemas de irrigação inteligente, que utilizam sensores de umidade do solo, estações meteorológicas e algoritmos de inteligência artificial, permitem aplicar a quantidade certa de água no momento certo, evitando desperdícios e garantindo o desenvolvimento adequado das culturas.</p>
+        <p>Dados coletados em propriedades que utilizam irrigação inteligente mostram economia de até 40% no consumo de água e 30% no consumo de energia, além de aumento na produtividade e qualidade dos produtos. Esses sistemas também ajudam a prevenir problemas como lixiviação de nutrientes e erosão do solo.</p>
+        <p>Conheça as diferentes tecnologias disponíveis no mercado e saiba como escolher a mais adequada para sua realidade, considerando fatores como tipo de cultura, características do solo e disponibilidade hídrica.</p>
+      </article>
+    </main>
+
+    <!-- Botão de voltar para a página inicial -->
+    <a href="/" class="back-home">
+      <i class="fas fa-arrow-left"></i> Voltar para a Fazenda
+    </a>
+  </body>
+</html>

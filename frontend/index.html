@@ -10,6 +10,7 @@
     <title>CloudFarm.ai - Soluções Agrícolas Inteligentes</title>
     <style>
         :root {
+            /* Cores do modo claro (padrão) */
             --primary-color: #2a9d8f;
             --secondary-color: #264653;
             --accent-color: #e9c46a;
@@ -21,6 +22,31 @@
             --btn-highlight: #f4a261;
             --btn-text: #264653;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --body-bg: #ffffff;
+            --card-bg: #fff;
+            --border-color: #ddd;
+            --icon-bg: rgba(42, 157, 143, 0.2);
+            --icon-bg-hover: rgba(42, 157, 143, 0.3);
+        }
+        
+        /* Modo escuro */
+        [data-theme="dark"] {
+            --primary-color: #3aafa9;
+            --secondary-color: #2b7a78;
+            --accent-color: #ffb347;
+            --text-dark: #f1f1f1;
+            --text-light: #ffffff;
+            --header-bg: rgba(23, 37, 42, 0.95);
+            --btn-primary: #3aafa9;
+            --btn-secondary: #ffb347;
+            --btn-highlight: #ff9642;
+            --btn-text: #17252a;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+            --body-bg: #17252a;
+            --card-bg: #2b7a78;
+            --border-color: #345d5a;
+            --icon-bg: rgba(58, 175, 169, 0.2);
+            --icon-bg-hover: rgba(58, 175, 169, 0.3);
         }
         
         * {
@@ -36,6 +62,8 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            background-color: var(--body-bg);
+            transition: background-color 0.3s ease;
         }
         
         /* Header and Navigation */
@@ -143,6 +171,41 @@
             gap: 15px;
         }
         
+        /* Estilo do botão dark mode */
+        .theme-toggle {
+            background-color: transparent;
+            color: var(--text-light);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .theme-toggle .fa-moon {
+            color: var(--accent-color);
+        }
+        
+        /* Ajustes para elementos no modo escuro */
+        [data-theme="dark"] .farm-image {
+            filter: brightness(0.85);
+        }
+        
+        /* Preservar cores originais dos ícones mesmo no modo escuro */
+        [data-theme="dark"] .farm-icon i {
+            /* Mantém as cores originais dos ícones */
+            color: inherit;
+        }
+        
         .login-btn {
             background-color: transparent;
             color: var(--text-light);
@@ -180,6 +243,8 @@
             padding-top: 75px; /* Espaço para o header fixo */
             height: calc(100vh - 75px);
             overflow: hidden;
+            background-color: var(--body-bg);
+            transition: background-color 0.3s ease;
         }
         
         .farm-image {
@@ -198,7 +263,7 @@
             }
             
             .farm-container {
-                background-color: #f5f5f5; /* Cor de fundo suave para área ao redor da imagem */
+                background-color: var(--body-bg); /* Cor de fundo baseada no tema */
             }
         }
         
@@ -210,6 +275,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none; /* Permitirá clicar através dessa camada */
+            overflow: hidden; /* Garantir que os ícones não extravasem a área */
         }
         
         .farm-icon {
@@ -270,151 +336,187 @@
             transform-origin: center;
         }
         
-        /* Posição para tablets */
+        /* Posição para tablets usando transform para centralização */
         @media (max-width: 1199px) and (min-width: 768px) {
+            .farm-icon {
+                transform: translate(-50%, -50%) scale(0.6);
+            }
+            
+            .farm-icon:hover {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            
             .fuel-station {
-                top: 73%;
-                left: 10%;
+                top: 70%;
+                left: 80%;
+            }
+            
+            .grain-storage {
+                top: 60%;
+                left: 70%;
+            }
+            
+            .office {
+                top: 85%;
+                left: 78%;
+            }
+            
+            .cattle {
+                top: 75%;
+                left: 88%;
+            }
+            
+            .inventory {
+                top: 45%;
+                left: 84%;
+            }
+            
+            .fields {
+                top: 70%;
+                left: 60%;
+            }
+            
+            .machines {
+                top: 62%;
+                left: 75%;
+            }
+            
+            .biologicals {
+                top: 68%;
+                left: 80%;
+            }
+            
+            .rainfall {
+                top: 35%;
+                left: 65%;
+            }
+            
+            .monitoring {
+                top: 40%;
+                left: 85%;
             }
         }
         
-        /* Posição para celulares */
+        /* Posição para celulares usando transform para centralização */
         @media (max-width: 767px) {
+            .farm-icon {
+                transform: translate(-50%, -50%) scale(0.6);
+            }
+            
+            .farm-icon:hover {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            
             .fuel-station {
-                /* Valores exatos para celular */
-                top: 319.203px;
-                left: 263.188px;
+                top: 45%;
+                left: 70%;
+            }
+            
+            .grain-storage {
+                top: 30%;
+                left: 30%;
+            }
+            
+            .office {
+                top: 55%;
+                left: 85%;
+            }
+            
+            .cattle {
+                top: 35%;
+                left: 60%;
+            }
+            
+            .inventory {
+                top: 20%;
+                left: 70%;
+            }
+            
+            .fields {
+                top: 62%;
+                left: 20%;
+            }
+            
+            .machines {
+                top: 70%;
+                left: 40%;
+            }
+            
+            .biologicals {
+                top: 75%;
+                left: 80%;
+            }
+            
+            .rainfall {
+                top: 80%;
+                left: 25%;
+            }
+            
+            .monitoring {
+                top: 85%;
+                left: 60%;
             }
         }
         
-        /* Posições fixas para desktop */
+        /* Posições fixas para todos os tamanhos de tela usando porcentagens e transform */
         @media (min-width: 768px) {
             .farm-icon {
                 position: absolute;
+                transform: translate(-50%, -50%) scale(0.6); /* Centralizar o ícone na posição + escala */
+            }
+            
+            .farm-icon:hover {
+                transform: translate(-50%, -50%) scale(1); /* Manter centralizado ao fazer hover */
             }
             
             .fuel-station {
-                top: 486px;
-                left: 1559px;
+                top: 70%;  /* Posição vertical do centro do ícone */
+                left: 85%; /* Posição horizontal do centro do ícone */
             }
             
             .grain-storage {
-                top: 394px;
-                left: 1330px;
+                top: 60%;
+                left: 75%;
             }
             
             .office {
-                top: 695px;
-                left: 1511px;
+                top: 85%;
+                left: 82%;
             }
             
             .cattle {
-                top: 631px;
-                left: 1596px;
+                top: 80%;
+                left: 88%;
             }
             
             .inventory {
-                top: 336px;
-                left: 1523px;
+                top: 45%;
+                left: 84%;
             }
             
             .fields {
-                top: 541px;
-                left: 1197px;
+                top: 75%;
+                left: 65%;
             }
             
             .machines {
-                top: 386px;
-                left: 1572px;
+                top: 55%;
+                left: 86%;
             }
             
             .biologicals {
-                top: 433px;
-                left: 1458px;
+                top: 65%;
+                left: 80%;
             }
             
             .rainfall {
-                top: 218px;
-                left: 1204px;
+                top: 30%;
+                left: 68%;
             }
             
             .monitoring {
-                top: 264px;
-                left: 1555px;
-            }
-        }
-        
-        /* Posição para celulares */
-        @media (max-width: 767px) {
-            .fuel-station {
-                /* Valores exatos para celular */
-                top: 319.203px;
-                left: 263.188px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .grain-storage {
-                top: 200px;
-                left: 150px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .office {
-                top: 250px;
-                left: 300px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .cattle {
-                top: 150px;
-                left: 100px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .inventory {
-                top: 100px;
-                left: 200px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .fields {
-                top: 300px;
-                left: 50px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .machines {
-                top: 350px;
-                left: 150px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .biologicals {
-                top: 400px;
-                left: 250px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .rainfall {
-                top: 450px;
-                left: 100px;
-                position: absolute;
-                z-index: 100;
-            }
-            
-            .monitoring {
-                top: 500px;
-                left: 200px;
-                position: absolute;
-                z-index: 100;
+                top: 35%;
+                left: 85%;
             }
         }
         
@@ -638,7 +740,7 @@
             padding: 10px 20px;
             cursor: pointer;
             border-bottom: 3px solid transparent;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             font-weight: 500;
             color: #555;
         }
@@ -1690,6 +1792,7 @@
                 <a href="planos.html"><i class="fas fa-leaf"></i> Planos</a>
                 <a href="contato.html"><i class="fas fa-envelope"></i> Contato</a>
                 <a href="conceito.html"><i class="fas fa-lightbulb"></i> Conceito</a>
+                <a href="/blog"><i class="fas fa-book"></i> Blog</a>
                 <a href="javascript:void(0);" id="assistente-btn"><i class="fas fa-robot"></i> Assistente</a>
                 <a href="https://t.me/CloudFarmBR_bot" target="_blank"><i class="fab fa-telegram"></i> Bot Oficial</a>
                 <a href="https://instagram.com/cloudfarmbr" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
@@ -1700,6 +1803,10 @@
             <div class="menu-overlay"></div>
             
             <div class="login-area">
+                <!-- Botão modo escuro -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="Alternar modo escuro">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <button class="login-btn">Login</button>
                 <button class="signup-btn">Cadastre-se grátis</button>
             </div>
@@ -1713,13 +1820,13 @@
         <!-- Camada para ícones interativos da fazenda -->
         <div class="farm-icons">
             <!-- Posto de Combustível -->
-            <div class="farm-icon fuel-station" onclick="showFuelInfo()">
+            <div class="farm-icon fuel-station" onclick="window.location.href = 'fuel-dashboard.html';">
                 <i class="fas fa-gas-pump"></i>
                 <span class="icon-label">Posto</span>
             </div>
             
             <!-- Armazém de Grãos -->
-            <div class="farm-icon grain-storage" onclick="showGrainStorageInfo()">
+            <div class="farm-icon grain-storage" onclick="showIconInfo('grain')">
                 <i class="fas fa-warehouse"></i>
                 <span class="icon-label">Armazém</span>
             </div>
@@ -1785,6 +1892,20 @@
                 <button onclick="document.getElementById('position-controls').style.display = 'none';" style="background: none; border: none; color: white; cursor: pointer; font-size: 16px;">
                     <i class="fas fa-times"></i>
                 </button>
+            </div>
+            
+            <!-- Seletor de Modo de Dispositivo -->
+            <div style="margin-bottom: 15px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px;">
+                <div style="font-weight: bold; margin-bottom: 8px; color: #fff;">Modo de Ajuste:</div>
+                <div style="display: flex; gap: 10px;">
+                    <button id="desktop-mode-btn" onclick="setDeviceMode('desktop')" style="flex: 1; background: #2ecc71; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer;">
+                        <i class="fas fa-desktop"></i> Desktop
+                    </button>
+                    <button id="mobile-mode-btn" onclick="setDeviceMode('mobile')" style="flex: 1; background: #3498db; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer;">
+                        <i class="fas fa-mobile-alt"></i> Mobile
+                    </button>
+                </div>
+                <div id="current-mode" style="font-size: 12px; text-align: center; margin-top: 5px; color: #aaa;">Modo atual: Desktop</div>
             </div>
             
             <!-- Botão para resetar posições -->
@@ -2547,7 +2668,67 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Carregar preferência de tema
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                
+                // Atualizar o ícone do botão
+                if (savedTheme === 'dark') {
+                    const themeIcon = document.querySelector('#theme-toggle i');
+                    if (themeIcon) {
+                        themeIcon.classList.remove('fa-moon');
+                        themeIcon.classList.add('fa-sun');
+                    }
+                }
+            }
+            
+            // Adicionar evento ao botão de tema
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    // Verificar o tema atual
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    // Atualizar o atributo data-theme
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    
+                    // Atualizar o ícone do botão
+                    const themeIcon = document.querySelector('#theme-toggle i');
+                    if (themeIcon) {
+                        if (newTheme === 'dark') {
+                            themeIcon.classList.remove('fa-moon');
+                            themeIcon.classList.add('fa-sun');
+                        } else {
+                            themeIcon.classList.remove('fa-sun');
+                            themeIcon.classList.add('fa-moon');
+                        }
+                    }
+                    
+                    // Salvar a preferência do usuário
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
             // Função para atualizar as informações de posição
+            // Função para detectar o tipo de dispositivo no carregamento inicial
+            window.detectDeviceType = function() {
+                window.currentDeviceMode = window.innerWidth < 768 ? 'mobile' : 'desktop';
+                document.getElementById('current-mode').textContent = `Modo atual: ${window.currentDeviceMode === 'desktop' ? 'Desktop' : 'Mobile'}`;
+                
+                // Destacar o botão ativo
+                if (window.currentDeviceMode === 'desktop') {
+                    document.getElementById('desktop-mode-btn').style.background = '#2ecc71';
+                    document.getElementById('mobile-mode-btn').style.background = '#3498db';
+                } else {
+                    document.getElementById('desktop-mode-btn').style.background = '#3498db';
+                    document.getElementById('mobile-mode-btn').style.background = '#2ecc71';
+                }
+                
+                // Carregar as posições salvas para o modo detectado
+                loadSavedPositions(window.currentDeviceMode);
+            };
+            
             window.updatePositionInfo = function() {
                 // Posto de combustível
                 const fuelStation = document.querySelector('.fuel-station');
@@ -2620,6 +2801,60 @@
                 document.getElementById('monitoring-position').innerHTML = `Posição: top: ${monitoringTop}px, left: ${monitoringLeft}px`;
             };
             
+            // Variável global para controlar o modo de dispositivo atual (desktop ou mobile)
+            window.currentDeviceMode = 'desktop'; // Padrão é desktop
+            
+            // Função para alternar entre modos de dispositivo
+            window.setDeviceMode = function(mode) {
+                window.currentDeviceMode = mode;
+                document.getElementById('current-mode').textContent = `Modo atual: ${mode === 'desktop' ? 'Desktop' : 'Mobile'}`;
+                
+                // Destacar o botão ativo
+                if (mode === 'desktop') {
+                    document.getElementById('desktop-mode-btn').style.background = '#2ecc71';
+                    document.getElementById('mobile-mode-btn').style.background = '#3498db';
+                } else {
+                    document.getElementById('desktop-mode-btn').style.background = '#3498db';
+                    document.getElementById('mobile-mode-btn').style.background = '#2ecc71';
+                }
+                
+                // Carregar as posições salvas para o modo selecionado
+                loadSavedPositions(mode);
+                
+                // Atualizar informações de posição
+                updatePositionInfo();
+            };
+            
+            // Função para carregar posições salvas com base no modo de dispositivo
+            window.loadSavedPositions = function(mode) {
+                const icons = [
+                    {selector: '.fuel-station', keyPrefix: 'fuelStation'},
+                    {selector: '.grain-storage', keyPrefix: 'grainStorage'},
+                    {selector: '.office', keyPrefix: 'office'},
+                    {selector: '.cattle', keyPrefix: 'cattle'},
+                    {selector: '.inventory', keyPrefix: 'inventory'},
+                    {selector: '.fields', keyPrefix: 'fields'},
+                    {selector: '.machines', keyPrefix: 'machines'},
+                    {selector: '.biologicals', keyPrefix: 'biologicals'},
+                    {selector: '.rainfall', keyPrefix: 'rainfall'},
+                    {selector: '.monitoring', keyPrefix: 'monitoring'}
+                ];
+                
+                icons.forEach(icon => {
+                    const element = document.querySelector(icon.selector);
+                    if (!element) return;
+                    
+                    const topKey = `${icon.keyPrefix}Top_${mode}`;
+                    const leftKey = `${icon.keyPrefix}Left_${mode}`;
+                    
+                    const savedTop = localStorage.getItem(topKey);
+                    const savedLeft = localStorage.getItem(leftKey);
+                    
+                    if (savedTop) element.style.top = `${savedTop}px`;
+                    if (savedLeft) element.style.left = `${savedLeft}px`;
+                });
+            };
+            
             // Função para salvar a posição do posto de combustível
             window.saveFuelPosition = function() {
                 const fuelStation = document.querySelector('.fuel-station');
@@ -2627,10 +2862,11 @@
                 const fuelTop = parseInt(fuelStyle.top) || 0;
                 const fuelLeft = parseInt(fuelStyle.left) || 0;
                 
-                localStorage.setItem('fuelStationTop', fuelTop);
-                localStorage.setItem('fuelStationLeft', fuelLeft);
+                // Salvar com sufixo específico para o modo (desktop/mobile)
+                localStorage.setItem(`fuelStationTop_${window.currentDeviceMode}`, fuelTop);
+                localStorage.setItem(`fuelStationLeft_${window.currentDeviceMode}`, fuelLeft);
                 
-                alert(`Posição do posto salva: top: ${fuelTop}px, left: ${fuelLeft}px`);
+                alert(`Posição do posto salva para ${window.currentDeviceMode}: top: ${fuelTop}px, left: ${fuelLeft}px`);
             };
             
             // Função para salvar a posição do armazém de grãos
@@ -2640,10 +2876,11 @@
                 const grainTop = parseInt(grainStyle.top) || 0;
                 const grainLeft = parseInt(grainStyle.left) || 0;
                 
-                localStorage.setItem('grainStorageTop', grainTop);
-                localStorage.setItem('grainStorageLeft', grainLeft);
+                // Salvar com sufixo específico para o modo (desktop/mobile)
+                localStorage.setItem(`grainStorageTop_${window.currentDeviceMode}`, grainTop);
+                localStorage.setItem(`grainStorageLeft_${window.currentDeviceMode}`, grainLeft);
                 
-                alert(`Posição do armazém salva: top: ${grainTop}px, left: ${grainLeft}px`);
+                alert(`Posição do armazém salva para ${window.currentDeviceMode}: top: ${grainTop}px, left: ${grainLeft}px`);
             };
             
             // Função para salvar a posição do escritório
@@ -2653,10 +2890,11 @@
                 const officeTop = parseInt(officeStyle.top) || 0;
                 const officeLeft = parseInt(officeStyle.left) || 0;
                 
-                localStorage.setItem('officeTop', officeTop);
-                localStorage.setItem('officeLeft', officeLeft);
+                // Salvar com sufixo específico para o modo (desktop/mobile)
+                localStorage.setItem(`officeTop_${window.currentDeviceMode}`, officeTop);
+                localStorage.setItem(`officeLeft_${window.currentDeviceMode}`, officeLeft);
                 
-                alert(`Posição do escritório salva: top: ${officeTop}px, left: ${officeLeft}px`);
+                alert(`Posição do escritório salva para ${window.currentDeviceMode}: top: ${officeTop}px, left: ${officeLeft}px`);
             };
             
             // Função para salvar a posição do confinamento
@@ -3222,115 +3460,173 @@
             }
             
             // Controlador para modal de informações dos ícones
-            const iconInfo = document.querySelector('.icon-info');
+            const iconInfoModal = document.querySelector('.icon-info');
             const closeInfo = document.querySelector('.close-info');
             
-            if (closeInfo) {
+            if (closeInfo && iconInfoModal) {
                 closeInfo.addEventListener('click', () => {
-                    iconInfo.style.display = 'none';
+                    iconInfoModal.style.display = 'none';
                 });
             }
             
             // Função para mostrar informações quando um ícone é clicado
-            window.showIconInfo = function(module) {
+            function showIconInfo(module) {
                 const infoContent = document.querySelector('.info-content');
                 
-                // Conteúdo dinâmico baseado no módulo clicado
+                // Se for posto ou armazém, usar os popups específicos existentes
+                if (module === 'fuel') {
+                    window.location.href = 'fuel-dashboard.html';
+                    return;
+                } else if (module === 'grain') {
+                    const grainStoragePopup = document.getElementById('grain-storage-popup');
+                    if (grainStoragePopup) {
+                        grainStoragePopup.classList.add('active');
+                    }
+                    return;
+                }
+                
+                // Para os outros ícones, continuar com o comportamento padrão
+                // Definir o conteúdo baseado no módulo clicado
                 let content = '';
+                
                 switch(module) {
-                    case 'oficina':
-                        content = '<h2>Oficina</h2><p>Gerenciamento de manutenção de equipamentos e veículos.</p>';
+                    case 'office':
+                        content = '<h2><i class="fas fa-briefcase"></i> Escritório</h2><p>O módulo de gestão do escritório permite controlar as finanças, documentos e contratos da fazenda.</p><ul><li>Notas fiscais</li><li>Contratos</li><li>Fluxo de caixa</li><li>Relatórios financeiros</li></ul>';
                         break;
-                    case 'confinamento':
-                        content = '<h2>Confinamento</h2><p>Controle de gado e manejo animal.</p>';
+                    case 'cattle':
+                        content = '<h2><i class="fas fa-cow"></i> Confinamento</h2><p>Gerencie todo o ciclo de vida do seu rebanho, com controle de alimentação, medicamentos e desempenho.</p>';
                         break;
-                    case 'armazem':
-                        content = '<h2>Armazém</h2><p>Gestão de estoque de produtos agrícolas.</p>';
+                    case 'inventory':
+                        content = '<h2><i class="fas fa-box"></i> Estoque</h2><p>Controle completo de insumos, sementes, defensivos e medicamentos, com alertas de níveis baixos.</p>';
                         break;
-                    case 'estoque':
-                        content = '<h2>Estoque</h2><p>Controle de insumos e materiais.</p>';
+                    case 'fields':
+                        content = '<h2><i class="fas fa-seedling"></i> Talhões</h2><p>Acompanhe o desenvolvimento das culturas, histórico de produtividade e planejamento de plantio.</p>';
                         break;
-                    case 'combustivel':
-                        content = '<h2>Posto de Combustível</h2><p>Gerenciamento de abastecimento e consumo.</p>';
+                    case 'machines':
+                        content = '<h2><i class="fas fa-tractor"></i> Máquinas</h2><p>Gestão da frota de máquinas e implementos, com controle de manutenções e depreciação.</p>';
+                        break;
+                    case 'biologicals':
+                        content = '<h2><i class="fas fa-bacteria"></i> Biológicos</h2><p>Gestão completa de produtos biológicos, aplicações e efetividade no campo.</p>';
+                        break;
+                    case 'rainfall':
+                        content = '<h2><i class="fas fa-cloud-rain"></i> Chuvas</h2><p>Histórico de precipitação, previsão do tempo e alertas meteorológicos para sua região.</p>';
+                        break;
+                    case 'monitoring':
+                        content = '<h2><i class="fas fa-bug"></i> Monitoramento</h2><p>Controle de pragas e doenças, com registro de ocorrências e recomendações de manejo.</p>';
                         break;
                     default:
-                        content = '<h2>Módulo</h2><p>Informações sobre este módulo estarão disponíveis em breve.</p>';
+                        content = '<h2>Módulo não encontrado</h2>';
                 }
                 
                 infoContent.innerHTML = content;
-                iconInfo.style.display = 'flex';
-            };
+                const iconInfoModal = document.querySelector('.icon-info');
+                if (iconInfoModal) {
+                    iconInfoModal.style.display = 'flex';
+                }
+            }
             
             // Adicionar listener para fechar modal ao clicar fora do conteúdo
-            iconInfo.addEventListener('click', (e) => {
-                if (e.target === iconInfo) {
-                    iconInfo.style.display = 'none';
+            const iconInfoElement = document.querySelector('.icon-info');
+            iconInfoElement.addEventListener('click', function(e) {
+                if (e.target === iconInfoElement) {
+                    iconInfoElement.style.display = 'none';
+                }
+            });
+            
+            // Função para ajustar posições quando a janela é redimensionada
+            window.addEventListener('resize', function() {
+                // Detectar se é uma visualização móvel ou desktop
+                const isMobile = window.innerWidth < 768;
+                const newMode = isMobile ? 'mobile' : 'desktop';
+                
+                // Se o modo mudou com o redimensionamento, atualizar a interface
+                if (window.currentDeviceMode !== newMode) {
+                    window.currentDeviceMode = newMode;
+                    document.getElementById('current-mode').textContent = `Modo atual: ${newMode === 'desktop' ? 'Desktop' : 'Mobile'}`;
+                    
+                    // Destacar o botão ativo
+                    if (newMode === 'desktop') {
+                        document.getElementById('desktop-mode-btn').style.background = '#2ecc71';
+                        document.getElementById('mobile-mode-btn').style.background = '#3498db';
+                    } else {
+                        document.getElementById('desktop-mode-btn').style.background = '#3498db';
+                        document.getElementById('mobile-mode-btn').style.background = '#2ecc71';
+                    }
+                    
+                    // Carregar as posições salvas para o novo modo
+                    loadSavedPositions(newMode);
                 }
             });
             
             // Função para resetar as posições dos ícones
             window.resetIconPositions = function() {
-                // Limpar todas as posições salvas
-                const keys = [
-                    'fuelStationTop', 'fuelStationLeft',
-                    'grainStorageTop', 'grainStorageLeft',
-                    'officeTop', 'officeLeft',
-                    'cattleTop', 'cattleLeft',
-                    'inventoryTop', 'inventoryLeft',
-                    'fieldsTop', 'fieldsLeft',
-                    'machinesTop', 'machinesLeft',
-                    'biologicalsTop', 'biologicalsLeft',
-                    'rainfallTop', 'rainfallLeft',
-                    'monitoringTop', 'monitoringLeft',
-                    'officeIcon'
-                ];
+                // Valores padrão para desktop
+                let defaultPositions = {
+                    desktop: {
+                        fuel: { top: '55%', left: '38%' },
+                        grain: { top: '70%', left: '60%' },
+                        office: { top: '30%', left: '70%' },
+                        cattle: { top: '60%', left: '80%' },
+                        inventory: { top: '40%', left: '25%' },
+                        fields: { top: '45%', left: '55%' },
+                        machines: { top: '25%', left: '45%' },
+                        biologicals: { top: '15%', left: '60%' },
+                        rainfall: { top: '15%', left: '30%' },
+                        monitoring: { top: '80%', left: '25%' }
+                    },
+                    mobile: {
+                        fuel: { top: '60%', left: '30%' },
+                        grain: { top: '75%', left: '65%' },
+                        office: { top: '25%', left: '75%' },
+                        cattle: { top: '55%', left: '85%' },
+                        inventory: { top: '35%', left: '20%' },
+                        fields: { top: '45%', left: '50%' },
+                        machines: { top: '20%', left: '40%' },
+                        biologicals: { top: '10%', left: '60%' },
+                        rainfall: { top: '10%', left: '25%' },
+                        monitoring: { top: '80%', left: '20%' }
+                    }
+                };
                 
-                // Remover todos os itens do localStorage
-                keys.forEach(key => {
-                    localStorage.removeItem(key);
+                // Usar os valores padrão para o modo atual ou detectar automaticamente no carregamento inicial
+                const currentMode = window.currentDeviceMode || (window.innerWidth < 768 ? 'mobile' : 'desktop');
+                const positions = defaultPositions[currentMode];
+                
+                // Redefinir posições
+                document.querySelector('.fuel-station').style.top = positions.fuel.top;
+                document.querySelector('.fuel-station').style.left = positions.fuel.left;
+                document.querySelector('.grain-storage').style.top = positions.grain.top;
+                document.querySelector('.grain-storage').style.left = positions.grain.left;
+                document.querySelector('.office').style.top = positions.office.top;
+                document.querySelector('.office').style.left = positions.office.left;
+                document.querySelector('.cattle').style.top = positions.cattle.top;
+                document.querySelector('.cattle').style.left = positions.cattle.left;
+                document.querySelector('.inventory').style.top = positions.inventory.top;
+                document.querySelector('.inventory').style.left = positions.inventory.left;
+                document.querySelector('.fields').style.top = positions.fields.top;
+                document.querySelector('.fields').style.left = positions.fields.left;
+                document.querySelector('.machines').style.top = positions.machines.top;
+                document.querySelector('.machines').style.left = positions.machines.left;
+                document.querySelector('.biologicals').style.top = positions.biologicals.top;
+                document.querySelector('.biologicals').style.left = positions.biologicals.left;
+                document.querySelector('.rainfall').style.top = positions.rainfall.top;
+                document.querySelector('.rainfall').style.left = positions.rainfall.left;
+                document.querySelector('.monitoring').style.top = positions.monitoring.top;
+                document.querySelector('.monitoring').style.left = positions.monitoring.left;
+                
+                // Limpar armazenamento local para o modo atual
+                const prefixes = ['fuelStation', 'grainStorage', 'office', 'cattle', 'inventory', 'fields', 'machines', 'biologicals', 'rainfall', 'monitoring'];
+                prefixes.forEach(prefix => {
+                    localStorage.removeItem(`${prefix}Top_${currentMode}`);
+                    localStorage.removeItem(`${prefix}Left_${currentMode}`);
                 });
                 
-                // Obter todos os ícones
-                const fuelStation = document.querySelector('.fuel-station');
-                const grainStorage = document.querySelector('.grain-storage');
-                const office = document.querySelector('.office');
-                const cattle = document.querySelector('.cattle');
-                const inventory = document.querySelector('.inventory');
-                const fields = document.querySelector('.fields');
-                const machines = document.querySelector('.machines');
-                const biologicals = document.querySelector('.biologicals');
-                const rainfall = document.querySelector('.rainfall');
-                const monitoring = document.querySelector('.monitoring');
-                
-                // Remover estilos inline
-                fuelStation.removeAttribute('style');
-                grainStorage.removeAttribute('style');
-                office.removeAttribute('style');
-                cattle.removeAttribute('style');
-                inventory.removeAttribute('style');
-                fields.removeAttribute('style');
-                machines.removeAttribute('style');
-                biologicals.removeAttribute('style');
-                rainfall.removeAttribute('style');
-                monitoring.removeAttribute('style');
-                
-                // Fechar o painel de controle se estiver aberto
-                if (document.getElementById('positionControlPanel')) {
-                    document.getElementById('positionControlPanel').style.display = 'none';
-                }
-                
-                // Recarregar a página para aplicar o CSS padrão
-                window.location.reload();
+                // Atualizar informações de posição
+                updatePositionInfo();
                 
                 // Exibir mensagem de sucesso
-                alert('Posições dos ícones restauradas com sucesso! As posições atuais foram salvas como padrão.');
-            };
-            
-            // Função para mostrar a página completa do módulo de abastecimento
-            window.showFuelInfo = function() {
-                // Redirecionar para a nova página do módulo de abastecimento
-                window.location.href = '/fuel-dashboard.html';
-            };
+                alert('Posições dos ícones restauradas com sucesso!');
+            }
             
             // Configurar o botão de voltar do módulo de abastecimento
             document.getElementById('fuel-module-back').addEventListener('click', function() {
@@ -3348,114 +3644,96 @@
                     // Adicionar classe ativa à aba clicada
                     this.classList.add('active');
                     
-                    // Obter o ID da aba
-                    const tabId = this.getAttribute('data-tab');
-                    
                     // Esconder todos os conteúdos
                     document.querySelectorAll('.fuel-display-content').forEach(content => {
                         content.style.display = 'none';
                     });
                     
                     // Mostrar o conteúdo correspondente
+                    const tabId = this.getAttribute('data-tab');
                     document.getElementById('fuel-' + tabId + '-display').style.display = 'block';
                 });
             });
-            
-            // Função para mostrar informações do armazém de grãos
-            window.showGrainStorageInfo = function() {
-                const grainStoragePopup = document.getElementById('grain-storage-popup');
-                grainStoragePopup.classList.add('active');
-            };
             
             // Configurar fechamento do popup de combustível
             const fuelInfoPopup = document.getElementById('fuel-info-popup');
             const fuelInfoClose = document.getElementById('fuel-info-close');
             
-            fuelInfoClose.addEventListener('click', () => {
+            fuelInfoClose.addEventListener('click', function() {
                 fuelInfoPopup.classList.remove('active');
             });
             
-            // Configurar as abas do popup de combustível
-            document.querySelectorAll('.fuel-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remover classe ativa de todas as abas
-                    document.querySelectorAll('.fuel-tab').forEach(t => {
-                        t.classList.remove('active');
-                    });
-                    
-                    // Adicionar classe ativa à aba clicada
-                    this.classList.add('active');
-                    
-                    // Obter o ID da aba
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Esconder todos os conteúdos
-                    document.querySelectorAll('.fuel-tab-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    
-                    // Mostrar o conteúdo correspondente
-                    document.getElementById('fuel-' + tabId).classList.add('active');
-                });
-            });
-            
-            fuelInfoPopup.addEventListener('click', (e) => {
-                if (e.target === fuelInfoPopup) {
-                    fuelInfoPopup.classList.remove('active');
-                }
-            });
-            
-            // Configurar fechamento do popup do armazém de grãos
-            const grainStoragePopup = document.getElementById('grain-storage-popup');
-            const grainStorageClose = document.getElementById('grain-storage-close');
-            
-            grainStorageClose.addEventListener('click', () => {
-                grainStoragePopup.classList.remove('active');
-            });
-            
-            grainStoragePopup.addEventListener('click', (e) => {
-                if (e.target === grainStoragePopup) {
-                    grainStoragePopup.classList.remove('active');
+            // Fechar popup ao clicar fora da área de conteúdo
+            fuelInfoPopup.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
                 }
             });
             
             // Configurar as abas do popup de combustível
             const fuelTabs = document.querySelectorAll('.fuel-tab');
+            const fuelTabContents = document.querySelectorAll('.fuel-tab-content');
+            
             fuelTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remover a classe active de todas as abas
+                tab.addEventListener('click', function() {
+                    // Remover classe ativa de todas as abas
                     fuelTabs.forEach(t => t.classList.remove('active'));
-                    // Adicionar a classe active na aba clicada
-                    tab.classList.add('active');
+                    
+                    // Adicionar classe ativa à aba clicada
+                    this.classList.add('active');
                     
                     // Esconder todos os conteúdos
-                    document.querySelectorAll('.fuel-consumption, .fuel-maintenance, .fuel-history').forEach(content => {
-                        content.classList.remove('active');
+                    fuelTabContents.forEach(content => {
+                        content.style.display = 'none';
                     });
                     
-                    // Mostrar o conteúdo correspondente à aba clicada
-                    const tabName = tab.getAttribute('data-tab');
-                    document.querySelector(`.fuel-${tabName}`).classList.add('active');
+                    // Mostrar o conteúdo correspondente
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById('fuel-' + tabId).style.display = 'block';
                 });
+            });
+            
+            // Configurar popup do armazém de grãos
+            const grainStoragePopup = document.getElementById('grain-storage-popup');
+            const grainStorageClose = document.getElementById('grain-storage-close');
+            
+            // Correção para o problema que fazia o resto parar de funcionar
+            // Usando stopPropagation para evitar que o evento chegue a outros elementos
+            grainStoragePopup.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            grainStorageClose.addEventListener('click', function() {
+                grainStoragePopup.classList.remove('active');
+            });
+            
+            // Fechar popup ao clicar fora da área de conteúdo
+            grainStoragePopup.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
             });
             
             // Configurar as abas do popup do armazém de grãos
             const grainTabs = document.querySelectorAll('.grain-tab');
+            const grainTabContents = document.querySelectorAll('.grain-tab-content');
+            
             grainTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remover a classe active de todas as abas
+                tab.addEventListener('click', function() {
+                    // Remover classe ativa de todas as abas
                     grainTabs.forEach(t => t.classList.remove('active'));
-                    // Adicionar a classe active na aba clicada
-                    tab.classList.add('active');
+                    
+                    // Adicionar classe ativa à aba clicada
+                    this.classList.add('active');
                     
                     // Esconder todos os conteúdos
-                    document.querySelectorAll('.grain-inventory, .grain-movement, .grain-reports').forEach(content => {
-                        content.classList.remove('active');
+                    grainTabContents.forEach(content => {
+                        content.style.display = 'none';
                     });
                     
-                    // Mostrar o conteúdo correspondente à aba clicada
-                    const tabName = tab.getAttribute('data-tab');
-                    document.querySelector(`.grain-${tabName}`).classList.add('active');
+                    // Mostrar o conteúdo correspondente
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById('grain-' + tabId).style.display = 'block';
                 });
             });
         });

@@ -9,7 +9,7 @@ const OpenAI = require('openai');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Configuração da API da OpenAI
 const openai = new OpenAI({
@@ -27,6 +27,11 @@ if (!process.env.OPENAI_API_KEY) {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'frontend')));
+
+// Rota específica para o blog
+app.get('/blog', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'blog', 'index.html'));
+});
 
 // Endpoint para o assistente de IA
 app.post('/api/chat', async (req, res) => {
