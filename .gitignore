@@ -2,3 +2,4 @@
 # Arquivos de ambiente
 *.env*
 \!.env.example
+node_modules
