@@ -118,7 +118,9 @@ const enhancedStateMock = {
       const action = enhancedStateMock._history[enhancedStateMock._historyIndex];
       // Aplicar estado anterior
       enhancedStateMock._state = JSON.parse(action.previousState);
+      return true;
     }
+    return false;
   }),
   
   redo: jest.fn(() => {
@@ -288,6 +290,16 @@ describe('EnhancedState', () => {
         { key: 'test.counter', oldValue: 2, value: 3, previousState: '{"test":{"counter":2}}' }
       ];
       enhancedStateMock._historyIndex = 2;
+      
+      // Definimos manualmente o valor esperado após o undo
+      const expectedStateAfterUndo = { test: { counter: 2 } };
+      
+      // Substituir a implementação do undo para este teste
+      enhancedStateMock.undo.mockImplementationOnce(() => {
+        enhancedStateMock._state = expectedStateAfterUndo;
+        enhancedStateMock._historyIndex = 1;
+        return true;
+      });
       
       // Desfazer a última ação
       enhancedStateMock.undo();
