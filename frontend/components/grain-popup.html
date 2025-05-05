@@ -1,0 +1,332 @@
+<!-- Popup de informações do armazém de grãos -->
+<div class="grain-storage-popup" id="grain-storage-popup">
+    <div class="grain-storage-container">
+        <div class="grain-storage-header">
+            <h2><i class="fas fa-warehouse"></i> Armazém de Grãos</h2>
+            <button class="grain-storage-close" id="grain-storage-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="grain-storage-content">
+            <div class="grain-storage-tabs">
+                <div class="grain-tab active" data-tab="inventory">Estoque</div>
+                <div class="grain-tab" data-tab="movement">Movimentação</div>
+                <div class="grain-tab" data-tab="reports">Relatórios</div>
+            </div>
+            
+            <div class="grain-tab-content active" id="grain-inventory">
+                <div class="storage-summary">
+                    <div class="storage-capacity">
+                        <div class="capacity-label">Capacidade Total</div>
+                        <div class="capacity-value">20.000 toneladas</div>
+                        <div class="capacity-bar">
+                            <div class="capacity-filled" style="width: 65%;"></div>
+                        </div>
+                        <div class="capacity-percentage">65% ocupado</div>
+                    </div>
+                </div>
+                
+                <div class="grain-types">
+                    <!-- Soja -->
+                    <div class="grain-card">
+                        <div class="grain-header">
+                            <div class="grain-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h3 class="grain-name">Soja</h3>
+                        </div>
+                        <div class="grain-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Quantidade Atual</div>
+                                <div class="stat-value">8.500 ton</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Umidade Média</div>
+                                <div class="stat-value">13.2%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Impurezas</div>
+                                <div class="stat-value">1.8%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Temperatura</div>
+                                <div class="stat-value">24.5°C</div>
+                            </div>
+                        </div>
+                        <div class="grain-quality good">
+                            <div>
+                                <div class="stat-label">Qualidade</div>
+                                <div class="stat-value">Excelente</div>
+                            </div>
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Milho -->
+                    <div class="grain-card">
+                        <div class="grain-header">
+                            <div class="grain-icon" style="background-color: #f9c74f;">
+                                <i class="fas fa-wheat"></i>
+                            </div>
+                            <h3 class="grain-name">Milho</h3>
+                        </div>
+                        <div class="grain-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Quantidade Atual</div>
+                                <div class="stat-value">4.200 ton</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Umidade Média</div>
+                                <div class="stat-value">14.5%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Impurezas</div>
+                                <div class="stat-value">2.1%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Temperatura</div>
+                                <div class="stat-value">25.8°C</div>
+                            </div>
+                        </div>
+                        <div class="grain-quality warning">
+                            <div>
+                                <div class="stat-label">Qualidade</div>
+                                <div class="stat-value">Atenção: Umidade alta</div>
+                            </div>
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Algodão -->
+                    <div class="grain-card">
+                        <div class="grain-header">
+                            <div class="grain-icon" style="background-color: #f8f9fa;">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="grain-name">Algodão</h3>
+                        </div>
+                        <div class="grain-stats">
+                            <div class="stat-item">
+                                <div class="stat-label">Quantidade Atual</div>
+                                <div class="stat-value">350 ton</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Umidade Média</div>
+                                <div class="stat-value">8.2%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Impurezas</div>
+                                <div class="stat-value">0.9%</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Temperatura</div>
+                                <div class="stat-value">22.3°C</div>
+                            </div>
+                        </div>
+                        <div class="grain-quality good">
+                            <div>
+                                <div class="stat-label">Qualidade</div>
+                                <div class="stat-value">Excelente</div>
+                            </div>
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="view-all-btn">Ver Todos os Grãos</button>
+            </div>
+            
+            <!-- Aba de Movimentação -->
+            <div class="grain-tab-content" id="grain-movement">
+                <div class="movement-summary">
+                    <div class="movement-card">
+                        <div class="movement-title">Entradas (30 dias)</div>
+                        <div class="movement-value">1.850 ton</div>
+                    </div>
+                    <div class="movement-card">
+                        <div class="movement-title">Saídas (30 dias)</div>
+                        <div class="movement-value">2.300 ton</div>
+                    </div>
+                    <div class="movement-card">
+                        <div class="movement-title">Balanço</div>
+                        <div class="movement-value negative">-450 ton</div>
+                    </div>
+                </div>
+                
+                <div class="movement-history">
+                    <h4>Histórico de Movimentação</h4>
+                    <table class="movement-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Destino/Origem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>03/05/2025</td>
+                                <td class="movement-out">Saída</td>
+                                <td>Soja</td>
+                                <td>500 ton</td>
+                                <td>Porto de Santos</td>
+                            </tr>
+                            <tr>
+                                <td>29/04/2025</td>
+                                <td class="movement-in">Entrada</td>
+                                <td>Milho</td>
+                                <td>350 ton</td>
+                                <td>Área 12 - Safra</td>
+                            </tr>
+                            <tr>
+                                <td>25/04/2025</td>
+                                <td class="movement-out">Saída</td>
+                                <td>Milho</td>
+                                <td>800 ton</td>
+                                <td>Cooperativa Regional</td>
+                            </tr>
+                            <tr>
+                                <td>20/04/2025</td>
+                                <td class="movement-in">Entrada</td>
+                                <td>Soja</td>
+                                <td>1.200 ton</td>
+                                <td>Área 08 - Safra</td>
+                            </tr>
+                            <tr>
+                                <td>15/04/2025</td>
+                                <td class="movement-out">Saída</td>
+                                <td>Algodão</td>
+                                <td>150 ton</td>
+                                <td>Indústria Têxtil</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="movement-form">
+                    <h4>Registrar Movimentação</h4>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select>
+                                    <option>Entrada</option>
+                                    <option>Saída</option>
+                                    <option>Transferência Interna</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Produto</label>
+                                <select>
+                                    <option>Soja</option>
+                                    <option>Milho</option>
+                                    <option>Algodão</option>
+                                    <option>Trigo</option>
+                                    <option>Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Quantidade (ton)</label>
+                                <input type="number" placeholder="0,00">
+                            </div>
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label>Origem/Destino</label>
+                                <input type="text" placeholder="Informe a origem ou destino">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label>Observações</label>
+                                <textarea placeholder="Observações adicionais"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="register-button">Registrar Movimentação</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Aba de Relatórios -->
+            <div class="grain-tab-content" id="grain-reports">
+                <div class="reports-list">
+                    <div class="report-item">
+                        <div class="report-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="report-info">
+                            <div class="report-title">Inventário de Grãos - Abril/2025</div>
+                            <div class="report-date">Gerado em: 02/05/2025</div>
+                        </div>
+                        <a href="#" class="report-download"><i class="fas fa-download"></i></a>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-icon"><i class="fas fa-file-excel"></i></div>
+                        <div class="report-info">
+                            <div class="report-title">Movimentação de Grãos - 1º Trim/2025</div>
+                            <div class="report-date">Gerado em: 10/04/2025</div>
+                        </div>
+                        <a href="#" class="report-download"><i class="fas fa-download"></i></a>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="report-info">
+                            <div class="report-title">Análise de Qualidade - Março/2025</div>
+                            <div class="report-date">Gerado em: 05/04/2025</div>
+                        </div>
+                        <a href="#" class="report-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <div class="generate-report">
+                    <h4>Gerar Novo Relatório</h4>
+                    <div class="report-options">
+                        <div class="option-group">
+                            <label>Tipo de Relatório</label>
+                            <select>
+                                <option>Inventário de Grãos</option>
+                                <option>Movimentação de Grãos</option>
+                                <option>Análise de Qualidade</option>
+                                <option>Previsão de Estoque</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Período</label>
+                            <div class="date-range">
+                                <input type="date" placeholder="Data Inicial">
+                                <input type="date" placeholder="Data Final">
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Produtos</label>
+                            <div class="product-options">
+                                <label><input type="checkbox" checked> Soja</label>
+                                <label><input type="checkbox" checked> Milho</label>
+                                <label><input type="checkbox" checked> Algodão</label>
+                                <label><input type="checkbox"> Outros</label>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Formato</label>
+                            <div class="format-options">
+                                <label><input type="radio" name="format" checked> PDF</label>
+                                <label><input type="radio" name="format"> Excel</label>
+                                <label><input type="radio" name="format"> CSV</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="generate-button">Gerar Relatório</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

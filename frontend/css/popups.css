@@ -1,0 +1,504 @@
+/* Estilos para popups e módulos interativos */
+
+/* Estilos gerais para popups */
+.module-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.module-popup.active {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-container {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.module-popup.active .popup-container {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.popup-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.popup-content {
+    padding: 20px;
+}
+
+/* Estilos para as abas */
+.tab-navigation {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Estilos específicos para o popup de combustível */
+.fuel-info-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.fuel-info-container {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.fuel-info-popup.active {
+    display: flex;
+}
+
+.fuel-info-popup.active .fuel-info-container {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.fuel-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #e76f51;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.fuel-info-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fuel-info-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.fuel-info-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.fuel-info-content {
+    padding: 20px;
+}
+
+/* Estilos para as abas do módulo de combustível */
+.fuel-info-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.fuel-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.fuel-tab.active {
+    color: #e76f51;
+    border-bottom: 2px solid #e76f51;
+}
+
+.fuel-tab-content {
+    display: none;
+}
+
+.fuel-tab-content.active {
+    display: block;
+}
+
+/* Estilos específicos para o popup de armazém de grãos */
+.grain-storage-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.grain-storage-container {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.grain-storage-popup.active {
+    display: flex;
+}
+
+.grain-storage-popup.active .grain-storage-container {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.grain-storage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #e9c46a;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.grain-storage-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.grain-storage-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.grain-storage-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.grain-storage-content {
+    padding: 20px;
+}
+
+/* Estilos para cartões e gráficos */
+.grain-card, .machine-card, .consumption-card, .tank-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.grain-header, .machine-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.grain-icon, .machine-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.grain-name, .machine-name {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.grain-stats, .machine-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.stat-item {
+    padding: 8px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.stat-value {
+    font-weight: 600;
+}
+
+.grain-quality, .oil-change {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.good {
+    color: #28a745;
+}
+
+.warning {
+    color: #ffc107;
+}
+
+.danger {
+    color: #dc3545;
+}
+
+/* Botão "Ver Todos" */
+.view-all-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #e76f51;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.view-all-btn:hover {
+    background-color: #e45e4a;
+}
+
+/* Estilos para a página do módulo de combustível */
+.fuel-module-page {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 2000;
+    overflow: auto;
+}
+
+.fuel-display {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 350px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 15px;
+    backdrop-filter: blur(1px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    border: 1px solid rgba(100, 100, 100, 0.5);
+    color: #00ff00;
+}
+
+.fuel-display-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+.fuel-display-tab {
+    flex: 1;
+    text-align: center;
+    padding: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #00cc00;
+    font-family: 'VT323', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+
+.fuel-display-tab.active {
+    color: #00ff00;
+    border-bottom: 2px solid #00ff00;
+    margin-bottom: -1px;
+}
+
+.fuel-display-content {
+    display: none;
+    font-family: 'VT323', 'Courier New', monospace;
+}
+
+.fuel-display-content.active {
+    display: block;
+}
+
+/* Estilos para a barra de progresso */
+.progress-bar {
+    background-color: rgba(0, 255, 0, 0.2);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #00ff00;
+}
+
+/* Estilos para os níveis dos tanques */
+.tank-visual {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    background-color: rgba(0, 255, 0, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.tank-level-fill {
+    height: 100%;
+    background-color: #00ff00;
+}
+
+.low-level {
+    background-color: #ff3300;
+}
+
+.medium-level {
+    background-color: #ffcc00;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 767px) {
+    .popup-container, 
+    .fuel-info-container, 
+    .grain-storage-container {
+        width: 95%;
+        max-height: 80vh;
+    }
+    
+    .grain-stats, 
+    .machine-stats {
+        grid-template-columns: 1fr;
+    }
+}

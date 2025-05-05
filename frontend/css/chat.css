@@ -1,0 +1,228 @@
+/* Estilos para o chat overlay */
+.chat-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 900;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    height: 80vh;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.chat-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.chat-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.message {
+    margin-bottom: 15px;
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    position: relative;
+    color: #333;
+    word-break: break-word;
+}
+
+.user-message {
+    background-color: #e1f5fe;
+    align-self: flex-end;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+}
+
+.bot-message {
+    background-color: #fff;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input-area {
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+}
+
+.chat-send {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.suggestion-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 20px;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.suggestion-chip {
+    background-color: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.suggestion-chip:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+/* Animações para mensagens */
+@keyframes slideInRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.user-message {
+    animation: slideInRight 0.3s forwards;
+}
+
+.bot-message {
+    animation: slideInLeft 0.3s forwards;
+}
+
+.bot-typing {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #fff;
+    padding: .5rem;
+    border-radius: 1rem;
+    align-self: flex-start;
+    width: fit-content;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #999;
+    border-radius: 50%;
+    margin: 0 2px;
+    display: inline-block;
+    animation: typingAnimation 1s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) {
+    animation-delay: 0ms;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 200ms;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 400ms;
+}
+
+@keyframes typingAnimation {
+    0% {
+        transform: translateY(0px);
+        background-color: #999;
+    }
+    25% {
+        transform: translateY(-5px);
+        background-color: #666;
+    }
+    50% {
+        transform: translateY(0px);
+        background-color: #999;
+    }
+}
+
+/* Adaptações para dispositivos móveis */
+@media (max-width: 767px) {
+    .chat-container {
+        width: 95%;
+        height: 90vh;
+        max-height: none;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+}

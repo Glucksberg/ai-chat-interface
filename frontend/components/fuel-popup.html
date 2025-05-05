@@ -1,0 +1,289 @@
+<!-- Popup de informações do posto de combustível -->
+<div class="fuel-info-popup" id="fuel-info-popup">
+    <div class="fuel-info-container">
+        <div class="fuel-info-header">
+            <h2><i class="fas fa-gas-pump"></i> Posto de Combustível</h2>
+            <button class="fuel-info-close" id="fuel-info-close"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="fuel-info-content">
+            <div class="fuel-info-tabs">
+                <div class="fuel-tab active" data-tab="inventory">Estoque</div>
+                <div class="fuel-tab" data-tab="consumption">Consumo</div>
+                <div class="fuel-tab" data-tab="reports">Relatórios</div>
+            </div>
+            
+            <!-- Aba de Estoque -->
+            <div class="fuel-tab-content active" id="fuel-inventory">
+                <div class="tank-summary">
+                    <div class="tank-card">
+                        <div class="tank-title">Diesel S10</div>
+                        <div class="tank-level-visual">
+                            <div class="tank-fill" style="width: 75%;"></div>
+                        </div>
+                        <div class="tank-info">
+                            <div class="tank-amount">15.000 litros</div>
+                            <div class="tank-capacity">Capacidade: 20.000 litros</div>
+                        </div>
+                        <div class="tank-status good">Nível adequado</div>
+                    </div>
+                    
+                    <div class="tank-card">
+                        <div class="tank-title">Diesel S500</div>
+                        <div class="tank-level-visual">
+                            <div class="tank-fill" style="width: 35%;"></div>
+                        </div>
+                        <div class="tank-info">
+                            <div class="tank-amount">7.000 litros</div>
+                            <div class="tank-capacity">Capacidade: 20.000 litros</div>
+                        </div>
+                        <div class="tank-status warning">Nível baixo - Reabastecer</div>
+                    </div>
+                    
+                    <div class="tank-card">
+                        <div class="tank-title">Gasolina</div>
+                        <div class="tank-level-visual">
+                            <div class="tank-fill" style="width: 90%;"></div>
+                        </div>
+                        <div class="tank-info">
+                            <div class="tank-amount">4.500 litros</div>
+                            <div class="tank-capacity">Capacidade: 5.000 litros</div>
+                        </div>
+                        <div class="tank-status good">Nível adequado</div>
+                    </div>
+                </div>
+                
+                <div class="last-delivery">
+                    <h4>Última Entrega</h4>
+                    <div class="delivery-info">
+                        <div class="delivery-date">28/04/2025</div>
+                        <div class="delivery-amount">Diesel S10: 10.000 litros</div>
+                        <div class="delivery-supplier">Fornecedor: Petrobras Distribuidora</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba de Consumo -->
+            <div class="fuel-tab-content" id="fuel-consumption">
+                <div class="consumption-summary">
+                    <div class="consumption-card">
+                        <div class="consumption-title">Consumo Mensal</div>
+                        <div class="consumption-value">32.450 litros</div>
+                        <div class="consumption-subtitle">Abril/2025</div>
+                    </div>
+                    
+                    <div class="consumption-card">
+                        <div class="consumption-title">Média Diária</div>
+                        <div class="consumption-value">1.082 litros</div>
+                        <div class="consumption-subtitle">Últimos 30 dias</div>
+                    </div>
+                    
+                    <div class="consumption-card">
+                        <div class="consumption-title">Economia</div>
+                        <div class="consumption-value good">-5,2%</div>
+                        <div class="consumption-subtitle">Comparado ao mês anterior</div>
+                    </div>
+                </div>
+                
+                <div class="consumption-chart-container">
+                    <h4>Consumo por Máquina (Litros/Hora)</h4>
+                    <div class="consumption-chart">
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="height: 80%;"></div>
+                            <div class="bar-label">Trator<br>12,5</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="height: 100%;"></div>
+                            <div class="bar-label">Colheitadeira<br>35,8</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="height: 60%;"></div>
+                            <div class="bar-label">Pulverizador<br>8,3</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="height: 40%;"></div>
+                            <div class="bar-label">Caminhão<br>6,2</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-fill" style="height: 25%;"></div>
+                            <div class="bar-label">Utilitário<br>3,1</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="efficiency-metrics">
+                    <h4>Métricas de Eficiência</h4>
+                    <div class="metric-row">
+                        <div class="metric-name">Custo por Hectare:</div>
+                        <div class="metric-value">R$ 45,32</div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-name">Litros por Hora Trabalhada:</div>
+                        <div class="metric-value">14,8</div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-name">Emissão de CO₂ Estimada:</div>
+                        <div class="metric-value">86,2 toneladas</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba de Relatórios -->
+            <div class="fuel-tab-content" id="fuel-reports">
+                <div class="reports-list">
+                    <div class="report-item">
+                        <div class="report-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="report-info">
+                            <div class="report-title">Consumo de Combustível - Março/2025</div>
+                            <div class="report-date">Gerado em: 05/04/2025</div>
+                        </div>
+                        <a href="#" class="report-download"><i class="fas fa-download"></i></a>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-icon"><i class="fas fa-file-excel"></i></div>
+                        <div class="report-info">
+                            <div class="report-title">Inventário de Combustíveis</div>
+                            <div class="report-date">Gerado em: 01/04/2025</div>
+                        </div>
+                        <a href="#" class="report-download"><i class="fas fa-download"></i></a>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="report-info">
+                            <div class="report-title">Manutenção de Bombas - 1º Trim/2025</div>
+                            <div class="report-date">Gerado em: 30/03/2025</div>
+                        </div>
+                        <a href="#" class="report-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                
+                <div class="generate-report">
+                    <h4>Gerar Novo Relatório</h4>
+                    <div class="report-options">
+                        <div class="option-group">
+                            <label>Tipo de Relatório</label>
+                            <select>
+                                <option>Consumo de Combustível</option>
+                                <option>Inventário de Combustíveis</option>
+                                <option>Análise de Eficiência</option>
+                                <option>Manutenção de Equipamentos</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Período</label>
+                            <div class="date-range">
+                                <input type="date" placeholder="Data Inicial">
+                                <input type="date" placeholder="Data Final">
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Formato</label>
+                            <div class="format-options">
+                                <label><input type="radio" name="format" checked> PDF</label>
+                                <label><input type="radio" name="format"> Excel</label>
+                                <label><input type="radio" name="format"> CSV</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="generate-button">Gerar Relatório</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Página específica do módulo de combustível -->
+<div class="fuel-module-page" id="fuel-module-page">
+    <div style="position: relative; width: 100%; height: 100%;">
+        <!-- Botão de voltar -->
+        <button id="fuel-module-back" class="module-back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        
+        <div class="module-content">
+            <img src="/Images/FUEL2.png" alt="Bomba de Combustível" class="module-bg-image">
+            
+            <!-- Visor da bomba com dados -->
+            <div class="fuel-display">
+                <!-- Abas para alternar entre consumo e estoque -->
+                <div class="fuel-display-tabs">
+                    <div class="fuel-display-tab active" data-tab="consumption">Consumo</div>
+                    <div class="fuel-display-tab" data-tab="inventory">Estoque</div>
+                </div>
+                
+                <!-- Conteúdo da aba de consumo -->
+                <div class="fuel-display-content active" id="fuel-consumption-display">
+                    <h3>Média de Consumo por Máquina</h3>
+                    <div class="machine-consumption">
+                        <div class="machine-data">
+                            <span class="machine-name">Trator John Deere 6110J</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <span class="machine-value">12,5 L/h</span>
+                        </div>
+                        
+                        <div class="machine-data">
+                            <span class="machine-name">Colheitadeira Case IH 8250</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                            <span class="machine-value">35,8 L/h</span>
+                        </div>
+                        
+                        <div class="machine-data">
+                            <span class="machine-name">Pulverizador Jacto Uniport 3030</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <span class="machine-value">8,3 L/h</span>
+                        </div>
+                        
+                        <div class="machine-data">
+                            <span class="machine-name">Caminhão Volvo FH 540</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 35%"></div>
+                            </div>
+                            <span class="machine-value">6,2 L/h</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Conteúdo da aba de estoque -->
+                <div class="fuel-display-content" id="fuel-inventory-display">
+                    <h3>Estoque dos Tanques</h3>
+                    
+                    <div class="tank-level">
+                        <div class="tank-data">
+                            <span class="tank-name">Diesel S10</span>
+                            <div class="tank-visual">
+                                <div class="tank-level-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="tank-value">15.000 L / 20.000 L</span>
+                        </div>
+                        
+                        <div class="tank-data">
+                            <span class="tank-name">Diesel S500</span>
+                            <div class="tank-visual">
+                                <div class="tank-level-fill medium-level" style="width: 35%"></div>
+                            </div>
+                            <span class="tank-value warning">7.000 L / 20.000 L</span>
+                        </div>
+                        
+                        <div class="tank-data">
+                            <span class="tank-name">Gasolina</span>
+                            <div class="tank-visual">
+                                <div class="tank-level-fill" style="width: 90%"></div>
+                            </div>
+                            <span class="tank-value">4.500 L / 5.000 L</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

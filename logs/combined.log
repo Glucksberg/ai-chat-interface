@@ -1,0 +1,241 @@
+2025-04-30 02:47:49 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 02:47:49 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 02:47:49 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 02:47:50 [error]: 	Erro ao conectar ao MongoDB: {
+  "service": "cloudfarm-api",
+  "error": "db.collection(...).createCollection is not a function"
+}
+2025-04-30 02:49:14 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 02:49:18 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 02:49:55 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 02:54:28 [error]: 	Erro ao conectar ao MongoDB: {
+  "service": "cloudfarm-api",
+  "error": "Socket 'connect' timed out after 76424ms (connectTimeoutMS: 30000)"
+}
+2025-04-30 08:35:40 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 08:35:40 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 08:35:40 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 08:35:40 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 48caebb0-604c-439b-bc37-2e25055f734c: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 08:35:40 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:37:23 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:37:23 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:37:23 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:37:23 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: a555f543-919a-4097-bbc4-8bd4721dee3b: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 09:37:23 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:38:25 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:38:25 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:38:25 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:38:25 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: c43f5bd2-59c1-4d3b-8096-baab79a68a4f: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 09:38:25 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:59:53 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:59:53 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:59:53 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 09:59:53 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 70cc4645-ba4c-4dd3-895d-820a32b40f3e: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 09:59:53 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 14:52:34 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 14:52:34 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 14:52:34 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 14:52:35 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 41e10d2e-72cb-4280-8e2f-282a5cd7ad9d: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 14:52:35 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:25:38 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:25:38 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:25:38 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:25:38 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 5a4039d5-578f-4311-bea0-e812e345e26b: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 15:25:38 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:42:15 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:42:15 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:42:15 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 15:42:15 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: a25f9158-563a-4319-8bd3-39ae8fbf430a: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 15:42:15 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 19:15:29 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 19:15:29 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 19:15:29 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 19:15:29 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 1279a2c5-65e1-4b6e-9cbd-4d76dac1667d: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 19:15:29 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 20:47:01 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-04-30 20:47:01 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-04-30 20:47:01 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-04-30 20:47:01 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 03562578-d52a-4077-9286-af86f690b8a9: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-04-30 20:47:01 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-04-30 21:22:54 [info]: 	Requisição iniciada: GET / {
+  "service": "cloudfarm-api",
+  "method": "GET",
+  "url": "/",
+  "ip": "::1",
+  "requestId": "spj08x9w"
+}
+2025-05-01 00:20:41 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-05-01 00:20:41 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-05-01 00:20:41 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-05-01 00:20:41 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 1c74d631-f9a6-495c-9fa7-dcf9809e2a57: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-05-01 00:20:41 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-05-01 17:12:41 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-05-01 17:12:41 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-05-01 17:12:41 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-05-01 17:12:41 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: f1b2b23d-f181-46dd-9d2f-079decfcacba: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-05-01 17:12:41 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:25:02 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:25:02 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:25:02 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:25:03 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: 58ffcbe3-61ae-45f4-85d3-606101833ff3: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-05-04 23:25:03 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:48:36 [info]: 	Usando chave OpenAI API {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:48:36 [info]: 	Iniciando servidor... {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:48:36 [info]: 	Servidor rodando na porta 3002 {
+  "service": "cloudfarm-api"
+}
+2025-05-04 23:48:36 [warn]: 	Aviso ao criar índices: {
+  "service": "cloudfarm-api",
+  "error": "Index build failed: bfe933a6-3481-41f0-8fe5-8bc92555655d: Collection cloudfarm.users ( 33962005-c64f-4bbe-9296-5f263018fdaa ) :: caused by :: E11000 duplicate key error collection: cloudfarm.users index: userId_1 dup key: { userId: null }"
+}
+2025-05-04 23:48:36 [info]: 	Conectado ao MongoDB: mongodb://localhost:27017/cloudfarm {
+  "service": "cloudfarm-api"
+}

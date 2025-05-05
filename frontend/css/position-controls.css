@@ -1,0 +1,191 @@
+/* Estilos para o painel de controle de posicionamento dos ícones */
+.position-controls {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 1000;
+    width: 320px;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.position-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.position-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.position-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.position-section {
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Seções coloridas para cada tipo de ícone */
+.section-fuel {
+    border-color: rgba(231, 111, 81, 0.5);
+}
+
+.section-fuel .section-title {
+    color: #e76f51;
+}
+
+.section-grain {
+    border-color: rgba(233, 196, 106, 0.5);
+}
+
+.section-grain .section-title {
+    color: #e9c46a;
+}
+
+.section-office {
+    border-color: rgba(52, 152, 219, 0.5);
+}
+
+.section-office .section-title {
+    color: #3498db;
+}
+
+.section-cattle {
+    border-color: rgba(142, 68, 173, 0.5);
+}
+
+.section-cattle .section-title {
+    color: #8e44ad;
+}
+
+.section-inventory {
+    border-color: rgba(230, 126, 34, 0.5);
+}
+
+.section-inventory .section-title {
+    color: #e67e22;
+}
+
+.section-fields {
+    border-color: rgba(46, 204, 113, 0.5);
+}
+
+.section-fields .section-title {
+    color: #2ecc71;
+}
+
+.section-machines {
+    border-color: rgba(52, 73, 94, 0.5);
+}
+
+.section-machines .section-title {
+    color: #34495e;
+}
+
+.section-biologicals {
+    border-color: rgba(39, 174, 96, 0.5);
+}
+
+.section-biologicals .section-title {
+    color: #27ae60;
+}
+
+.section-rainfall {
+    border-color: rgba(52, 152, 219, 0.5);
+}
+
+.section-rainfall .section-title {
+    color: #3498db;
+}
+
+.section-monitoring {
+    border-color: rgba(211, 84, 0, 0.5);
+}
+
+.section-monitoring .section-title {
+    color: #d35400;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.position-buttons {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.position-btn {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    background: #333;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.position-btn:hover {
+    background: #444;
+}
+
+.position-coords {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 5px;
+}
+
+.save-position-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.save-position-btn:hover {
+    background-color: #238b80;
+}
+
+.save-all-positions-btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.save-all-positions-btn:hover {
+    background-color: #27ae60;
+}

@@ -1,0 +1,8 @@
+2025-04-30 02:47:50 [error]: 	Erro ao conectar ao MongoDB: {
+  "service": "cloudfarm-api",
+  "error": "db.collection(...).createCollection is not a function"
+}
+2025-04-30 02:54:28 [error]: 	Erro ao conectar ao MongoDB: {
+  "service": "cloudfarm-api",
+  "error": "Socket 'connect' timed out after 76424ms (connectTimeoutMS: 30000)"
+}

@@ -1,0 +1,550 @@
+<!-- Popup de informações do Confinamento -->
+<div class="cattle-popup module-popup" id="cattle-popup">
+    <div class="popup-container">
+        <div class="popup-header" style="background-color: #8e44ad;">
+            <h2><i class="fas fa-cow"></i> Confinamento</h2>
+            <button class="popup-close" id="cattle-close"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="popup-content">
+            <div class="tab-navigation">
+                <div class="tab active" data-tab="overview">Visão Geral</div>
+                <div class="tab" data-tab="monitoring">Monitoramento</div>
+                <div class="tab" data-tab="nutrition">Nutrição</div>
+                <div class="tab" data-tab="management">Gestão</div>
+            </div>
+            
+            <!-- Aba Visão Geral -->
+            <div class="tab-content active" id="cattle-overview">
+                <div class="cattle-summary">
+                    <div class="summary-header">
+                        <h3>Resumo do Confinamento</h3>
+                        <div class="status good">Status: Operando Normalmente</div>
+                    </div>
+                    
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <div class="card-icon"><i class="fas fa-cow"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Total de Animais</div>
+                                <div class="card-value">4.850</div>
+                                <div class="card-change positive">+120 <i class="fas fa-arrow-up"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="card-icon"><i class="fas fa-weight"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Peso Médio</div>
+                                <div class="card-value">382 kg</div>
+                                <div class="card-change positive">+2.5% <i class="fas fa-arrow-up"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Ganho Diário Médio</div>
+                                <div class="card-value">1,2 kg/dia</div>
+                                <div class="card-change positive">+0.1 <i class="fas fa-arrow-up"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Dias em Confinamento</div>
+                                <div class="card-value">85 dias</div>
+                                <div class="card-change neutral">Média</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cattle-distribution">
+                    <h3>Distribuição de Animais por Lote</h3>
+                    <div class="chart-container">
+                        <div class="chart-placeholder" style="height: 200px;"></div>
+                    </div>
+                    
+                    <div class="lots-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Lote</th>
+                                    <th>Quantidade</th>
+                                    <th>Peso Médio</th>
+                                    <th>Entrada</th>
+                                    <th>Previsão Saída</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Lote A-25</td>
+                                    <td>850</td>
+                                    <td>425 kg</td>
+                                    <td>10/02/2025</td>
+                                    <td>15/05/2025</td>
+                                    <td><span class="status-badge good">Pronto</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Lote B-32</td>
+                                    <td>1.200</td>
+                                    <td>385 kg</td>
+                                    <td>05/03/2025</td>
+                                    <td>05/06/2025</td>
+                                    <td><span class="status-badge neutral">Em andamento</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Lote C-18</td>
+                                    <td>950</td>
+                                    <td>360 kg</td>
+                                    <td>25/03/2025</td>
+                                    <td>20/06/2025</td>
+                                    <td><span class="status-badge neutral">Em andamento</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Lote D-12</td>
+                                    <td>1.350</td>
+                                    <td>335 kg</td>
+                                    <td>15/04/2025</td>
+                                    <td>10/07/2025</td>
+                                    <td><span class="status-badge warning">Inicial</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Lote E-07</td>
+                                    <td>500</td>
+                                    <td>320 kg</td>
+                                    <td>02/05/2025</td>
+                                    <td>01/08/2025</td>
+                                    <td><span class="status-badge warning">Inicial</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="recent-activities">
+                    <h3>Atividades Recentes</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-user-md"></i></div>
+                            <div class="activity-details">
+                                <div class="activity-title">Vacinação - Lote E-07</div>
+                                <div class="activity-time">Hoje, 08:45</div>
+                                <div class="activity-description">Aplicação de vacina contra Febre Aftosa em 500 animais.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="activity-details">
+                                <div class="activity-title">Transferência de Animais</div>
+                                <div class="activity-time">Ontem, 15:30</div>
+                                <div class="activity-description">Movimentação de 120 animais do curral de adaptação para o Lote E-07.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="fas fa-weight"></i></div>
+                            <div class="activity-details">
+                                <div class="activity-title">Pesagem - Lote A-25</div>
+                                <div class="activity-time">02/05/2025, 09:15</div>
+                                <div class="activity-description">Pesagem para finalização do lote: 850 animais, peso médio 425kg.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba Monitoramento -->
+            <div class="tab-content" id="cattle-monitoring">
+                <div class="monitoring-filters">
+                    <div class="filter-group">
+                        <label>Selecionar Lote:</label>
+                        <select>
+                            <option>Todos os Lotes</option>
+                            <option>Lote A-25</option>
+                            <option>Lote B-32</option>
+                            <option>Lote C-18</option>
+                            <option>Lote D-12</option>
+                            <option>Lote E-07</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Período:</label>
+                        <select>
+                            <option>Últimos 7 dias</option>
+                            <option>Últimos 30 dias</option>
+                            <option>Todo o período</option>
+                        </select>
+                    </div>
+                    
+                    <button class="apply-filter">Aplicar</button>
+                </div>
+                
+                <div class="monitoring-charts">
+                    <div class="chart-row">
+                        <div class="chart-card">
+                            <h4>Ganho de Peso</h4>
+                            <div class="chart-placeholder" style="height: 200px;"></div>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <h4>Consumo de Ração</h4>
+                            <div class="chart-placeholder" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-row">
+                        <div class="chart-card">
+                            <h4>Conversão Alimentar</h4>
+                            <div class="chart-placeholder" style="height: 200px;"></div>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <h4>Saúde do Rebanho</h4>
+                            <div class="chart-placeholder" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="health-alerts">
+                    <h3>Alertas de Saúde</h3>
+                    <div class="alert-list">
+                        <div class="alert-item warning">
+                            <div class="alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="alert-details">
+                                <div class="alert-title">Consumo Reduzido - Lote C-18 (Baia 5)</div>
+                                <div class="alert-time">Hoje, 06:30</div>
+                                <div class="alert-description">20 animais com redução de consumo > 15% nas últimas 24h.</div>
+                            </div>
+                            <div class="alert-actions">
+                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                <button class="action-btn task"><i class="fas fa-clipboard-list"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="alert-item danger">
+                            <div class="alert-icon"><i class="fas fa-skull-crossbones"></i></div>
+                            <div class="alert-details">
+                                <div class="alert-title">Mortalidade - Lote B-32 (Baia 8)</div>
+                                <div class="alert-time">Ontem, 17:45</div>
+                                <div class="alert-description">1 animal encontrado morto. Necessária necropsia para determinar causa.</div>
+                            </div>
+                            <div class="alert-actions">
+                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                <button class="action-btn task"><i class="fas fa-clipboard-list"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba Nutrição -->
+            <div class="tab-content" id="cattle-nutrition">
+                <div class="nutrition-summary">
+                    <h3>Resumo Nutricional</h3>
+                    <div class="ration-cards">
+                        <div class="ration-card">
+                            <div class="ration-title">Ração de Adaptação</div>
+                            <div class="ration-details">
+                                <div class="ration-info">
+                                    <span class="info-label">Fornecimento:</span>
+                                    <span class="info-value">5.0 kg/dia</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Animais:</span>
+                                    <span class="info-value">500</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Proteína:</span>
+                                    <span class="info-value">14%</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Total Diário:</span>
+                                    <span class="info-value">2.500 kg</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ration-card">
+                            <div class="ration-title">Ração de Crescimento</div>
+                            <div class="ration-details">
+                                <div class="ration-info">
+                                    <span class="info-label">Fornecimento:</span>
+                                    <span class="info-value">9.5 kg/dia</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Animais:</span>
+                                    <span class="info-value">2.300</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Proteína:</span>
+                                    <span class="info-value">16%</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Total Diário:</span>
+                                    <span class="info-value">21.850 kg</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ration-card">
+                            <div class="ration-title">Ração de Terminação</div>
+                            <div class="ration-details">
+                                <div class="ration-info">
+                                    <span class="info-label">Fornecimento:</span>
+                                    <span class="info-value">11.0 kg/dia</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Animais:</span>
+                                    <span class="info-value">2.050</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Proteína:</span>
+                                    <span class="info-value">13%</span>
+                                </div>
+                                <div class="ration-info">
+                                    <span class="info-label">Total Diário:</span>
+                                    <span class="info-value">22.550 kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nutrition-details">
+                    <div class="ration-composition">
+                        <h4>Composição das Rações</h4>
+                        <table class="ration-table">
+                            <thead>
+                                <tr>
+                                    <th>Ingrediente</th>
+                                    <th>Adaptação (%)</th>
+                                    <th>Crescimento (%)</th>
+                                    <th>Terminação (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Silagem de Milho</td>
+                                    <td>60.0</td>
+                                    <td>35.0</td>
+                                    <td>25.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Milho Grão</td>
+                                    <td>20.0</td>
+                                    <td>40.0</td>
+                                    <td>50.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Farelo de Soja</td>
+                                    <td>15.0</td>
+                                    <td>20.0</td>
+                                    <td>15.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Núcleo Mineral</td>
+                                    <td>3.0</td>
+                                    <td>3.0</td>
+                                    <td>3.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Ureia</td>
+                                    <td>1.0</td>
+                                    <td>1.5</td>
+                                    <td>2.0</td>
+                                </tr>
+                                <tr>
+                                    <td>Calcário</td>
+                                    <td>1.0</td>
+                                    <td>0.5</td>
+                                    <td>0.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="stock-management">
+                        <h4>Estoque de Ingredientes</h4>
+                        <div class="ingredient-list">
+                            <div class="ingredient-item">
+                                <div class="ingredient-name">Silagem de Milho</div>
+                                <div class="ingredient-bar">
+                                    <div class="ingredient-fill" style="width: 65%;"></div>
+                                </div>
+                                <div class="ingredient-stock">650 ton</div>
+                                <div class="ingredient-days">Autonomia: 25 dias</div>
+                            </div>
+                            
+                            <div class="ingredient-item">
+                                <div class="ingredient-name">Milho Grão</div>
+                                <div class="ingredient-bar">
+                                    <div class="ingredient-fill" style="width: 40%;"></div>
+                                </div>
+                                <div class="ingredient-stock">320 ton</div>
+                                <div class="ingredient-days">Autonomia: 15 dias</div>
+                            </div>
+                            
+                            <div class="ingredient-item warning">
+                                <div class="ingredient-name">Farelo de Soja</div>
+                                <div class="ingredient-bar">
+                                    <div class="ingredient-fill" style="width: 25%;"></div>
+                                </div>
+                                <div class="ingredient-stock">120 ton</div>
+                                <div class="ingredient-days">Autonomia: 7 dias</div>
+                            </div>
+                            
+                            <div class="ingredient-item">
+                                <div class="ingredient-name">Núcleo Mineral</div>
+                                <div class="ingredient-bar">
+                                    <div class="ingredient-fill" style="width: 70%;"></div>
+                                </div>
+                                <div class="ingredient-stock">18 ton</div>
+                                <div class="ingredient-days">Autonomia: 28 dias</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba Gestão -->
+            <div class="tab-content" id="cattle-management">
+                <div class="financial-performance">
+                    <h3>Desempenho Financeiro</h3>
+                    <div class="performance-cards">
+                        <div class="performance-card">
+                            <div class="performance-title">Custo Médio Diário</div>
+                            <div class="performance-value">R$ 12,85</div>
+                            <div class="performance-subtitle">por animal/dia</div>
+                            <div class="performance-change positive">-0,45 <i class="fas fa-arrow-down"></i></div>
+                        </div>
+                        
+                        <div class="performance-card">
+                            <div class="performance-title">Custo por kg Ganho</div>
+                            <div class="performance-value">R$ 10,70</div>
+                            <div class="performance-subtitle">por kg de peso vivo</div>
+                            <div class="performance-change positive">-0,30 <i class="fas fa-arrow-down"></i></div>
+                        </div>
+                        
+                        <div class="performance-card">
+                            <div class="performance-title">Margem Projetada</div>
+                            <div class="performance-value">R$ 780,00</div>
+                            <div class="performance-subtitle">por animal</div>
+                            <div class="performance-change positive">+35,00 <i class="fas fa-arrow-up"></i></div>
+                        </div>
+                        
+                        <div class="performance-card">
+                            <div class="performance-title">ROI Projetado</div>
+                            <div class="performance-value">18,2%</div>
+                            <div class="performance-subtitle">retorno sobre investimento</div>
+                            <div class="performance-change positive">+0,5% <i class="fas fa-arrow-up"></i></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sales-projection">
+                    <h3>Projeção de Vendas</h3>
+                    <div class="chart-container">
+                        <div class="chart-placeholder" style="height: 250px;"></div>
+                    </div>
+                    
+                    <table class="projection-table">
+                        <thead>
+                            <tr>
+                                <th>Período</th>
+                                <th>Lote</th>
+                                <th>Quantidade</th>
+                                <th>Peso Est.</th>
+                                <th>Preço Est.</th>
+                                <th>Receita Est.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Maio/2025</td>
+                                <td>Lote A-25</td>
+                                <td>850</td>
+                                <td>19,5 @</td>
+                                <td>R$ 305,00</td>
+                                <td>R$ 5.051.625,00</td>
+                            </tr>
+                            <tr>
+                                <td>Junho/2025</td>
+                                <td>Lote B-32</td>
+                                <td>1.200</td>
+                                <td>18,0 @</td>
+                                <td>R$ 310,00</td>
+                                <td>R$ 6.696.000,00</td>
+                            </tr>
+                            <tr>
+                                <td>Junho/2025</td>
+                                <td>Lote C-18</td>
+                                <td>950</td>
+                                <td>17,5 @</td>
+                                <td>R$ 310,00</td>
+                                <td>R$ 5.143.750,00</td>
+                            </tr>
+                            <tr>
+                                <td>Julho/2025</td>
+                                <td>Lote D-12</td>
+                                <td>1.350</td>
+                                <td>17,0 @</td>
+                                <td>R$ 315,00</td>
+                                <td>R$ 7.228.500,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="buying-planning">
+                    <h3>Planejamento de Compras</h3>
+                    <p class="planning-description">Projeção de necessidade de animais para os próximos meses, baseada na capacidade de confinamento e ciclo de produção.</p>
+                    
+                    <table class="planning-table">
+                        <thead>
+                            <tr>
+                                <th>Mês</th>
+                                <th>Quantidade</th>
+                                <th>Peso Entrada</th>
+                                <th>Preço Est.</th>
+                                <th>Investimento Est.</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Maio/2025</td>
+                                <td>1.000</td>
+                                <td>10,0 @</td>
+                                <td>R$ 340,00</td>
+                                <td>R$ 3.400.000,00</td>
+                                <td><span class="status-badge neutral">Parcial</span></td>
+                            </tr>
+                            <tr>
+                                <td>Junho/2025</td>
+                                <td>1.500</td>
+                                <td>10,0 @</td>
+                                <td>R$ 330,00</td>
+                                <td>R$ 4.950.000,00</td>
+                                <td><span class="status-badge pending">Planejado</span></td>
+                            </tr>
+                            <tr>
+                                <td>Julho/2025</td>
+                                <td>1.800</td>
+                                <td>10,5 @</td>
+                                <td>R$ 320,00</td>
+                                <td>R$ 6.048.000,00</td>
+                                <td><span class="status-badge pending">Planejado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

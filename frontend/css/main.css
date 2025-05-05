@@ -1,0 +1,270 @@
+/* Variáveis e estilos gerais */
+:root {
+    /* Cores do modo claro (padrão) */
+    --primary-color: #2a9d8f;
+    --secondary-color: #264653;
+    --accent-color: #e9c46a;
+    --text-dark: #333;
+    --text-light: #fff;
+    --header-bg: rgba(38, 70, 83, 0.95);
+    --btn-primary: #2a9d8f;
+    --btn-secondary: #e9c46a;
+    --btn-highlight: #f4a261;
+    --btn-text: #264653;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --body-bg: #ffffff;
+    --card-bg: #fff;
+    --border-color: #ddd;
+    --icon-bg: rgba(42, 157, 143, 0.2);
+    --icon-bg-hover: rgba(42, 157, 143, 0.3);
+}
+
+/* Modo escuro */
+[data-theme="dark"] {
+    --primary-color: #3aafa9;
+    --secondary-color: #2b7a78;
+    --accent-color: #ffb347;
+    --text-dark: #f1f1f1;
+    --text-light: #ffffff;
+    --header-bg: rgba(23, 37, 42, 0.95);
+    --btn-primary: #3aafa9;
+    --btn-secondary: #ffb347;
+    --btn-highlight: #ff9642;
+    --btn-text: #17252a;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+    --body-bg: #17252a;
+    --card-bg: #2b7a78;
+    --border-color: #345d5a;
+    --icon-bg: rgba(58, 175, 169, 0.2);
+    --icon-bg-hover: rgba(58, 175, 169, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--body-bg);
+    transition: background-color 0.3s ease;
+}
+
+/* Header and Navigation */
+header {
+    background-color: var(--header-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo do botão Teste agora! no estilo ticket */
+.cta-teste {
+    --cta-orange: #FF6723;
+    font: 700 0.92rem/1.2 "Segoe UI", sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    background: var(--cta-orange);
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    position: relative;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: filter .2s ease;
+    text-decoration: none;
+}
+
+.cta-teste:hover {
+    filter: brightness(1.1);
+}
+
+/* "mordidas" laterais para o formato de ticket */
+.cta-teste::before,
+.cta-teste::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background: var(--header-bg);
+    border-radius: 50%;
+}
+
+.cta-teste::before {
+    left: -7px;
+}
+
+.cta-teste::after {
+    right: -7px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-menu a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+}
+
+.nav-menu a i {
+    font-size: 1rem;
+    color: var(--accent-color);
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu a.active i {
+    color: #fff;
+}
+
+.login-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Estilo do botão dark mode */
+.theme-toggle {
+    background-color: transparent;
+    color: var(--text-light);
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    color: var(--accent-color);
+}
+
+/* Ajustes para elementos no modo escuro */
+[data-theme="dark"] .farm-image {
+    filter: brightness(0.85);
+}
+
+/* Main Content */
+.farm-container {
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+}
+
+.farm-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--header-bg);
+        flex-direction: column;
+        padding: 20px;
+        gap: 10px;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .header-container {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .farm-container {
+        padding-top: 60px;
+    }
+}
+
+/* Botão de toggle para controle de posicionamento */
+.position-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.position-toggle:hover {
+    background-color: var(--primary-color);
+}

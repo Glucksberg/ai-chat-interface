@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Arquivos CSS Modularizados -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/farm-icons.css">
+    <link rel="stylesheet" href="css/popups.css">
+    <link rel="stylesheet" href="css/position-controls.css">
+    <link rel="stylesheet" href="css/chat.css">
+    
+    <title>CloudFarm.ai - Soluções Agrícolas Inteligentes</title>
+</head>
+<body>
+    <!-- Header com navegação e login -->
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <a href="/">
+                    <img src="/Images/logo.png" alt="CloudFarm.ai" height="40">
+                </a>
+                <a href="#" class="cta-teste">Teste agora!</a>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu">
+                <a href="/" class="active"><i class="fas fa-home"></i> Início</a>
+                <a href="/solucoes.html"><i class="fas fa-laptop-code"></i> Soluções</a>
+                <a href="/blog"><i class="fas fa-blog"></i> Blog</a>
+                <a href="/casos.html"><i class="fas fa-briefcase"></i> Casos de Sucesso</a>
+                <a href="/contato.html"><i class="fas fa-envelope"></i> Contato</a>
+            </nav>
+            
+            <div class="login-area">
+                <button class="theme-toggle" aria-label="Alternar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="/login.html" class="login-btn">Entrar</a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="farm-container">
+        <img src="/Images/littlefarm.png" alt="Fazenda Virtual" class="farm-image">
+        
+        <!-- Camada para ícones interativos da fazenda -->
+        <div class="farm-icons">
+            <!-- Posto de Combustível -->
+            <div class="farm-icon fuel-station" title="Posto de Combustível">
+                <i class="fas fa-gas-pump"></i>
+            </div>
+            
+            <!-- Armazém de Grãos -->
+            <div class="farm-icon grain-storage" title="Armazém de Grãos">
+                <i class="fas fa-warehouse"></i>
+            </div>
+            
+            <!-- Escritório -->
+            <div class="farm-icon office" title="Escritório">
+                <i class="fas fa-building"></i>
+            </div>
+            
+            <!-- Confinamento -->
+            <div class="farm-icon cattle" title="Confinamento">
+                <i class="fas fa-cow"></i>
+            </div>
+            
+            <!-- Estoque -->
+            <div class="farm-icon inventory" title="Estoque">
+                <i class="fas fa-box"></i>
+            </div>
+            
+            <!-- Talhões -->
+            <div class="farm-icon fields" title="Talhões">
+                <i class="fas fa-seedling"></i>
+            </div>
+            
+            <!-- Máquinas -->
+            <div class="farm-icon machines" title="Máquinas">
+                <i class="fas fa-tractor"></i>
+            </div>
+            
+            <!-- Biológicos -->
+            <div class="farm-icon biologicals" title="Biológicos">
+                <i class="fas fa-bacterium"></i>
+            </div>
+            
+            <!-- Chuvas -->
+            <div class="farm-icon rainfall" title="Chuvas">
+                <i class="fas fa-cloud-rain"></i>
+            </div>
+            
+            <!-- Monitoramento -->
+            <div class="farm-icon monitoring" title="Monitoramento">
+                <i class="fas fa-bug"></i>
+            </div>
+        </div>
+        
+        <!-- Botão para acessar o chat com o agrônomo virtual -->
+        <button class="chat-button" title="Conversar com o Agrônomo Virtual">
+            <div class="chat-icon">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+        </button>
+        
+        <!-- Botão para controle de posição dos ícones -->
+        <button class="position-toggle" title="Ajustar posição dos ícones">
+            <i class="fas fa-wrench"></i>
+        </button>
+        
+        <!-- Carregar componentes modularizados via JavaScript -->
+        <div id="components-container"></div>
+    </main>
+    
+    <!-- Incluir arquivos JavaScript modularizados -->
+    <script src="js/utils/appState.js"></script>
+    <script src="js/utils/themeManager.js"></script>
+    <script src="js/modules/positionManager.js"></script>
+    <script src="js/modules/moduleManager.js"></script>
+    <script src="js/modules/chatManager.js"></script>
+    <script src="js/modules/uiManager.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Função para carregar componentes HTML
+        async function loadComponents() {
+            const componentsContainer = document.getElementById('components-container');
+            
+            // Lista de componentes a carregar
+            const components = [
+                'components/position-controls.html',
+                'components/fuel-popup.html',
+                'components/grain-popup.html',
+                'components/chat.html'
+            ];
+            
+            // Carregar cada componente
+            for (const component of components) {
+                try {
+                    const response = await fetch(component);
+                    if (response.ok) {
+                        const html = await response.text();
+                        
+                        // Criar um elemento temporário para inserir o HTML
+                        const temp = document.createElement('div');
+                        temp.innerHTML = html;
+                        
+                        // Adicionar cada nó do componente ao contêiner
+                        while (temp.firstChild) {
+                            componentsContainer.appendChild(temp.firstChild);
+                        }
+                    } else {
+                        console.error(`Falha ao carregar o componente ${component}: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error(`Erro ao carregar o componente ${component}:`, error);
+                }
+            }
+            
+            // Após carregar todos os componentes, inicializar a aplicação
+            if (window.appState) {
+                // A inicialização já acontece no main.js quando o DOM está pronto
+                console.log('Componentes carregados com sucesso!');
+            }
+        }
+        
+        // Chamar a função de carregamento de componentes quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', loadComponents);
+    </script>
+</body>
+</html>

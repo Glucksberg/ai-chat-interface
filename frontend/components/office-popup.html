@@ -1,0 +1,568 @@
+<!-- Popup de informações do Escritório -->
+<div class="office-popup module-popup" id="office-popup">
+    <div class="popup-container">
+        <div class="popup-header" style="background-color: #3498db;">
+            <h2><i class="fas fa-building"></i> Escritório</h2>
+            <button class="popup-close" id="office-close"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="popup-content">
+            <div class="tab-navigation">
+                <div class="tab active" data-tab="dashboard">Dashboard</div>
+                <div class="tab" data-tab="finances">Finanças</div>
+                <div class="tab" data-tab="documents">Documentos</div>
+                <div class="tab" data-tab="calendar">Calendário</div>
+            </div>
+            
+            <!-- Aba Dashboard -->
+            <div class="tab-content active" id="office-dashboard">
+                <div class="dashboard-summary">
+                    <h3>Resumo da Fazenda</h3>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <div class="card-icon"><i class="fas fa-dollar-sign" style="color: #2ecc71;"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Faturamento Mensal</div>
+                                <div class="card-value">R$ 1.250.000</div>
+                                <div class="card-change positive">+12% <i class="fas fa-arrow-up"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-icon"><i class="fas fa-tractor" style="color: #3498db;"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Maquinário Ativo</div>
+                                <div class="card-value">85%</div>
+                                <div class="card-change positive">+5% <i class="fas fa-arrow-up"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-icon"><i class="fas fa-warehouse" style="color: #f39c12;"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Utilização de Armazém</div>
+                                <div class="card-value">65%</div>
+                                <div class="card-change negative">-10% <i class="fas fa-arrow-down"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-icon"><i class="fas fa-seedling" style="color: #27ae60;"></i></div>
+                            <div class="card-data">
+                                <div class="card-title">Produtividade</div>
+                                <div class="card-value">3.8 ton/ha</div>
+                                <div class="card-change positive">+8% <i class="fas fa-arrow-up"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notifications-section">
+                    <h3>Notificações Recentes</h3>
+                    <div class="notification-list">
+                        <div class="notification-item urgent">
+                            <div class="notification-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-title">Alerta de pragas na Área 12</div>
+                                <div class="notification-time">Hoje, 11:23</div>
+                                <div class="notification-text">Detectada presença de lagarta do cartucho acima do nível de controle.</div>
+                            </div>
+                            <div class="notification-action"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notification-icon"><i class="fas fa-file-invoice"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-title">Fatura de insumos aprovada</div>
+                                <div class="notification-time">Hoje, 09:45</div>
+                                <div class="notification-text">Pagamento de R$ 125.000 agendado para 10/05/2025.</div>
+                            </div>
+                            <div class="notification-action"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        
+                        <div class="notification-item">
+                            <div class="notification-icon"><i class="fas fa-cloud-rain"></i></div>
+                            <div class="notification-content">
+                                <div class="notification-title">Previsão de chuva</div>
+                                <div class="notification-time">Ontem, 18:30</div>
+                                <div class="notification-text">Previsão de 40mm para os próximos 3 dias.</div>
+                            </div>
+                            <div class="notification-action"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-tasks">
+                    <h3>Tarefas Pendentes</h3>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <input type="checkbox" id="task1">
+                            <label for="task1">Revisar relatório de produção mensal</label>
+                            <div class="task-due">Hoje</div>
+                        </div>
+                        
+                        <div class="task-item">
+                            <input type="checkbox" id="task2">
+                            <label for="task2">Agendar manutenção preventiva das colheitadeiras</label>
+                            <div class="task-due">Amanhã</div>
+                        </div>
+                        
+                        <div class="task-item">
+                            <input type="checkbox" id="task3">
+                            <label for="task3">Finalizar planejamento da próxima safra</label>
+                            <div class="task-due">08/05/2025</div>
+                        </div>
+                        
+                        <div class="task-item">
+                            <input type="checkbox" id="task4">
+                            <label for="task4">Renovar contrato com transportadoras</label>
+                            <div class="task-due">15/05/2025</div>
+                        </div>
+                    </div>
+                    <button class="view-all-btn">Ver Todas as Tarefas</button>
+                </div>
+            </div>
+            
+            <!-- Aba Finanças -->
+            <div class="tab-content" id="office-finances">
+                <div class="financial-summary">
+                    <h3>Resumo Financeiro</h3>
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <div class="summary-title">Receita Anual</div>
+                            <div class="summary-value">R$ 14.500.000</div>
+                            <div class="summary-period">Jan - Dez/2025 (Projetado)</div>
+                            <div class="summary-chart">
+                                <div class="chart-placeholder"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-title">Despesas Anuais</div>
+                            <div class="summary-value">R$ 9.250.000</div>
+                            <div class="summary-period">Jan - Dez/2025 (Projetado)</div>
+                            <div class="summary-chart">
+                                <div class="chart-placeholder"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="finance-tabs">
+                    <div class="finance-tab active" data-subtab="cashflow">Fluxo de Caixa</div>
+                    <div class="finance-tab" data-subtab="expenses">Despesas</div>
+                    <div class="finance-tab" data-subtab="revenue">Receitas</div>
+                </div>
+                
+                <div class="finance-subtab active" id="finance-cashflow">
+                    <div class="cashflow-chart">
+                        <div class="chart-placeholder" style="height: 250px;"></div>
+                    </div>
+                    
+                    <div class="period-selector">
+                        <button class="period-btn active">Mês</button>
+                        <button class="period-btn">Trimestre</button>
+                        <button class="period-btn">Ano</button>
+                    </div>
+                    
+                    <table class="finance-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="income">
+                                <td>03/05/2025</td>
+                                <td>Venda de soja - Contrato 23541</td>
+                                <td>Venda de Produtos</td>
+                                <td>R$ 1.250.000</td>
+                                <td>R$ 1.872.450</td>
+                            </tr>
+                            <tr class="expense">
+                                <td>01/05/2025</td>
+                                <td>Pagamento de funcionários</td>
+                                <td>Folha de Pagamento</td>
+                                <td>R$ 185.000</td>
+                                <td>R$ 622.450</td>
+                            </tr>
+                            <tr class="expense">
+                                <td>28/04/2025</td>
+                                <td>Compra de fertilizantes</td>
+                                <td>Insumos</td>
+                                <td>R$ 320.000</td>
+                                <td>R$ 807.450</td>
+                            </tr>
+                            <tr class="income">
+                                <td>15/04/2025</td>
+                                <td>Venda de milho - Contrato 23532</td>
+                                <td>Venda de Produtos</td>
+                                <td>R$ 875.000</td>
+                                <td>R$ 1.127.450</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="view-all-btn">Ver Histórico Completo</button>
+                </div>
+                
+                <div class="finance-subtab" id="finance-expenses">
+                    <!-- Conteúdo da aba de despesas será adicionado posteriormente -->
+                    <div class="expense-chart">
+                        <div class="chart-placeholder" style="height: 250px;"></div>
+                    </div>
+                    
+                    <div class="expense-categories">
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #3498db;"></div>
+                            <div class="category-name">Insumos</div>
+                            <div class="category-percentage">45%</div>
+                            <div class="category-value">R$ 4.162.500</div>
+                        </div>
+                        
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #e74c3c;"></div>
+                            <div class="category-name">Mão de Obra</div>
+                            <div class="category-percentage">25%</div>
+                            <div class="category-value">R$ 2.312.500</div>
+                        </div>
+                        
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #f1c40f;"></div>
+                            <div class="category-name">Maquinário</div>
+                            <div class="category-percentage">15%</div>
+                            <div class="category-value">R$ 1.387.500</div>
+                        </div>
+                        
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #27ae60;"></div>
+                            <div class="category-name">Armazenamento</div>
+                            <div class="category-percentage">8%</div>
+                            <div class="category-value">R$ 740.000</div>
+                        </div>
+                        
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #9b59b6;"></div>
+                            <div class="category-name">Outros</div>
+                            <div class="category-percentage">7%</div>
+                            <div class="category-value">R$ 647.500</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="finance-subtab" id="finance-revenue">
+                    <!-- Conteúdo da aba de receitas será adicionado posteriormente -->
+                    <div class="revenue-chart">
+                        <div class="chart-placeholder" style="height: 250px;"></div>
+                    </div>
+                    
+                    <div class="product-revenue">
+                        <div class="product-item">
+                            <div class="product-icon"><i class="fas fa-seedling"></i></div>
+                            <div class="product-name">Soja</div>
+                            <div class="product-bar">
+                                <div class="product-fill" style="width: 60%;"></div>
+                            </div>
+                            <div class="product-value">R$ 8.700.000</div>
+                            <div class="product-percentage">60%</div>
+                        </div>
+                        
+                        <div class="product-item">
+                            <div class="product-icon"><i class="fas fa-wheat"></i></div>
+                            <div class="product-name">Milho</div>
+                            <div class="product-bar">
+                                <div class="product-fill" style="width: 25%;"></div>
+                            </div>
+                            <div class="product-value">R$ 3.625.000</div>
+                            <div class="product-percentage">25%</div>
+                        </div>
+                        
+                        <div class="product-item">
+                            <div class="product-icon"><i class="fas fa-cloud"></i></div>
+                            <div class="product-name">Algodão</div>
+                            <div class="product-bar">
+                                <div class="product-fill" style="width: 10%;"></div>
+                            </div>
+                            <div class="product-value">R$ 1.450.000</div>
+                            <div class="product-percentage">10%</div>
+                        </div>
+                        
+                        <div class="product-item">
+                            <div class="product-icon"><i class="fas fa-cow"></i></div>
+                            <div class="product-name">Gado</div>
+                            <div class="product-bar">
+                                <div class="product-fill" style="width: 5%;"></div>
+                            </div>
+                            <div class="product-value">R$ 725.000</div>
+                            <div class="product-percentage">5%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba Documentos -->
+            <div class="tab-content" id="office-documents">
+                <div class="documents-search">
+                    <div class="search-input">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar documentos...">
+                    </div>
+                    <button class="filter-btn"><i class="fas fa-filter"></i> Filtros</button>
+                </div>
+                
+                <div class="document-categories">
+                    <div class="document-category active">Todos</div>
+                    <div class="document-category">Contratos</div>
+                    <div class="document-category">Relatórios</div>
+                    <div class="document-category">Notas Fiscais</div>
+                    <div class="document-category">Registros</div>
+                </div>
+                
+                <div class="documents-list">
+                    <div class="document-item">
+                        <div class="document-icon pdf"><i class="fas fa-file-pdf"></i></div>
+                        <div class="document-info">
+                            <div class="document-title">Contrato de Venda - Safra 2025</div>
+                            <div class="document-details">
+                                <span class="document-date">03/05/2025</span>
+                                <span class="document-size">2.4 MB</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn download"><i class="fas fa-download"></i></button>
+                            <button class="action-btn more"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <div class="document-icon excel"><i class="fas fa-file-excel"></i></div>
+                        <div class="document-info">
+                            <div class="document-title">Planilha de Custos - Abril/2025</div>
+                            <div class="document-details">
+                                <span class="document-date">01/05/2025</span>
+                                <span class="document-size">1.8 MB</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn download"><i class="fas fa-download"></i></button>
+                            <button class="action-btn more"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <div class="document-icon pdf"><i class="fas fa-file-pdf"></i></div>
+                        <div class="document-info">
+                            <div class="document-title">Nota Fiscal - Compra de Fertilizantes</div>
+                            <div class="document-details">
+                                <span class="document-date">28/04/2025</span>
+                                <span class="document-size">850 KB</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn download"><i class="fas fa-download"></i></button>
+                            <button class="action-btn more"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <div class="document-icon word"><i class="fas fa-file-word"></i></div>
+                        <div class="document-info">
+                            <div class="document-title">Relatório Técnico - Pulverização Área 12</div>
+                            <div class="document-details">
+                                <span class="document-date">25/04/2025</span>
+                                <span class="document-size">1.2 MB</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn download"><i class="fas fa-download"></i></button>
+                            <button class="action-btn more"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <div class="document-icon image"><i class="fas fa-file-image"></i></div>
+                        <div class="document-info">
+                            <div class="document-title">Mapa de Plantio - Safra 2025</div>
+                            <div class="document-details">
+                                <span class="document-date">20/04/2025</span>
+                                <span class="document-size">5.6 MB</span>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn download"><i class="fas fa-download"></i></button>
+                            <button class="action-btn more"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn page active">1</button>
+                    <button class="pagination-btn page">2</button>
+                    <button class="pagination-btn page">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="pagination-btn page">12</button>
+                    <button class="pagination-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Aba Calendário -->
+            <div class="tab-content" id="office-calendar">
+                <div class="calendar-header">
+                    <div class="calendar-navigation">
+                        <button class="calendar-nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <h3 class="current-month">Maio 2025</h3>
+                        <button class="calendar-nav-btn next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-views">
+                        <button class="view-btn active">Mês</button>
+                        <button class="view-btn">Semana</button>
+                        <button class="view-btn">Dia</button>
+                        <button class="view-btn">Lista</button>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid">
+                    <div class="calendar-weekdays">
+                        <div class="weekday">Dom</div>
+                        <div class="weekday">Seg</div>
+                        <div class="weekday">Ter</div>
+                        <div class="weekday">Qua</div>
+                        <div class="weekday">Qui</div>
+                        <div class="weekday">Sex</div>
+                        <div class="weekday">Sáb</div>
+                    </div>
+                    
+                    <div class="calendar-days">
+                        <!-- Dias do mês anterior -->
+                        <div class="day other-month">28</div>
+                        <div class="day other-month">29</div>
+                        <div class="day other-month">30</div>
+                        
+                        <!-- Dias do mês atual -->
+                        <div class="day">1</div>
+                        <div class="day">2</div>
+                        <div class="day">3</div>
+                        <div class="day">4</div>
+                        <div class="day today">5
+                            <div class="day-events">
+                                <div class="event meeting">Reunião gerencial</div>
+                                <div class="event deadline">Vencimento NF</div>
+                            </div>
+                        </div>
+                        <div class="day">6</div>
+                        <div class="day">7</div>
+                        <div class="day">8
+                            <div class="day-events">
+                                <div class="event task">Finalizar planejamento</div>
+                            </div>
+                        </div>
+                        <div class="day">9</div>
+                        <div class="day">10
+                            <div class="day-events">
+                                <div class="event payment">Pagamento fornecedores</div>
+                            </div>
+                        </div>
+                        <div class="day">11</div>
+                        <div class="day">12</div>
+                        <div class="day">13</div>
+                        <div class="day">14</div>
+                        <div class="day">15
+                            <div class="day-events">
+                                <div class="event contract">Renovar contratos</div>
+                            </div>
+                        </div>
+                        <div class="day">16</div>
+                        <div class="day">17</div>
+                        <div class="day">18</div>
+                        <div class="day">19</div>
+                        <div class="day">20
+                            <div class="day-events">
+                                <div class="event maintenance">Manutenção frota</div>
+                            </div>
+                        </div>
+                        <div class="day">21</div>
+                        <div class="day">22</div>
+                        <div class="day">23</div>
+                        <div class="day">24</div>
+                        <div class="day">25</div>
+                        <div class="day">26</div>
+                        <div class="day">27</div>
+                        <div class="day">28</div>
+                        <div class="day">29</div>
+                        <div class="day">30</div>
+                        <div class="day">31</div>
+                        
+                        <!-- Dias do próximo mês -->
+                        <div class="day other-month">1</div>
+                    </div>
+                </div>
+                
+                <div class="upcoming-events">
+                    <h3>Próximos Eventos</h3>
+                    <div class="event-list">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">5</div>
+                                <div class="event-month">Mai</div>
+                            </div>
+                            <div class="event-details">
+                                <div class="event-title">Reunião de Planejamento Semanal</div>
+                                <div class="event-time">09:00 - 10:30</div>
+                                <div class="event-location">Sala de Reuniões</div>
+                            </div>
+                            <div class="event-type meeting">Reunião</div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">5</div>
+                                <div class="event-month">Mai</div>
+                            </div>
+                            <div class="event-details">
+                                <div class="event-title">Vencimento de Nota Fiscal - Defensivos</div>
+                                <div class="event-time">Todo o dia</div>
+                                <div class="event-location">Financeiro</div>
+                            </div>
+                            <div class="event-type deadline">Vencimento</div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">8</div>
+                                <div class="event-month">Mai</div>
+                            </div>
+                            <div class="event-details">
+                                <div class="event-title">Finalizar Planejamento da Próxima Safra</div>
+                                <div class="event-time">17:00</div>
+                                <div class="event-location">Departamento Técnico</div>
+                            </div>
+                            <div class="event-type task">Tarefa</div>
+                        </div>
+                        
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">10</div>
+                                <div class="event-month">Mai</div>
+                            </div>
+                            <div class="event-details">
+                                <div class="event-title">Pagamento de Fornecedores</div>
+                                <div class="event-time">Todo o dia</div>
+                                <div class="event-location">Financeiro</div>
+                            </div>
+                            <div class="event-type payment">Pagamento</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

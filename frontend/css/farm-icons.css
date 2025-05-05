@@ -1,0 +1,110 @@
+/* Estilos para os ícones da fazenda */
+.farm-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.farm-icon {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    background-color: var(--icon-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--primary-color);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.farm-icon:hover {
+    transform: scale(1.1);
+    background-color: var(--icon-bg-hover);
+}
+
+.farm-icon i {
+    font-size: 28px;
+}
+
+/* Estilos específicos para cada ícone */
+.fuel-station {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #e76f51;
+}
+
+.grain-storage {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #e9c46a;
+}
+
+.office {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #3498db;
+}
+
+.cattle {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #8e44ad;
+}
+
+.inventory {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #e67e22;
+}
+
+.fields {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #2ecc71;
+}
+
+.machines {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #34495e;
+}
+
+.biologicals {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #27ae60;
+}
+
+.rainfall {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #3498db;
+}
+
+.monitoring {
+    position: absolute;
+    /* Posição padrão para desktop - será sobrescrita pelo JavaScript */
+    color: #d35400;
+}
+
+/* Adaptações para dispositivos móveis */
+@media (max-width: 767px) {
+    .farm-icon {
+        width: 40px; /* Tamanho base menor em dispositivos móveis */
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .farm-icon i {
+        font-size: 20px;
+    }
+}

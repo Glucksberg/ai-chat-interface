@@ -1,0 +1,142 @@
+<!-- Painel de controle de posicionamento dos ícones da fazenda -->
+<div id="position-controls" class="position-controls">
+    <div class="position-header">
+        <h3>Ajustar Posição dos Ícones</h3>
+        <button class="position-close"><i class="fas fa-times"></i></button>
+    </div>
+    
+    <!-- Seção do Posto de Combustível -->
+    <div class="position-section section-fuel">
+        <div class="section-title">Posto de Combustível</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('fuel', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('fuel', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('fuel', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('fuel', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="fuel-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('fuel')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção do Armazém de Grãos -->
+    <div class="position-section section-grain">
+        <div class="section-title">Armazém de Grãos</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('grain', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('grain', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('grain', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('grain', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="grain-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('grain')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção do Escritório -->
+    <div class="position-section section-office">
+        <div class="section-title">Escritório</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('office', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('office', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('office', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('office', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="office-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('office')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção do Confinamento -->
+    <div class="position-section section-cattle">
+        <div class="section-title">Confinamento</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('cattle', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('cattle', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('cattle', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('cattle', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="cattle-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('cattle')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção do Estoque -->
+    <div class="position-section section-inventory">
+        <div class="section-title">Estoque</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('inventory', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('inventory', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('inventory', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('inventory', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="inventory-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('inventory')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção dos Talhões -->
+    <div class="position-section section-fields">
+        <div class="section-title">Talhões</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('fields', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('fields', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('fields', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('fields', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="fields-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('fields')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção das Máquinas -->
+    <div class="position-section section-machines">
+        <div class="section-title">Máquinas</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('machines', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('machines', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('machines', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('machines', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="machines-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('machines')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção dos Biológicos -->
+    <div class="position-section section-biologicals">
+        <div class="section-title">Biológicos</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('biologicals', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('biologicals', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('biologicals', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('biologicals', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="biologicals-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('biologicals')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção das Chuvas -->
+    <div class="position-section section-rainfall">
+        <div class="section-title">Chuvas</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('rainfall', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('rainfall', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('rainfall', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('rainfall', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="rainfall-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('rainfall')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Seção do Monitoramento -->
+    <div class="position-section section-monitoring">
+        <div class="section-title">Monitoramento</div>
+        <div class="position-buttons">
+            <button onclick="positionManager.moveIcon('monitoring', 'up')" class="position-btn">↑</button>
+            <button onclick="positionManager.moveIcon('monitoring', 'down')" class="position-btn">↓</button>
+            <button onclick="positionManager.moveIcon('monitoring', 'left')" class="position-btn">←</button>
+            <button onclick="positionManager.moveIcon('monitoring', 'right')" class="position-btn">→</button>
+        </div>
+        <div id="monitoring-position-info" class="position-coords">Top: 0px, Left: 0px</div>
+        <button onclick="positionManager.saveIconPosition('monitoring')" class="save-position-btn">Salvar Posição</button>
+    </div>
+    
+    <!-- Botão para salvar todas as posições -->
+    <button class="save-all-positions-btn" onclick="positionManager.saveAllPositions()">
+        <i class="fas fa-save"></i> Salvar Todas as Posições
+    </button>
+</div>
